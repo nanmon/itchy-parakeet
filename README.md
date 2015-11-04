@@ -1,2 +1,2 @@
-# itchy-parakeet
-Mis codigos
+# Mis codigos
+Autor: Roberto Montaño
