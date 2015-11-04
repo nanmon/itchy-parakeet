@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Alumno()
+comment1.params=promedio
+comment1.target=void\ actualizarPromedio(double)
+comment1.text=\n\ Nuevo\ promedio\ que\ debe\ asignar\ al\ alumno\n\ @param\ \ \ \ \ \ \ \ promedio\ Nuevo\ promedio\ que\ debe\ asignar\ al\ alumno.\n
+comment2.params=
+comment2.target=java.lang.String\ obtenerDatos()
+comment2.text=\n\ Este\ metodo\ se\ encarga\ de\ obtener\ todos\ los\ elementos\ de\ la\ clase\ en\ el\n\ siguiente\ orden\:\ nombre,\ edad,\ promedio\ Cada\ dato\ debe\ ir\ separado\ por\ coma.\n\ return\ Los\ atributos\ ordenados\ del\ alumno\n\ @return\ \ \ \ \ \ \ String\n
+comment3.params=nombre\ edad\ promedio
+comment3.target=void\ ponerDatos(java.lang.String,\ int,\ double)
+comment3.text=\n\ Este\ metodo\ se\ encarga\ de\ asignar\ los\ vaores\ a\ los\ atributos\ de\ la\ clase.\n\ @param\ \ \ \ \ \ \ \ nombre\ Representa\ el\ nombre\ del\ alumno\n\ @param\ \ \ \ \ \ \ \ edad\ Representa\ la\ edad\ del\ alumno\n\ @param\ \ \ \ \ \ \ \ promedio\ Representa\ el\ promedio\ del\ alumno\n
+numComments=4

@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/big_cookie_background"
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:measureWithLargestChild="false">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/panel_vertical"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout android:id="@+id/bigCookie_layout"
+        android:layout_width="match_parent"
+        android:background="@drawable/big_cookie_background"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="@dimen/big_cookie_size"
+            android:layout_height="@dimen/big_cookie_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:id="@+id/bigCookie"
+            android:onClick="bigClick"
+            android:alpha="1"
+            android:background="@drawable/big_cookie_button"
+            />
+
+        <com.nancio.cookie.views.MilkyView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            custom:percentage_test="80"
+            android:layout_marginTop="@dimen/milk_margin"/>
+
+
+
+        <TextView android:id="@+id/cookies_clicked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:alpha="0"
+            android:text="+1"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/panel_vertical"
+        android:scaleType="fitXY" />
+
+    <!--com.nancio.cookie.views.NotificationView android:id="@+id/notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" /-->
+
+</LinearLayout>
+<!-- From: file:/home/nancio/Programacion/android/Cookie/app/src/main/res/layout/big_cookie_fragment.xml -->

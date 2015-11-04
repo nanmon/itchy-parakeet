@@ -1,0 +1,5 @@
+/home/nancio/Programacion/android/Cookie/app/build/intermediates/classes/debug
+/home/nancio/Programacion/android/Cookie/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-180200cb021930d0f1d7b05746f76bea86c68e5d.jar
+/home/nancio/Programacion/android/Cookie/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-bcf67ba6e44f3c175dbbe2c6fd045f06b7dff7e0.jar
+/home/nancio/Programacion/android/Cookie/app/build/intermediates/pre-dexed/debug/classes-bf1c8745f399dd1aa2fa7a7b2ca086199c058d74.jar
+/home/nancio/Programacion/android/Cookie/app/build/intermediates/pre-dexed/debug/classes-f949f02a2d55c858878c8c41fd0f563360cfc8e1.jar

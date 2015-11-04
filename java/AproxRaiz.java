@@ -1,0 +1,18 @@
+/*
+1+3/2-9/8+
+1.37
+*/
+public class AproxRaiz{
+	public static void main(String args[]){
+		double numero = Double.parseDouble(args[0]);
+		int iter = Integer.parseInt(args[1]);
+		double aprox=1, term = 1;
+		for(int i=1;i<=iter; ++i){//1.5
+			term*=(0.5-(i-1))/i;
+			aprox+=term*Math.pow(numero-1, i);
+			System.out.println(aprox);
+		}
+	}
+}
+
+

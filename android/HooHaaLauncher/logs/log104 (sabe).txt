@@ -1,0 +1,18 @@
+10-20 19:55:57.874: E/AndroidRuntime(6415): FATAL EXCEPTION: AsyncTask #1
+10-20 19:55:57.874: E/AndroidRuntime(6415): Process: com.hoohaa.hoohaalauncher, PID: 6415
+10-20 19:55:57.874: E/AndroidRuntime(6415): java.lang.RuntimeException: An error occured while executing doInBackground()
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at android.os.AsyncTask$3.done(AsyncTask.java:304)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.util.concurrent.FutureTask.finishCompletion(FutureTask.java:355)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.util.concurrent.FutureTask.setException(FutureTask.java:222)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.util.concurrent.FutureTask.run(FutureTask.java:242)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at android.os.AsyncTask$SerialExecutor$1.run(AsyncTask.java:231)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1112)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:587)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.lang.Thread.run(Thread.java:818)
+10-20 19:55:57.874: E/AndroidRuntime(6415): Caused by: java.lang.NullPointerException: Attempt to invoke virtual method 'com.hoohaa.hoohaalauncher.AppItem com.hoohaa.hoohaalauncher.AppItem$Builder.build(android.content.Context)' on a null object reference
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at util.xmlparser.XmlManager.readItems(XmlManager.java:103)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at com.hoohaa.hoohaalauncher.MainActivity$LoadApps.doInBackground(MainActivity.java:119)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at com.hoohaa.hoohaalauncher.MainActivity$LoadApps.doInBackground(MainActivity.java:1)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at android.os.AsyncTask$2.call(AsyncTask.java:292)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+10-20 19:55:57.874: E/AndroidRuntime(6415): 	... 4 more

@@ -1,0 +1,547 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnLongClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+	
+	Pack[] packs;
+	PackageManager pm;
+	GridView drawerGrid;
+	DrawerAdapter drawerAdapter;
+	SlidingDrawer drawer;
+	RelativeLayout homeView;
+	AppWidgetManager mAppWidgetManager;
+	LauncherAppWidgetHost mAppWidgetHost;
+	static Activity activity;;
+	
+	static boolean appLaunchable;
+	final int REQUEST_CREATE_APPWIDGET = 900;
+	final int REQUEST_CREATE_SHORTCUT = 800;
+	final int REQUEST_PICK_APPWIDGET = 901;
+	final int REQUEST_PICK_SHORTCUT = 801;
+	final int REQUEST_PICK_ICONTHEME = 701;
+	int numWidgets;
+	SharedPreferences globalPrefs;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		activity = this;
+		mAppWidgetManager = AppWidgetManager.getInstance(this);
+		mAppWidgetHost = new LauncherAppWidgetHost(this, R.id.APPWIDGET_HOST_ID);
+		globalPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		pm = getPackageManager();
+		drawerGrid = (GridView)findViewById(R.id.content);
+		drawer = (SlidingDrawer)findViewById(R.id.drawer);
+		homeView = (RelativeLayout)findViewById(R.id.home_view);
+		new LoadApps().execute();
+		//setPacks(true);
+		
+		homeView.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
+				
+				String [] s = {
+						getString(R.string.widget),
+						getString(R.string.shortcut),
+						getString(R.string.icon_theme)
+				};
+				b.setItems(s, new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						switch(which){
+						case 0: //Widget
+							selectWidget();
+							break;
+						case 1: //Shortcut
+							selectShortcut();
+							break;
+						case 2:
+							selectIconTheme();
+						}
+					}
+				});
+				
+				AlertDialog d = b.create();
+				d.show();
+				return false;
+			}
+		});
+		
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(Intent.ACTION_PACKAGE_ADDED);
+		filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+		filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+		filter.addDataScheme("package");
+		registerReceiver(new PackReceiver(), filter);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if(resultCode == RESULT_OK)
+			switch(requestCode){
+			case REQUEST_PICK_APPWIDGET:
+				configureWidget(data);
+				break;
+			case REQUEST_CREATE_APPWIDGET:
+				createWidget(data);
+				break;
+			case REQUEST_PICK_SHORTCUT:
+				configureShortcut(data);
+				break;
+			case REQUEST_CREATE_SHORTCUT:
+				createShortcut(data);
+				break;
+			case REQUEST_PICK_ICONTHEME:
+				globalPrefs.edit().putString("theme", data.getComponent().getPackageName());
+				setPacks(false);
+			}
+		else if(resultCode == RESULT_CANCELED && data != null){
+			int appWidgetId = data.getIntExtra(
+					AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+			if(appWidgetId != -1) mAppWidgetHost.deleteAppWidgetId(appWidgetId);
+		}
+	}
+	
+	private void configureShortcut(Intent data){
+		startActivityForResult(data, REQUEST_CREATE_SHORTCUT);
+	}
+	
+	public void createShortcut(Intent data){
+		Intent.ShortcutIconResource iconResource = 
+				data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE);
+		Bitmap icon = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
+		String shortcutLabel = data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
+		Intent shortIntent = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_INTENT);
+		
+		if(icon == null){
+			if(iconResource != null){
+				Resources resources = null;
+				try{
+					resources = pm.getResourcesForApplication(iconResource.packageName);
+				}catch(NameNotFoundException e){
+					e.printStackTrace();
+				}
+				if(resources != null){
+					int id = resources.getIdentifier(iconResource.resourceName, null, null);
+					if(resources.getDrawable(id) instanceof StateListDrawable){
+						Drawable d = ((StateListDrawable)resources.getDrawable(id)).getCurrent();
+						icon = ((BitmapDrawable)d).getBitmap();
+					}else
+						icon = ((BitmapDrawable)resources.getDrawable(id)).getBitmap();
+				}
+			}
+		}
+		
+		if(shortcutLabel != null && shortIntent != null && icon != null){
+			LayoutParams lp = new LayoutParams(
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			lp.leftMargin = 100;
+			lp.topMargin = (int) 100;
+			
+			LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+			LinearLayout ll = (LinearLayout) li.inflate(R.layout.drawer_item, null);
+			((ImageView)ll.findViewById(R.id.item_icon)).setImageBitmap(icon);
+			((TextView)ll.findViewById(R.id.item_label)).setText(shortcutLabel);
+			ll.setOnLongClickListener(new OnLongClickListener() {
+				
+				@Override
+				public boolean onLongClick(View v) {
+					// TODO Auto-generated method stub
+					v.setOnTouchListener(new AppTouchListener());
+					return false;
+				}
+			});
+			
+			ll.setOnClickListener(new ShortcutClickListener(this));
+			ll.setTag(shortIntent);
+			homeView.addView(ll, lp);
+		}
+	}
+	
+	private void configureWidget(Intent data){
+		Bundle extras = data.getExtras();
+		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
+		AppWidgetProviderInfo appWidgetInfo = 
+				mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+		if(appWidgetInfo.configure != null){
+			Intent intent = new Intent(
+					AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
+			intent.setComponent(appWidgetInfo.configure);
+			intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+			startActivityForResult(intent, REQUEST_CREATE_APPWIDGET);
+		}else createWidget(data);
+	}
+	
+	public void createWidget(Intent data){
+		Bundle extras = data.getExtras();
+		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+		AppWidgetProviderInfo appWidgetInfo =
+				mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+		LauncherAppWidgetHostView hostView = (LauncherAppWidgetHostView)mAppWidgetHost.createView(
+				this, appWidgetId, appWidgetInfo);
+		hostView.setAppWidget(appWidgetId, appWidgetInfo);
+		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+				homeView.getWidth(), homeView.getHeight()/3);
+		lp.topMargin = numWidgets * homeView.getHeight()/3;
+		hostView.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub 
+				v.setBackgroundColor(Color.RED);
+				return false;
+			}
+		});
+		homeView.addView(hostView, lp);
+		drawer.bringToFront();
+		++numWidgets;
+	}
+	
+	private void selectWidget(){
+		int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+		Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+		pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,  appWidgetId);
+		addEmptyData(pickIntent);
+		startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+	}
+	
+	private void selectShortcut(){
+		Intent intent = new Intent(Intent.ACTION_PICK_ACTIVITY);
+		intent.putExtra(Intent.EXTRA_INTENT, new Intent(Intent.ACTION_CREATE_SHORTCUT));
+		startActivityForResult(intent, REQUEST_PICK_SHORTCUT);
+	}
+	
+	private void selectIconTheme(){
+		Intent intent = new Intent(Intent.ACTION_PICK_ACTIVITY);
+		
+		Intent filter = new Intent(Intent.ACTION_MAIN);
+		filter.addCategory("com.anddoes.launcher.THEME");
+		
+		intent.putExtra(Intent.EXTRA_INTENT, filter);
+		startActivityForResult(intent, REQUEST_PICK_ICONTHEME);
+	}
+	
+	private void addEmptyData(Intent pickIntent){
+		ArrayList<Parcelable> customInfo = new ArrayList<>();
+		pickIntent.putParcelableArrayListExtra(
+				AppWidgetManager.EXTRA_CUSTOM_INFO, customInfo);
+		ArrayList<Parcelable> customExtra = new ArrayList<>();
+		pickIntent.putParcelableArrayListExtra(
+				AppWidgetManager.EXTRA_CUSTOM_EXTRAS, customExtra);
+	}
+	
+	public class LoadApps extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+			mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+			List<ResolveInfo> packsList = pm.queryIntentActivities(mainIntent, 0);
+			packs = new Pack[packsList.size()];
+			for(int i=0; i<packs.length; ++i){
+				packs[i] = new Pack(
+						packsList.get(i).loadIcon(pm),
+						packsList.get(i).activityInfo.name,
+						packsList.get(i).loadLabel(pm).toString(),
+						packsList.get(i).activityInfo.packageName);
+			}
+			AppsSorter.byLabel(packs);
+			themePacks();
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(String result) {
+			if(drawerAdapter == null){
+				drawerAdapter = new DrawerAdapter(activity, packs);
+				drawerGrid.setAdapter(drawerAdapter);
+				drawerGrid.setOnItemClickListener(new DrawerItemClickListener(activity, packs, pm));
+				drawerGrid.setOnItemLongClickListener(
+						new DrawerItemLongClickListener(activity, drawer, homeView, packs));
+			}else{
+				drawerAdapter.packsForAdapter = packs;
+				drawerAdapter.notifyDataSetInvalidated();
+			}
+		}
+		
+	}
+	
+	public void addAppsToHome(){
+		AppSerializableData data = SerializationTools.loadSerializedData();
+		if(data != null){
+			for(Pack packToHome : data.apps){
+				
+			}
+		}
+	}
+	
+	public void setPacks(boolean init){
+		final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+		mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+		List<ResolveInfo> packsList = pm.queryIntentActivities(mainIntent, 0);
+		packs = new Pack[packsList.size()];
+		for(int i=0; i<packs.length; ++i){
+			packs[i] = new Pack(
+					packsList.get(i).loadIcon(pm),
+					packsList.get(i).activityInfo.name,
+					packsList.get(i).loadLabel(pm).toString(),
+					packsList.get(i).activityInfo.packageName);
+		}
+		AppsSorter.byLabel(packs);
+		themePacks();
+		
+		if(init){
+			drawerAdapter = new DrawerAdapter(this, packs);
+			drawerGrid.setAdapter(drawerAdapter);
+			drawerGrid.setOnItemClickListener(new DrawerItemClickListener(this, packs, pm));
+			drawerGrid.setOnItemLongClickListener(
+					new DrawerItemLongClickListener(this, drawer, homeView, packs));
+		}else{
+			drawerAdapter.packsForAdapter = packs;
+			drawerAdapter.notifyDataSetInvalidated();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void themePacks(){
+		final int ICONSIZE = Tools.numtodp(65, this);
+		Resources themeRes = null;
+		String resPackName = globalPrefs.getString("theme", "");
+		String iconResource = null;
+		int intRes = 0;
+		int intResIconBack = 0;
+		int intResIconFront = 0;
+		int intResIconMask = 0;
+		float scaleFactor = 1.0f;
+		
+		Paint p = new Paint(Paint.FILTER_BITMAP_FLAG);
+		p.setAntiAlias(true);
+		
+		Paint origP = new Paint(Paint.FILTER_BITMAP_FLAG);
+		origP.setAntiAlias(true);
+		
+		Paint maskP = new Paint(Paint.FILTER_BITMAP_FLAG);
+		maskP.setAntiAlias(true);
+		maskP.setXfermode(new PorterDuffXfermode(Mode.DST_OUT));
+		
+		if(resPackName.compareTo("") != 0){
+			try{
+				themeRes = pm.getResourcesForApplication(resPackName);
+			}catch(Exception e){}
+			if(themeRes != null){
+				String[] backAndMaskAndFront = IconThemeTools
+						.getIconBackAndMaskResourceName(themeRes, resPackName);
+				if(backAndMaskAndFront[0] != null)
+					intResIconBack = themeRes.getIdentifier(
+							backAndMaskAndFront[0], "drawable", resPackName);
+				if(backAndMaskAndFront[1] != null)
+					intResIconMask = themeRes.getIdentifier(
+							backAndMaskAndFront[1], "drawable", resPackName);
+				if(backAndMaskAndFront[2] != null)
+					intResIconFront = themeRes.getIdentifier(
+							backAndMaskAndFront[2], "drawable", resPackName);
+			}
+		}
+		
+		Options uniformOptions = new BitmapFactory.Options();
+		uniformOptions.inScaled = false;
+		uniformOptions.inDither = false;
+		uniformOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;
+		
+		Canvas origCanv;
+		Canvas canvas;
+		scaleFactor = IconThemeTools.getScaleFactor(themeRes, resPackName);
+		Bitmap back = null, mask = null, front = null, scaledBitmap = null, 
+				scaledOrig = null, orig = null;
+		
+		if(resPackName.compareTo("") != 0 && themeRes != null){
+			try{
+				if(intResIconBack != 0)
+					back = BitmapFactory.decodeResource(
+							themeRes, intResIconBack, uniformOptions);
+			}catch(Exception e){}
+			try{
+				if(intResIconMask != 0)
+					mask = BitmapFactory.decodeResource(
+							themeRes, intResIconMask, uniformOptions);
+			}catch(Exception e){}
+			try{
+				if(intResIconFront != 0)
+					front = BitmapFactory.decodeResource(
+							themeRes, intResIconFront, uniformOptions);
+			}catch(Exception e){}
+		}
+		//theming vars
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = false;
+		options.inPreferredConfig = Config.RGB_565;
+		options.inDither = true;
+		
+		for(int i=0; i<packs.length; ++i){
+			if(themeRes != null){
+				iconResource=null;
+				intRes = 0;
+				iconResource = IconThemeTools.getResourceName(
+						themeRes, 
+						resPackName, 
+						"ComponentInfo{"+packs[i].packageName+"/"+packs[i].name+"}");
+				if(iconResource != null)
+					intRes = themeRes.getIdentifier(iconResource, "drawable", resPackName);
+				
+				if(intRes != 0) //has single drawable for app
+					packs[i].icon = new BitmapDrawable(
+							BitmapFactory.decodeResource(
+									themeRes, intRes, uniformOptions));
+				else{
+					orig = Bitmap.createBitmap(
+							packs[i].icon.getIntrinsicWidth(), 
+							packs[i].icon.getIntrinsicHeight(), 
+							Bitmap.Config.ARGB_8888);
+					packs[i].icon.setBounds(0,0,
+							packs[i].icon.getIntrinsicWidth(), 
+							packs[i].icon.getIntrinsicHeight());
+					packs[i].icon.draw(new Canvas(orig));
+					
+					scaledOrig = Bitmap.createBitmap(ICONSIZE, ICONSIZE, Config.ARGB_8888);
+					scaledBitmap = Bitmap.createBitmap(ICONSIZE, ICONSIZE, Config.ARGB_8888);
+					canvas = new Canvas(scaledBitmap);
+					if(back != null)
+						canvas.drawBitmap(back, 
+								Tools.getResizedMatrix(back, ICONSIZE, ICONSIZE), p);
+					
+					origCanv = new Canvas(scaledOrig);
+					orig = Tools.getResizedBitmap(orig, 
+							(int)(ICONSIZE*scaleFactor), 
+							(int)(ICONSIZE*scaleFactor));
+					origCanv.drawBitmap(orig, 
+							scaledOrig.getWidth()/2 - orig.getWidth()/2,
+							scaledOrig.getWidth()/2 - orig.getWidth()/2, origP);
+					
+					if(mask != null)
+						origCanv.drawBitmap(mask, 
+								Tools.getResizedMatrix(mask, ICONSIZE, ICONSIZE), 
+								maskP);
+						
+					canvas.drawBitmap(Tools.getResizedBitmap(scaledOrig, ICONSIZE, ICONSIZE), 0,  0, p);
+					
+					
+					if(front != null)
+						canvas.drawBitmap(front, Tools.getResizedMatrix(front, ICONSIZE, ICONSIZE), p);
+					packs[i].icon = new BitmapDrawable(scaledBitmap);
+				}
+			}
+		}
+		
+	}
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		mAppWidgetHost.startListening();
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		mAppWidgetHost.stopListening();
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			Intent settingsIntent = new Intent(Settings.ACTION_SETTINGS);
+			startActivity(settingsIntent);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		drawer.animateClose();
+	}
+	
+	
+	
+	public class PackReceiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			//setPacks(false);
+			new LoadApps().execute();
+		}
+		
+	}
+}

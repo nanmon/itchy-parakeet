@@ -1,0 +1,78 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ClipDescription;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.GridLayout.LayoutParams;
+
+public class HomeGridDragEventListener implements View.OnDragListener {
+
+	public static final String DRAWER_ITEM = ClipDescription.MIMETYPE_TEXT_PLAIN;
+	public static final String HOME_ITEM = ClipDescription.MIMETYPE_TEXT_INTENT;
+	
+	Pack[] packs;
+	
+	public HomeGridDragEventListener(Pack[] p){
+		packs = p;
+	}
+	
+	@Override
+	public boolean onDrag(View v, DragEvent event) {
+		
+		switch(event.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(event.getClipDescription().hasMimeType(DRAWER_ITEM) 
+					|| event.getClipDescription().hasMimeType(HOME_ITEM)){
+				v.setBackgroundColor(Color.argb(0x80, 0, 0, 0xff)); //blue
+				v.invalidate();
+				return true;
+			}else{
+				v.setBackgroundColor(Color.argb(0x80, 0xff, 0, 0)); //red
+				v.invalidate();
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			v.setBackgroundColor(Color.argb(0x80, 0, 0xff, 0)); //green
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			v.setBackgroundColor(Color.argb(0x80, 0, 0, 0xff));
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DROP:
+			if(event.getClipDescription().hasMimeType(DRAWER_ITEM)){
+				Pack pack = packs[Integer.parseInt(
+						event.getClipData().getItemAt(0).getText().toString())];
+				pack.x = (int)event.getX();
+				pack.y = (int)event.getY();
+				pack.addToHomeGrid(v.getContext(), (HomeGridLayout)v);
+			}else if(event.getClipDescription().hasMimeType(HOME_ITEM) ){
+				View homeItem = v.findViewById(R.id.DRAGGED_VIEW);
+				Pack pack = (Pack)homeItem.getTag();
+				pack.x = (int)event.getX();
+				pack.y = (int)event.getY();
+				LayoutParams lp = (LayoutParams)homeItem.getLayoutParams();
+				lp.leftMargin = pack.x;
+				lp.topMargin = pack.y; //...?
+				homeItem.setVisibility(View.VISIBLE);
+				homeItem.setId(View.NO_ID);
+				//serialize pack
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENDED:
+			v.setBackgroundColor(Color.TRANSPARENT);
+			v.invalidate();
+			return true;
+		default:
+			Log.e("Drag", "Unknown action type");
+			break;
+		}
+		return false;
+	}
+
+}

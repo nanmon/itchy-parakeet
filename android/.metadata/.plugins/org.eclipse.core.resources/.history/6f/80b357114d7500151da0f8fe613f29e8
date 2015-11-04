@@ -1,0 +1,82 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class GridContainer extends Container {
+	
+	private int width, height;
+	private int nRows = 4, nColumns = 4;
+	
+	public GridContainer(Context c){
+		super(c);
+		init();
+	}
+	
+	
+	
+	public GridContainer(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init();
+	}
+
+
+
+	public GridContainer(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init();
+	}
+
+
+
+	private void init(){
+		if(isInEditMode()){
+			for(int y=0; y<nRows; ++y){
+				for(int x=0; x<nColumns; ++x){
+					TextView t = new TextView(this.getContext());
+					t.setLayoutParams(new LayoutParams(y,x));
+					t.setText(y*nColumns+x+"");
+					t.setBackgroundColor(Color.rgb((int)(Math.random()*255), 
+							(int)(Math.random()*255), (int)(Math.random()*255)));
+					addView(t);
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		int left = getPaddingLeft();
+		int top = getPaddingTop();
+		int right = getMeasuredWidth() - getPaddingRight();
+		int bottom = getMeasuredHeight() - getPaddingBottom();
+		width = right-left;
+		height = bottom-top;
+		
+		int count = getChildCount();
+		for(int i=0; i<count; ++i){
+			View child = getChildAt(i);
+			LayoutParams lp = (LayoutParams)child.getLayoutParams();
+			child.layout(left+lp.column*width/nColumns, top+lp.row*height/nRows, 
+					left+lp.column*width/nColumns+lp.width*width/nColumns, 
+					top+lp.row*height/nRows+lp.height*height/nRows);
+		}
+	}
+	
+	public class LayoutParams extends ViewGroup.LayoutParams {
+
+		public int row, column;
+		
+		public LayoutParams(int row, int column) {
+			super(1, 1);
+			this.row = row;
+			this.column = column;
+		}
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.view.View.DragShadowBuilder;
+
+public class AppDragShadowBuilder extends DragShadowBuilder {
+
+}

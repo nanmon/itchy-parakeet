@@ -1,0 +1,47 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class DrawerItemClickListener implements OnItemClickListener{
+
+	Context mContext;
+	Pack[] packsForAdapter;
+	PackageManager pmForListener;
+	
+	public DrawerItemClickListener(
+			Context c,
+			Pack[] packs,
+			PackageManager pm) {
+		// TODO Auto-generated constructor stub
+		mContext = c;
+		packsForAdapter = packs;
+		pmForListener = pm;
+	}
+	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		// TODO Auto-generated method stub
+		if(!MainActivity.appLaunchable){
+			MainActivity.appLaunchable = true;
+			return;
+		}
+		
+		Intent launchIntent = new Intent(Intent.ACTION_MAIN);
+		launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+		ComponentName cp = new ComponentName(
+				packsForAdapter[position].packageName, 
+				packsForAdapter[position].name);
+		System.out.println("pn:"+packsForAdapter[position].packageName + "\n" + 
+				"name" + packsForAdapter[position].name);
+		launchIntent.setComponent(cp);
+		mContext.startActivity(launchIntent);
+		
+	}
+
+}

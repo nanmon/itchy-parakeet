@@ -1,0 +1,16 @@
+10-22 17:33:04.606: D/AndroidRuntime(2274): Shutting down VM
+10-22 17:33:04.628: E/AndroidRuntime(2274): FATAL EXCEPTION: main
+10-22 17:33:04.628: E/AndroidRuntime(2274): Process: com.hoohaa.hoohaalauncher, PID: 2274
+10-22 17:33:04.628: E/AndroidRuntime(2274): java.lang.NullPointerException: Attempt to invoke interface method 'int java.util.List.size()' on a null object reference
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at android.widget.ArrayAdapter.getCount(ArrayAdapter.java:330)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at android.widget.GridView.setAdapter(GridView.java:201)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at com.hoohaa.hoohaalauncher.MainActivity$LoadApps.onProgressUpdate(MainActivity.java:174)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at com.hoohaa.hoohaalauncher.MainActivity$LoadApps.onProgressUpdate(MainActivity.java:1)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at android.os.AsyncTask$InternalHandler.handleMessage(AsyncTask.java:656)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at android.os.Looper.loop(Looper.java:135)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at android.app.ActivityThread.main(ActivityThread.java:5343)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at java.lang.reflect.Method.invoke(Native Method)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at java.lang.reflect.Method.invoke(Method.java:372)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:905)
+10-22 17:33:04.628: E/AndroidRuntime(2274): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:700)

@@ -1,0 +1,73 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+
+public abstract class Item extends View implements View.OnClickListener, View.OnLongClickListener {
+	
+	public static final String APP_ITEM = "AppItem";
+	final float dp, sp;
+
+	public Item(Context context) {
+		super(context);
+		setOnClickListener(this);
+		setOnLongClickListener(this);
+		dp = context.getResources().getDisplayMetrics().density;
+		sp = context.getResources().getDisplayMetrics().scaledDensity;
+	}
+
+	public Item(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		setOnClickListener(this);
+		dp = context.getResources().getDisplayMetrics().density;
+		sp = context.getResources().getDisplayMetrics().scaledDensity;
+	}
+
+	public Item(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		setOnClickListener(this);
+		dp = context.getResources().getDisplayMetrics().density;
+		sp = context.getResources().getDisplayMetrics().scaledDensity;
+	}
+
+	@Override
+	public void onClick(View v) {
+		onClick();
+	}
+	
+	@Override
+	public boolean onLongClick(View v) {
+		return onLongClick();
+	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		//aspect_ratio = 13:21
+		int width = -1, height = -1;
+		if(MeasureSpec.getMode(widthMeasureSpec) != MeasureSpec.UNSPECIFIED){
+			width = (int)(MeasureSpec.getSize(widthMeasureSpec));
+		}if(MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED){
+			height = (int)(MeasureSpec.getSize(heightMeasureSpec));
+		}
+		if(width == -1 && height == -1){
+			width = (int)(65 * dp);
+			height = (int)(105 * dp);
+		}else if(width == -1){
+			width = height*13/21;
+		}else if(height == -1){
+			height = width*21/13;
+		}else{
+			if(width*21/13 > height*13/21)
+				width = height*13/21;
+			else height = width*21/13;
+		}
+		
+		setMeasuredDimension(width, height);
+	}
+	
+	public abstract void onClick();
+	public abstract boolean onLongClick();
+
+	
+}

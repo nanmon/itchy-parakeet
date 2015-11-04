@@ -1,0 +1,59 @@
+package com.hoohaainc.samplecodes.game;
+
+import com.hoohaainc.framework.Game;
+import com.hoohaainc.framework.Screen;
+import com.hoohaainc.framework.implementation.AndroidGame;
+
+public class Game1 extends AndroidGame {
+
+	@Override
+	public Screen getInitScreen() {
+		return new Screen1(this);
+	}
+	
+	public static class Screen1 extends Screen {
+
+		public Screen1(Game game) {
+			super(game);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public void update(float deltaTime) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void paint(float deltaTime) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void pause() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void resume() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void dispose() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public boolean backButton() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+	}
+
+}

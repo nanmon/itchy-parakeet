@@ -1,0 +1,169 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
+
+public class Pack implements Serializable{
+	private static final long serialVersionUID = -8943614059049888535L;
+	
+	transient Drawable icon;
+	String name, label, packageName, iconLocation;
+	int x, y;
+	boolean landscape;
+	
+	public Pack(Drawable i, String n, String l, String pn){
+		icon = i;
+		name = n;
+		label = l;
+		packageName = pn;
+	}
+	
+	public void cacheIcon(){
+		if(iconLocation == null){
+			new File(MainActivity.activity.getApplicationInfo().dataDir
+					+ "/cachedApps/").mkdir();
+			
+			if(icon != null){
+				iconLocation = MainActivity.activity.getApplicationInfo().dataDir
+						+ "/cachedApps/" + packageName + name;
+				FileOutputStream fos = null;
+				try{
+					fos = new FileOutputStream(iconLocation);
+				}catch(FileNotFoundException e){
+					e.printStackTrace();
+				}
+				
+				if(fos != null){
+					Tools.drawableToBitmap(icon).compress(
+							Bitmap.CompressFormat.PNG, 
+							100, fos);
+					try{
+						fos.flush();
+						fos.close();
+					}catch(IOException e){
+						e.printStackTrace();
+					}
+				}else
+					iconLocation = null;
+			}
+		}
+	}
+	
+	public void addToHome(Context mContext, RelativeLayout homeView){
+		LayoutParams lp = new LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		lp.leftMargin = x;
+		lp.topMargin = y;
+		
+		LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LinearLayout ll = (LinearLayout) li.inflate(R.layout.drawer_item, null);
+		if(icon == null) icon = new BitmapDrawable(mContext.getResources(), getCachedIcon());
+		((ImageView)ll.findViewById(R.id.item_icon)).setImageDrawable(icon);
+		((TextView)ll.findViewById(R.id.item_label)).setText(label);
+		
+		ll.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				v.setOnTouchListener(new AppTouchListener());
+				return false;
+			}
+		});
+		
+		//delete this line v
+		ll.setOnClickListener(new AppClickListener(mContext));
+			
+		ll.setTag(this);
+		
+		homeView.addView(ll, 0, lp);
+	}
+	
+	public void addToHomeGrid(Context mContext, HomeGridLayout grid){
+		LayoutParams lp = new LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		lp.leftMargin = x;
+		lp.topMargin = y;
+		
+		LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LinearLayout ll = (LinearLayout) li.inflate(R.layout.drawer_item, null);
+		if(icon == null) icon = new BitmapDrawable(mContext.getResources(), getCachedIcon());
+		((ImageView)ll.findViewById(R.id.item_icon)).setImageDrawable(icon);
+		((TextView)ll.findViewById(R.id.item_label)).setText(label);
+		
+		//line 83 - 91
+		final ViewGroup parent = grid;
+		ll.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				if(parent.findViewById(R.id.DRAGGED_VIEW) != null){
+					View toDelete = parent.findViewById(R.id.DRAGGED_VIEW);
+					parent.removeView(toDelete);
+					toDelete.setId(View.NO_ID);
+				}
+				v.setId(R.id.DRAGGED_VIEW);
+				
+				ClipData.Item clipItem = new ClipData.Item("");
+				ClipData dragData = new ClipData("app", 
+						new String[] {ClipDescription.MIMETYPE_TEXT_INTENT}, 
+						clipItem);
+				View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
+				v.setVisibility(View.INVISIBLE);
+				v.startDrag(dragData, myShadow, null, 0);
+				//deserialize this pack
+				return false;
+			}
+		});
+		
+		//delete this line v
+		ll.setOnClickListener(new AppClickListener(mContext));
+			
+		ll.setTag(this);
+		
+		grid.addView(ll, 0, lp);
+	}
+	
+	public Bitmap getCachedIcon(){
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = false;
+		options.inPreferredConfig = Config.ARGB_8888;
+		options.inDither = true;
+		
+		if(iconLocation != null){
+			File cachedIcon = new File(iconLocation);
+			if(cachedIcon.exists()){
+				return BitmapFactory.decodeFile(cachedIcon.getAbsolutePath(), options);
+			}
+		}
+		return null;
+	}
+	
+	public void deleteIcon(){
+		if(iconLocation != null)
+			new File(iconLocation).delete();
+	}
+}

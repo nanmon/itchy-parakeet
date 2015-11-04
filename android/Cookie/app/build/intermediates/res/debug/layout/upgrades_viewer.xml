@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.UpgradesViewer"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView android:id="@+id/upgrades_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/upgrades_bought"/>
+
+    <TextView android:id="@+id/upgrades_num_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:text="0/112"/>
+
+    <GridView android:id="@+id/upgrade_box"
+
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:numColumns="auto_fit"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:columnWidth="@dimen/upgrade_img_size"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:choiceMode="singleChoice"/>
+
+    <!--</HorizontalScrollView>-->
+    <RelativeLayout
+        android:id="@+id/checkout"
+        android:layout_width="fill_parent"
+        android:paddingTop="@dimen/general_padding"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content"
+        android:background="#333">
+
+        <TextView android:id="@+id/check_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/up00_1"/>
+
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/check_title"
+            android:layout_toRightOf="@id/check_image"
+            android:paddingLeft="@dimen/general_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reinforced index finger"/>
+
+        <ImageView android:id="@+id/check_favicon"
+            android:layout_width="wrap_content"
+            android:paddingLeft="@dimen/general_padding"
+            android:layout_height="wrap_content"
+            android:src="@drawable/favicon"
+            android:layout_below="@id/check_title"
+            android:layout_toRightOf="@id/check_image"/>
+
+        <TextView android:id="@+id/check_cookies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/check_title"
+            android:layout_toRightOf="@id/check_favicon"
+            android:textColor="#fff"
+            android:text="100"/>
+
+        <TextView android:id="@+id/check_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/check_cookies"
+            android:textColor="#fff"
+            android:text="The mouse gains +1 cookie per click. Cursors gain +0.1 base Cps"/>
+
+        <TextView   android:id="@+id/check_quote"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/check_description"
+            android:paddingBottom="@dimen/general_padding"
+            android:text="proud proud"
+            android:textStyle="italic"/>
+
+        <LinearLayout android:id="@+id/check_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#333"
+            android:layout_below="@id/check_quote">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/buy_text"
+                android:background="@drawable/buy_background"
+                android:text="@string/buy"
+                android:gravity="center"
+                android:id="@+id/check_buy"
+                android:clickable="true"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/check_sell"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/home/nancio/Programacion/android/Cookie/app/src/main/res/layout/upgrades_viewer.xml -->

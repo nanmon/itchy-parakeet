@@ -1,0 +1,20 @@
+001 A202 Matematicas Discretas, 5 3
+101 Nancio, Montaño, 100 100 100
+102 Yocu, Amaya, 60 20 100
+103 Erick, Lopez, 100 100 99
+104 Duy, Salazar, 100 80 90
+105 El, Nappa, 0 0 30000
+
+002 B202 Programacion 1, 12 1
+101 Montaño, Nan, 100
+113 Montaño, Benancio, 100
+114 Montaño, Nancio, 100
+106 Jorge, Carbajal, 99
+107 Neto, Jaramillo, 98
+102 Yocu, Amaya, 97
+108 Santa B., Galindo, 96
+109 Carlos, Huguez, 95
+110 El, Juan, 94
+111 Giovanni, Lopez, 93
+103 Erick, Lopez, 92
+112 Yisus, Craist, 91

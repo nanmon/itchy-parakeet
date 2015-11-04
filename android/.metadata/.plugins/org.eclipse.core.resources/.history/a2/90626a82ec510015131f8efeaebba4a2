@@ -1,0 +1,17 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AppSerializableData implements Serializable {
+
+	private static final long serialVersionUID = -7796628525585197180L;
+	
+	List<PackMan.Pack> apps = new ArrayList<PackMan.Pack>();
+	
+	public interface SerializedItem extends Serializable {
+		
+	}
+	
+}

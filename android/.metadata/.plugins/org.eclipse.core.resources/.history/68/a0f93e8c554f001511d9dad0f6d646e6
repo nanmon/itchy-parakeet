@@ -1,0 +1,24 @@
+08-29 11:12:24.317: W/System.err(15813): 	at java.lang.Thread.run(Thread.java:818)
+08-29 11:12:30.841: D/AndroidRuntime(15813): Shutting down VM
+08-29 11:12:30.861: E/AndroidRuntime(15813): FATAL EXCEPTION: main
+08-29 11:12:30.861: E/AndroidRuntime(15813): Process: com.hoohaa.hoohaalauncher, PID: 15813
+08-29 11:12:30.861: E/AndroidRuntime(15813): java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Object android.view.View.getTag()' on a null object reference
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at com.hoohaa.hoohaalauncher.HomeGridDragEventListener.onDrag(HomeGridDragEventListener.java:58)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.View.dispatchDragEvent(View.java:18339)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1492)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewRootImpl.handleDragEvent(ViewRootImpl.java:5143)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewRootImpl.access$700(ViewRootImpl.java:108)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.view.ViewRootImpl$ViewRootHandler.handleMessage(ViewRootImpl.java:3331)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.os.Looper.loop(Looper.java:135)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at android.app.ActivityThread.main(ActivityThread.java:5312)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at java.lang.reflect.Method.invoke(Native Method)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at java.lang.reflect.Method.invoke(Method.java:372)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)
+08-29 11:12:30.861: E/AndroidRuntime(15813): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:696)

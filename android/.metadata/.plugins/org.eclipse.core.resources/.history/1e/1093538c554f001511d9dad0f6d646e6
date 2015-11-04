@@ -1,0 +1,23 @@
+08-29 21:12:23.950: D/AndroidRuntime(323): Shutting down VM
+08-29 21:12:23.960: E/AndroidRuntime(323): FATAL EXCEPTION: main
+08-29 21:12:23.960: E/AndroidRuntime(323): Process: com.hoohaa.hoohaalauncher, PID: 323
+08-29 21:12:23.960: E/AndroidRuntime(323): java.lang.ClassCastException: android.widget.RelativeLayout$LayoutParams cannot be cast to android.widget.GridLayout$LayoutParams
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at com.hoohaa.hoohaalauncher.HomeGridDragEventListener.onDrag(HomeGridDragEventListener.java:59)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.View.dispatchDragEvent(View.java:18339)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1492)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewGroup.dispatchDragEvent(ViewGroup.java:1478)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewRootImpl.handleDragEvent(ViewRootImpl.java:5143)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewRootImpl.access$700(ViewRootImpl.java:108)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.view.ViewRootImpl$ViewRootHandler.handleMessage(ViewRootImpl.java:3331)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.os.Looper.loop(Looper.java:135)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at android.app.ActivityThread.main(ActivityThread.java:5312)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at java.lang.reflect.Method.invoke(Native Method)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at java.lang.reflect.Method.invoke(Method.java:372)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)
+08-29 21:12:23.960: E/AndroidRuntime(323): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:696)

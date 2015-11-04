@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=a\ b
+comment0.target=void\ inicializar(int,\ int)
+comment0.text=\n\ Crea\ el\ numero\ al\ azar\ y\ el\ rango.\n\ \n\ @param\ \ a\ \ \ Limite\ inferior\ del\ rango.\n\ @param\ \ b\ \ \ Limite\ superior\ del\ rango.\n
+comment1.params=y
+comment1.target=int\ verificar(int)
+comment1.text=\n\ Revisa\ si\ se\ ha\ adivinado\ el\ numero\ magico\ o\ si\ hay\ que\ cambiar\ el\ rango.\n\n\ @param\ \ y\ \ \ numero\ a\ comparar\ con\ numero\ magico\n\ @return\ \ \ \ \ 0\ si\ se\ adivina,\ 1\ si\ necesita\ subir\ el\ valor,\ -1\ si\ necesita\ un\ valor\ m\u00E1s\ peque\u00F1o.\n
+numComments=2

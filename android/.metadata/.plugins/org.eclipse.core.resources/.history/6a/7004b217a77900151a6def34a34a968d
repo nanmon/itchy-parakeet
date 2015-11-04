@@ -1,0 +1,373 @@
+package util.xmlparser;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+import org.xmlpull.v1.XmlSerializer;
+
+import com.hoohaa.hoohaalauncher.AppItem;
+import com.hoohaa.hoohaalauncher.GridContainer;
+import com.hoohaa.hoohaalauncher.Item;
+import com.hoohaa.hoohaalauncher.PackMan;
+
+import android.content.Context;
+import android.util.Log;
+import android.util.Xml;
+
+public class XmlManager {
+
+	static final String XML_CONTAINERS = "containersData.xml";
+	static final String XML_APPS = "apps.xml";
+	
+	static final int CONTAINERS_VERSION = 1;
+	static final int APPS_VERSION = 1;
+	
+	public static final String NODE_CONTAINERS_ROOT = "Containers";
+	public static final String NODE_CONTAINER_GRID = "GridContainer";
+	public static final String NODE_CONTAINER_DOCK = "Dock";
+	public static final String NODE_ITEM_APP = "AppItem";
+	public static final String ATTR_VERSION = "version";
+	public static final String ATTR_PACKAGE = "package";
+	public static final String ATTR_GRIDLAYOUT_X = "x";
+	public static final String ATTR_GRIDLAYOUT_Y = "y";
+	public static final String ATTR_GRIDLAYOUT_WIDTH = "width";
+	public static final String ATTR_GRIDLAYOUT_HEIGHT = "height";
+	
+	public static final String NODE_APPS_ROOT = "Apps";
+	public static final String NODE_APP = "App";
+	public static final String ATTR_ACTIVITY = "activity";
+	public static final String ATTR_LABEL = "label";
+	
+	private static XmlPullParser reader(Context context, String xmlFile) throws IOException, XmlPullParserException{
+		FileInputStream fis = context.openFileInput(xmlFile);
+		InputStreamReader isr = new InputStreamReader(fis);
+		char[] buffer = new char[fis.available()];
+		isr.read(buffer);
+		String data = new String(buffer);
+		isr.close();
+		fis.close();
+		
+		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+		factory.setNamespaceAware(true);
+		XmlPullParser parser = null;
+		parser = factory.newPullParser();
+		parser.setInput(new StringReader(data));
+		
+		return parser;
+	}
+	
+	public static HashMap<String, List<Item>> newReadItems(Context context, XmlPullParser parser){
+		try {
+			
+			int eventType = parser.getEventType();
+			
+			HashMap<String, List<Item>> hashmap = new HashMap<>();
+			ArrayList<Item> items = new ArrayList<>();
+			
+			Item.Builder builder = null;
+			String container = null;
+			
+			while(eventType != XmlPullParser.END_DOCUMENT){
+				switch(eventType){
+				case XmlPullParser.START_DOCUMENT:
+					break;
+				case XmlPullParser.START_TAG:
+					switch(parser.getName()){
+					case NODE_CONTAINERS_ROOT:
+						break;
+					case NODE_CONTAINER_GRID:
+						container = NODE_CONTAINER_GRID;
+						break;
+					case NODE_CONTAINER_DOCK:
+						container = NODE_CONTAINER_DOCK;
+						break;
+					case NODE_ITEM_APP:
+						builder = new AppItem.Builder()
+							.setPackage(parser.getAttributeValue(null, ATTR_PACKAGE))
+							.setX(Integer.parseInt(parser.getAttributeValue(null, ATTR_GRIDLAYOUT_X)))
+							.setY(Integer.parseInt(parser.getAttributeValue(null, ATTR_GRIDLAYOUT_Y)));
+					}
+					break;
+				case XmlPullParser.TEXT:
+					if(builder != null)
+						builder.setText(parser.getText());
+					break;
+				case XmlPullParser.END_TAG:
+					switch(parser.getName()){
+					case NODE_CONTAINERS_ROOT:
+						break;
+					case NODE_CONTAINER_GRID:
+						hashmap.put(container, items);
+						container = null;
+						break;
+					case NODE_CONTAINER_DOCK:
+						hashmap.put(container, items);
+						container = null;
+						break;
+					case NODE_ITEM_APP:
+						items.add(builder.build(context));
+						builder = null;
+						break;
+					}
+				}
+				eventType = parser.next();
+			}
+			hashmap.put(NODE_CONTAINER_GRID, items);
+			return hashmap;
+		} catch(FileNotFoundException e){
+			try {
+				
+				FileOutputStream fos = context.openFileOutput(XML_CONTAINERS, Context.MODE_PRIVATE);
+				fos.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static HashMap<String, List<Item>> readItems(Context context){
+		
+		try {
+			XmlPullParser parser = reader(context, XML_CONTAINERS);
+			int eventType = parser.getEventType();
+			
+			HashMap<String, List<Item>> hashmap = new HashMap<>();
+			ArrayList<Item> items = new ArrayList<>();
+			
+			AppItem.Builder builder = null;
+			//String currentItem = null;
+			//String currentContainer = null;
+			int version;
+			
+			while(eventType != XmlPullParser.END_DOCUMENT){
+				switch(eventType){
+				case XmlPullParser.START_DOCUMENT:
+					break;
+				case XmlPullParser.START_TAG:
+					switch(parser.getName()){
+					case NODE_CONTAINERS_ROOT:
+						version = Integer.parseInt(parser.getAttributeValue(null, ATTR_VERSION));
+						if(version == CONTAINERS_VERSION){
+							return newReadItems(context, parser);
+						}
+						break;
+					case NODE_CONTAINER_GRID:
+						break;
+					case NODE_ITEM_APP:
+						builder = new AppItem.Builder()
+							.setPackage(parser.getAttributeValue(null, ATTR_PACKAGE))
+							.setX(Integer.parseInt(parser.getAttributeValue(null, ATTR_GRIDLAYOUT_X)))
+							.setY(Integer.parseInt(parser.getAttributeValue(null, ATTR_GRIDLAYOUT_Y)));
+					}
+					break;
+				case XmlPullParser.TEXT:
+					if(builder != null)
+						builder.setText(parser.getText());
+					break;
+				case XmlPullParser.END_TAG:
+					if(parser.getName().equals(NODE_ITEM_APP)){
+						items.add(builder.build(context));
+						builder = null;
+					}
+				}
+				eventType = parser.next();
+			}
+			hashmap.put(NODE_CONTAINER_GRID, items);
+			return hashmap;
+		} catch(FileNotFoundException e){
+			try {
+				
+				FileOutputStream fos = context.openFileOutput(XML_CONTAINERS, Context.MODE_PRIVATE);
+				fos.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+				
+	}
+	
+	public static void writeItems(Context context, List<AppItem> apps){
+		try{
+			
+			context.deleteFile(XML_CONTAINERS);
+			FileOutputStream fos = context.openFileOutput(XML_CONTAINERS, Context.MODE_PRIVATE);
+			XmlSerializer xmlSerial = Xml.newSerializer();
+			StringWriter writer = new StringWriter();
+			xmlSerial.setOutput(writer);
+			xmlSerial.startDocument("UTF-8", true);
+			xmlSerial.startTag(null, NODE_CONTAINERS_ROOT);
+			xmlSerial.attribute(null, ATTR_VERSION, CONTAINERS_VERSION+"");
+			xmlSerial.startTag(null, NODE_CONTAINER_GRID);
+			for(int i=0; i<apps.size(); ++i){
+				xmlSerial.startTag(null, NODE_ITEM_APP);
+				xmlSerial.attribute(null, ATTR_PACKAGE, apps.get(i).getApp());
+				GridContainer.LayoutParams lp = (GridContainer.LayoutParams)apps.get(i).getLayoutParams();
+				xmlSerial.attribute(null, ATTR_GRIDLAYOUT_X, ""+lp.column);
+				xmlSerial.attribute(null, ATTR_GRIDLAYOUT_Y, lp.row+"");
+				xmlSerial.attribute(null, ATTR_GRIDLAYOUT_WIDTH, lp.width+"");
+				xmlSerial.attribute(null, ATTR_GRIDLAYOUT_HEIGHT, lp.height+"");
+				xmlSerial.text(apps.get(i).getLabel());
+				xmlSerial.endTag(null, NODE_ITEM_APP);
+			}
+			xmlSerial.endTag(null, NODE_CONTAINER_GRID);
+			xmlSerial.endTag(null, NODE_CONTAINERS_ROOT);
+			xmlSerial.flush();
+			String dataWrite = writer.toString();
+			Log.d(XML_CONTAINERS, dataWrite);
+			fos.write(dataWrite.getBytes());
+			fos.close();
+		}catch(IOException e){
+			
+		}
+	}
+	
+	public static List<PackMan.Pack> readApps(Context context){
+		try {
+			XmlPullParser parser = reader(context, XML_APPS);
+			int eventType = parser.next();
+			
+			ArrayList<PackMan.Pack> packs = new ArrayList<>();
+			
+			while(eventType != XmlPullParser.END_DOCUMENT){
+				switch(eventType){
+				case XmlPullParser.START_DOCUMENT:
+					break;
+				case XmlPullParser.START_TAG:
+					if(parser.getName().equals(NODE_APPS_ROOT)){
+						//getVersionShit();
+					}else if(parser.getName().equals(NODE_APP)){
+						packs.add(new PackMan.Pack(
+								parser.getAttributeValue(null, ATTR_LABEL), 
+								parser.getAttributeValue(null, ATTR_ACTIVITY), 
+								parser.getAttributeValue(null, ATTR_PACKAGE), 
+								null));
+					}
+					break;
+				case XmlPullParser.TEXT:
+					break;
+				case XmlPullParser.END_TAG:
+					break;
+				}
+				eventType = parser.next();
+			}
+			return packs;
+			
+		} catch(FileNotFoundException e){
+			try {
+				FileOutputStream fos = context.openFileOutput(XML_APPS, Context.MODE_PRIVATE);
+				fos.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static void writeApps(Context context, List<PackMan.Pack> packs){
+		try{
+			
+			context.deleteFile(XML_APPS);
+			FileOutputStream fos = context.openFileOutput(XML_APPS, Context.MODE_PRIVATE);
+			XmlSerializer xmlSerial = Xml.newSerializer();
+			StringWriter writer = new StringWriter();
+			xmlSerial.setOutput(writer);
+			xmlSerial.startDocument("UTF-8", true);
+			xmlSerial.startTag(null, NODE_APPS_ROOT);
+			xmlSerial.attribute(null, ATTR_VERSION, APPS_VERSION+"");
+			for(int i=0; i<packs.size(); ++i){
+				xmlSerial.startTag(null, NODE_APP);
+				xmlSerial.attribute(null, ATTR_PACKAGE, packs.get(i).mPackage);
+				xmlSerial.attribute(null, ATTR_ACTIVITY, packs.get(i).mActivity);
+				xmlSerial.attribute(null, ATTR_LABEL, packs.get(i).mName);
+				xmlSerial.endTag(null, NODE_APP);
+			}
+			xmlSerial.endTag(null, NODE_APPS_ROOT);
+			xmlSerial.flush();
+			String dataWrite = writer.toString();
+			Log.d(XML_APPS, dataWrite);
+			fos.write(dataWrite.getBytes());
+			fos.close();
+		}catch(IOException e){
+			
+		}
+	}
+	
+	/*private boolean isRootTag(String tag){
+		return tag.equals(NODE_CONTAINERS_ROOT);
+	}
+	
+	private boolean isContainerTag(String tag){
+		return tag.equals(NODE_CONTAINER_GRID);
+	}
+	
+	private boolean isItemTag(String tag){
+		return tag.equals(NODE_ITEM_APP);
+	}*/
+	
+	public static class CorruptedXmlException extends Exception {
+
+		private static final long serialVersionUID = 1L;
+
+		public CorruptedXmlException() {
+			super();
+		}
+
+		public CorruptedXmlException(String detailMessage, Throwable throwable) {
+			super(detailMessage, throwable);
+		}
+
+		public CorruptedXmlException(String detailMessage) {
+			super(detailMessage);
+		}
+
+		public CorruptedXmlException(Throwable throwable) {
+			super(throwable);
+		}
+		
+		
+	}
+}

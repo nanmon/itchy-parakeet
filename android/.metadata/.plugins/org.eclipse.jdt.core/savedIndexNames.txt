@@ -1,0 +1,11 @@
+INDEX VERSION 1.127+/home/nancio/Programacion/android/.metadata/.plugins/org.eclipse.jdt.core
+856056760.index
+4025926752.index
+3287206864.index
+2410311979.index
+4228380627.index
+2720761516.index
+669912678.index
+60841593.index
+4098187544.index
+1783654539.index

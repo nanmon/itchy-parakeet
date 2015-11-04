@@ -1,0 +1,7 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.view.DragEvent;
+
+public interface Container {
+	public boolean onDragEvent(DragEvent e);
+}

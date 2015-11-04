@@ -1,0 +1,123 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.LinearLayout.LayoutParams;
+
+public class HomeGridDragEventListener implements View.OnDragListener {
+
+	
+	Pack[] packs;
+	
+	public HomeGridDragEventListener(Pack[] p){
+		packs = p;
+	}
+	
+	@Override
+	public boolean onDrag(View v, DragEvent event) {
+		HomeGridLayout homeGrid = ((HomeGridLayout)v);
+		String dragFrom;
+		
+		switch(event.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+				v.setBackgroundColor(Color.argb(0x80, 0, 0, 0xff)); //blue
+				v.invalidate();
+				return true;
+			}else{
+				v.setBackgroundColor(Color.argb(0x80, 0xff, 0, 0)); //red
+				v.invalidate();
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			if(homeGrid.hasCellAt(
+					homeGrid.getRowAtY((int)event.getY()), 
+					homeGrid.getColumnAtX((int)event.getX()))){
+				// TODO: replace with yellow for folder
+				v.setBackgroundColor(Color.argb(0x80, 0xff, 0, 0)); 
+			}else
+				v.setBackgroundColor(Color.argb(0x80, 0, 0xff, 0)); //green
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			v.setBackgroundColor(Color.argb(0x80, 0, 0, 0xff));
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DROP:
+			dragFrom = event.getClipData().getItemAt(0).getText().toString();
+			if(dragFrom == Pack.DRAWER_DRAG){
+				Pack pack = packs[Integer.parseInt(
+						event.getClipData().getItemAt(1).getText().toString())];
+				pack.x = ((HomeGridLayout)v).getColumnAtX((int)event.getX());
+				pack.y = ((HomeGridLayout)v).getRowAtY((int)event.getY());
+				
+				AppSerializableData serialData = SerializationTools.loadSerializedData();
+				if(serialData == null)
+					serialData = new AppSerializableData();
+				if(serialData.apps == null)
+					serialData.apps = new ArrayList<>();
+				
+				pack.cacheIcon();
+				serialData.apps.add(pack);
+				
+				SerializationTools.serializeData(serialData);
+				
+				pack.addToHomeGrid(v.getContext(), (HomeGridLayout)v);
+			}else if(dragFrom == Pack.HOME_DRAG){
+				View homeItem = v.findViewById(R.id.DRAGGED_VIEW);
+				Pack pack = (Pack)homeItem.getTag();
+				
+				if(homeGrid.hasCellAt(
+						homeGrid.getRowAtY((int)event.getY()), 
+						homeGrid.getColumnAtX((int)event.getX()))){
+					homeItem.setVisibility(View.VISIBLE);
+					return true;
+				}
+				
+				((HomeGridLayout)v).removeCellAt(pack.y,pack.x);
+				
+				pack.x = ((HomeGridLayout)v).getColumnAtX((int)event.getX());
+				pack.y = ((HomeGridLayout)v).getRowAtY((int)event.getY());
+				
+				AppSerializableData serialData = SerializationTools.loadSerializedData();
+				if(serialData == null)
+					serialData = new AppSerializableData();
+				if(serialData.apps == null)
+					serialData.apps = new ArrayList<>();
+				
+				pack.cacheIcon();
+				serialData.apps.add(pack);
+				
+				SerializationTools.serializeData(serialData);
+				
+				pack.addToHomeGrid(v.getContext(), (HomeGridLayout)v);
+				/*LayoutParams lp = (LayoutParams)homeItem.getLayoutParams();
+				lp.leftMargin = (int)event.getX();
+				lp.topMargin = (int)event.getY(); //...?
+				homeItem.setVisibility(View.VISIBLE);
+				homeItem.setId(View.NO_ID);
+				homeItem.invalidate();*/
+				//serialize pack
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENDED:
+			v.setBackgroundColor(Color.TRANSPARENT);
+			v.invalidate();
+			return true;
+		default:
+			Log.e("Drag", "Unknown action type");
+			break;
+		}
+		return false;
+	}
+
+}

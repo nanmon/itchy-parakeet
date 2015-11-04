@@ -1,0 +1,324 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.Settings;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnLongClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+	
+	Pack[] packs;
+	PackageManager pm;
+	GridView drawerGrid;
+	SlidingDrawer drawer;
+	RelativeLayout homeView;
+	AppWidgetManager mAppWidgetManager;
+	LauncherAppWidgetHost mAppWidgetHost;
+	static boolean appLaunchable;
+	final int REQUEST_CREATE_APPWIDGET = 900;
+	final int REQUEST_CREATE_SHORTCUT = 800;
+	final int REQUEST_PICK_APPWIDGET = 901;
+	final int REQUEST_PICK_SHORTCUT = 801;
+	int numWidgets;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		mAppWidgetManager = AppWidgetManager.getInstance(this);
+		mAppWidgetHost = new LauncherAppWidgetHost(this, R.id.APPWIDGET_HOST_ID);
+		pm = getPackageManager();
+		drawerGrid = (GridView)findViewById(R.id.content);
+		drawer = (SlidingDrawer)findViewById(R.id.drawer);
+		homeView = (RelativeLayout)findViewById(R.id.home_view);
+		setPacks();
+		
+		homeView.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
+				
+				String [] s = {
+						getString(R.string.widget),
+						getString(R.string.shortcut)
+				};
+				b.setItems(s, new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						switch(which){
+						case 0: //Widget
+							selectWidget();
+							break;
+						case 1: //Shortcut
+							selectShortcut();
+							break;
+						}
+					}
+				});
+				
+				AlertDialog d = b.create();
+				d.show();
+				return false;
+			}
+		});
+		
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(Intent.ACTION_PACKAGE_ADDED);
+		filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+		filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+		filter.addDataScheme("package");
+		registerReceiver(new PackReceiver(), filter);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if(resultCode == RESULT_OK)
+			switch(requestCode){
+			case REQUEST_PICK_APPWIDGET:
+				configureWidget(data);
+				break;
+			case REQUEST_CREATE_APPWIDGET:
+				createWidget(data);
+				break;
+			case REQUEST_PICK_SHORTCUT:
+				configureShortcut(data);
+				break;
+			case REQUEST_CREATE_SHORTCUT:
+				createShortcut(data);
+			}
+		else if(resultCode == RESULT_CANCELED && data != null){
+			int appWidgetId = data.getIntExtra(
+					AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+			if(appWidgetId != -1) mAppWidgetHost.deleteAppWidgetId(appWidgetId);
+		}
+	}
+	
+	private void configureShortcut(Intent data){
+		startActivityForResult(data, REQUEST_CREATE_SHORTCUT);
+	}
+	
+	public void createShortcut(Intent data){
+		Intent.ShortcutIconResource iconResource = 
+				data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE);
+		Bitmap icon = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
+		String shortcutLabel = data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
+		Intent shortIntent = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_INTENT);
+		
+		if(icon == null){
+			if(iconResource != null){
+				Resources resources = null;
+				try{
+					resources = pm.getResourcesForApplication(iconResource.packageName);
+				}catch(NameNotFoundException e){
+					e.printStackTrace();
+				}
+				if(resources != null){
+					int id = resources.getIdentifier(iconResource.resourceName, null, null);
+					if(resources.getDrawable(id) instanceof StateListDrawable){
+						Drawable d = ((StateListDrawable)resources.getDrawable(id)).getCurrent();
+						icon = ((BitmapDrawable)d).getBitmap();
+					}else
+						icon = ((BitmapDrawable)resources.getDrawable(id)).getBitmap();
+				}
+			}
+		}
+		
+		if(shortcutLabel != null && shortIntent != null && icon != null){
+			LayoutParams lp = new LayoutParams(
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			lp.leftMargin = 100;
+			lp.topMargin = (int) 100;
+			
+			LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+			LinearLayout ll = (LinearLayout) li.inflate(R.layout.drawer_item, null);
+			((ImageView)ll.findViewById(R.id.item_icon)).setImageBitmap(icon);
+			((TextView)ll.findViewById(R.id.item_label)).setText(shortcutLabel);
+			ll.setOnLongClickListener(new OnLongClickListener() {
+				
+				@Override
+				public boolean onLongClick(View v) {
+					// TODO Auto-generated method stub
+					v.setOnTouchListener(new AppTouchListener());
+					return false;
+				}
+			});
+			
+			ll.setOnClickListener(new ShortcutClickListener(this));
+			ll.setTag(shortIntent);
+			homeView.addView(ll, lp);
+		}
+	}
+	
+	private void configureWidget(Intent data){
+		Bundle extras = data.getExtras();
+		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
+		AppWidgetProviderInfo appWidgetInfo = 
+				mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+		if(appWidgetInfo.configure != null){
+			Intent intent = new Intent(
+					AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
+			intent.setComponent(appWidgetInfo.configure);
+			intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+			startActivityForResult(intent, REQUEST_CREATE_APPWIDGET);
+		}else createWidget(data);
+	}
+	
+	public void createWidget(Intent data){
+		Bundle extras = data.getExtras();
+		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+		AppWidgetProviderInfo appWidgetInfo =
+				mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+		LauncherAppWidgetHostView hostView = (LauncherAppWidgetHostView)mAppWidgetHost.createView(
+				this, appWidgetId, appWidgetInfo);
+		hostView.setAppWidget(appWidgetId, appWidgetInfo);
+		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+				homeView.getWidth(), homeView.getHeight()/3);
+		lp.topMargin = numWidgets * homeView.getHeight()/3;
+		hostView.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub 
+				v.setBackgroundColor(Color.RED);
+				return false;
+			}
+		});
+		homeView.addView(hostView, lp);
+		drawer.bringToFront();
+		++numWidgets;
+	}
+	
+	private void selectWidget(){
+		int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+		Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+		pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,  appWidgetId);
+		addEmptyData(pickIntent);
+		startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+	}
+	
+	private void selectShortcut(){
+		Intent intent = new Intent(Intent.ACTION_PICK_ACTIVITY);
+		intent.putExtra(Intent.EXTRA_INTENT, new Intent(Intent.ACTION_CREATE_SHORTCUT));
+		startActivityForResult(intent, REQUEST_PICK_SHORTCUT);
+	}
+	
+	private void addEmptyData(Intent pickIntent){
+		ArrayList<Parcelable> customInfo = new ArrayList<>();
+		pickIntent.putParcelableArrayListExtra(
+				AppWidgetManager.EXTRA_CUSTOM_INFO, customInfo);
+		ArrayList<Parcelable> customExtra = new ArrayList<>();
+		pickIntent.putParcelableArrayListExtra(
+				AppWidgetManager.EXTRA_CUSTOM_EXTRAS, customExtra);
+	}
+	
+	private void setPacks(){
+		final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+		mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+		List<ResolveInfo> packsList = pm.queryIntentActivities(mainIntent, 0);
+		packs = new Pack[packsList.size()];
+		for(int i=0; i<packs.length; ++i){
+			packs[i] = new Pack(
+					packsList.get(i).loadIcon(pm),
+					packsList.get(i).activityInfo.name,
+					packsList.get(i).loadLabel(pm).toString(),
+					packsList.get(i).activityInfo.packageName);
+		}
+		AppsSorter.byLabel(packs);
+		drawerGrid.setAdapter(new DrawerAdapter(this, packs));
+		drawerGrid.setOnItemClickListener(new DrawerItemClickListener(this, packs, pm));
+		drawerGrid.setOnItemLongClickListener(
+				new DrawerItemLongClickListener(this, drawer, homeView, packs));
+	}
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		mAppWidgetHost.startListening();
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		mAppWidgetHost.stopListening();
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			Intent settingsIntent = new Intent(Settings.ACTION_SETTINGS);
+			startActivity(settingsIntent);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		drawer.animateClose();
+	}
+	
+	
+	
+	public class PackReceiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			setPacks();
+		}
+		
+	}
+}

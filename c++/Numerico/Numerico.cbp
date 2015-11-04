@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Numerico" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Numerico" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Numerico" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="NewtonRaphson.cpp" />
+		<Unit filename="biseccion.cpp" />
+		<Unit filename="claseMatriz.cpp" />
+		<Unit filename="factDirecta.cpp" />
+		<Unit filename="gauss.cpp" />
+		<Unit filename="gaussSeidel.cpp" />
+		<Unit filename="gaussjordan.cpp" />
+		<Unit filename="gausspivoteo.cpp" />
+		<Unit filename="integral.cpp" />
+		<Unit filename="interpolacion.cpp" />
+		<Unit filename="interpolacion2.cpp" />
+		<Unit filename="jacobi.cpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="numerico.h" />
+		<Unit filename="puntoFijo.cpp" />
+		<Unit filename="reglaFalsa.cpp" />
+		<Unit filename="regresion.cpp" />
+		<Unit filename="secante.cpp" />
+		<Unit filename="simpson.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

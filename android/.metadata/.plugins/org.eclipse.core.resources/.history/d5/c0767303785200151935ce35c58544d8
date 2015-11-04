@@ -1,0 +1,203 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+
+import android.content.ClipDescription;
+import android.content.Context;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class HomeGridLayout extends Container {
+	
+	int nRows = 4;
+	int nColumns = 4;
+	int rowHeight;
+	int columnWidth;
+	ArrayList<Item> atoms = new ArrayList<>();
+			
+	public HomeGridLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	public HomeGridLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+
+	public HomeGridLayout(Context context) {
+		super(context);
+		init(context);
+	}
+
+	private void init(Context context){
+		if(isInEditMode()){
+			TextView tv;
+			for(int y=0; y<nRows; ++y){
+				for(int x=0; x<nColumns; ++x){
+					tv = new TextView(context);
+					tv.setText(y*nColumns + x + "");
+					addView(tv, new LayoutParams(y, x));
+				}
+			}
+		}
+	}
+	
+	private void layoutView(Item view){
+		LayoutParams lp = (LayoutParams)view.getLayoutParams();
+		int left = lp.column*columnWidth + (columnWidth/2 - view.getMeasuredWidth());
+		int top = lp.row*rowHeight + (rowHeight/2 - view.getMeasuredHeight());
+		view.layout(left, top, 
+				left + view.getMeasuredWidth(), 
+				top + view.getMeasuredHeight());
+	}
+	
+	@Override
+	public boolean shouldDelayChildPressedState() {
+		return false;
+	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		int width = MeasureSpec.getSize(widthMeasureSpec);
+		int height = MeasureSpec.getSize(heightMeasureSpec);
+		columnWidth = width/nColumns;
+		rowHeight = height/nRows;
+		if(isInEditMode()){
+			for(int i=0; i<getChildCount(); ++i)
+				getChildAt(i).measure(
+						MeasureSpec.makeMeasureSpec(columnWidth, MeasureSpec.EXACTLY), 
+						MeasureSpec.makeMeasureSpec(rowHeight, MeasureSpec.EXACTLY));
+				
+			setMeasuredDimension(width, height);
+			return;
+		}
+		for(int i=0; i<atoms.size(); ++i)
+			atoms.get(i).measure(
+					MeasureSpec.makeMeasureSpec(columnWidth, MeasureSpec.AT_MOST), 
+					MeasureSpec.makeMeasureSpec(rowHeight, MeasureSpec.AT_MOST));
+		setMeasuredDimension(width, height);
+	}
+	
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		if(isInEditMode()){
+			TextView view;
+			int size = getChildCount();
+			for(int i=0; i<size; ++i){
+				view = (TextView)getChildAt(i);
+				LayoutParams lp = (LayoutParams)view.getLayoutParams();
+				//lp.row = ((lp.row + lp.column/nColumns)%nRows);
+				//lp.column%=nColumns;
+				//if(lp.width > nColumns - lp.column) lp.width = nColumns - lp.column;
+				//if(lp.height > nRows - lp.row) lp.height = nRows - lp.row;
+				int left = lp.column*columnWidth + (columnWidth/2 - view.getMeasuredWidth()/2);
+				int top = lp.row*rowHeight + (rowHeight/2 - view.getMeasuredHeight()/2);
+				view.layout(left, top, 
+						left + view.getMeasuredWidth(), 
+						top + view.getMeasuredHeight());
+			}
+			return;
+		}
+		
+		Item item;
+		int size = atoms.size();
+		for(int i=0; i<size; ++i){
+			item = atoms.get(i);
+			layoutView(item);
+		}
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent e) {
+		switch(e.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(e.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+				//this.setBackground(R.drawable.home_grid_background);
+				this.invalidate();
+			}else return false;
+			return true;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			return true;
+		case DragEvent.ACTION_DROP:
+			//if(getItemAt(e.getX(), e.getY()) != null) return false;
+			
+			if(e.getClipData().getItemAt(0).getText().toString().equals(Container.HOME_DRAG)){
+				
+			}else if(e.getClipData().getItemAt(0).getText().toString().equals(Item.APP_DRAG)){
+				Item item = new AppItem(getContext(), e.getClipData().getItemAt(1).getText().toString());
+				item.setLayoutParams(new LayoutParams((int)e.getX(), (int)e.getY(), rowHeight, columnWidth));
+				atoms.add(item);
+				addView(item);
+			}else if(e.getClipData().getItemAt(0).getText().toString().equals(Container.DOCK_DRAG)){
+				
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENDED:
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void removeItem(Item item) {
+		atoms.remove(item);
+		removeView(item);
+	}
+	
+	public void addItem(Item item){
+		atoms.add(item);
+		addView(item);
+	}
+	
+	public void addSerializedItems(ItemSerializableData data){
+		
+	}
+
+	public class LayoutParams extends ViewGroup.LayoutParams{
+		
+		int row, column;
+
+		public LayoutParams(Context c, AttributeSet attrs) {
+			super(c, attrs);
+			// TODO Auto-generated constructor stub
+		}
+
+		public LayoutParams(int row, int column) {
+			super(1, 1);
+			this.row = row;
+			this.column = column;
+		}
+
+		public LayoutParams(LayoutParams source) {
+			super(source.width, source.height);
+			row = source.row;
+			column = source.column;
+			
+		}
+		
+		public LayoutParams(int x, int y, int rowHeight, int columnWidth){
+			super(1, 1);
+			row = y/rowHeight;
+			column = x/columnWidth;
+		}
+		
+		MarginLayoutParams toMarginLP(int rowHeight, int columnWidth){
+			MarginLayoutParams mlp = new MarginLayoutParams(columnWidth*width, rowHeight*height);
+			mlp.leftMargin = column*columnWidth;
+			mlp.topMargin = row*rowHeight;
+			return mlp;
+		}
+		
+	}
+
+	
+	
+}

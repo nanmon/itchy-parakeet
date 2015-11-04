@@ -1,0 +1,85 @@
+package com.hoohaainc.samplecodes.game;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hoohaainc.framework.Game;
+import com.hoohaainc.framework.Input.TouchEvent;
+import com.hoohaainc.framework.Screen;
+import com.hoohaainc.framework.implementation.AndroidGame;
+
+import android.graphics.Color;
+
+public class Game1 extends AndroidGame {
+
+	@Override
+	public Screen getInitScreen() {
+		return new Screen1(this);
+	}
+	
+	public static class Screen1 extends Screen {
+
+		List<TouchEvent> touchEvents;
+		List<Integer> oldTouchEvents = new ArrayList<>();
+		List<Integer> points = new ArrayList<>();
+		
+		public Screen1(Game game) {
+			super(game);
+		}
+
+		@Override
+		public void update(float deltaTime) {
+			touchEvents = game.getInput().getTouchEvents(); //solo down y up, no move
+			for(int i=0; i<touchEvents.size(); ++i){ 
+				switch(touchEvents.get(i).type){
+				case TouchEvent.TOUCH_DOWN:
+					points.add(touchEvents.get(i).x);
+					points.add(touchEvents.get(i).y);
+					oldTouchEvents.add(touchEvents.get(i).pointer);
+					break;
+				case TouchEvent.TOUCH_UP:
+					oldTouchEvents.remove((Integer)touchEvents.get(i).pointer);
+					break;
+				}
+			}
+		}
+
+		@Override
+		public void paint(float deltaTime) {
+			// TODO Auto-generated method stub
+			game.getGraphics().clearScreen(Color.CYAN);
+			for(int i=1; i<oldTouchEvents.size(); ++i)
+				game.getGraphics().drawLine(
+						game.getInput().getTouchX(oldTouchEvents.get(i-1)), 
+						game.getInput().getTouchY(oldTouchEvents.get(i-1)), 
+						game.getInput().getTouchX(oldTouchEvents.get(i)), 
+						game.getInput().getTouchY(oldTouchEvents.get(i)), Color.RED);
+		}
+
+		@Override
+		public void pause() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void resume() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void dispose() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public boolean backButton() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+	}
+
+}

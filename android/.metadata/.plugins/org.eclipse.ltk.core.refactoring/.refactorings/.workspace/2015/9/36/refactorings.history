@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;android-support-v7-appcompat&apos; to &apos;v7-appcompat&apos;&#x0A;- Original element: &apos;android-support-v7-appcompat&apos;&#x0A;- Renamed element: &apos;android-support-v7-appcompat&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;android-support-v7-appcompat&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=android-support-v7-appcompat" name="v7-appcompat" references="true" stamp="1441329170884" version="1.0"/>
+</session>

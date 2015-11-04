@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BuildingView">
+        <attr name="index" format="enum">
+            <enum name="cursor" value="0" />
+            <enum name="grandma" value="1" />
+            <enum name="farm" value="2" />
+            <enum name="factory" value="3" />
+            <enum name="mine" value="4" />
+            <enum name="shipment" value="5" />
+            <enum name="alchemy_lab" value="6" />
+            <enum name="portal" value="7" />
+            <enum name="time_machine" value="8" />
+            <enum name="antimatter_condenser" value="9" />
+            <enum name="prism" value="10" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="UpgradesViewer">
+        <attr name="usage" format="enum">
+            <enum name="unlocked" value="1" />
+            <enum name="bought" value="2"/>
+            <enum name="achievement" value="0" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MilkyView">
+        <attr name="percentage_test" format="integer" />
+    </declare-styleable>
+</resources>

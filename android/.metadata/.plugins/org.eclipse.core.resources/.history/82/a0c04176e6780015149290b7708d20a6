@@ -1,0 +1,198 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Context;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class GridContainer extends Container {
+	
+	private int width, height;
+	private int nRows = 4, nColumns = 4;
+	
+	private View dragging = null;
+	private DragEvent dragEvent = null;
+	
+	private Comparator<Item> comparator = new Comparator<Item>(){
+
+		@Override
+		public int compare(Item lhs, Item rhs) {
+			LayoutParams llp = (LayoutParams)lhs.getLayoutParams(),
+					rlp = (LayoutParams)rhs.getLayoutParams();
+			int il = llp.row*nColumns + llp.column,
+					ir = rlp.row*nColumns + rlp.column;
+			return il > ir ? 1 : -1;
+		}
+		
+	};
+	
+	public GridContainer(Context c){
+		super(c);
+		init();
+	}
+	
+	public GridContainer(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init();
+	}
+
+
+
+	public GridContainer(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init();
+	}
+
+
+	private void init(){
+		if(isInEditMode()){
+			for(int y=0; y<nRows; ++y){
+				for(int x=0; x<nColumns; ++x){
+					TextView t = new TextView(this.getContext());
+					t.setLayoutParams(new LayoutParams(y,x));
+					t.setText(y*nColumns+x+"");
+					t.setBackgroundColor(Color.rgb((int)(Math.random()*255), 
+							(int)(Math.random()*255), (int)(Math.random()*255)));
+					addView(t);
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		int left = getPaddingLeft();
+		int top = getPaddingTop();
+		int right = getMeasuredWidth() - getPaddingRight();
+		int bottom = getMeasuredHeight() - getPaddingBottom();
+		width = right-left;
+		height = bottom-top;
+		
+		int count = getChildCount();
+		int iLeft, iTop;
+		for(int i=0; i<count; ++i){
+			View child = getChildAt(i);
+			LayoutParams lp = (LayoutParams)child.getLayoutParams();
+			child.measure(MeasureSpec.makeMeasureSpec(lp.width*width/nColumns, MeasureSpec.AT_MOST), 
+					MeasureSpec.makeMeasureSpec(lp.height*height/nRows, MeasureSpec.AT_MOST));
+			iLeft = (lp.width*width/nColumns-child.getMeasuredWidth())/2;
+			iTop = (lp.height*height/nRows-child.getMeasuredHeight())/2;
+			child.layout(left+iLeft+lp.column*width/nColumns, top+iTop+lp.row*height/nRows, 
+					left+iLeft+lp.column*width/nColumns+child.getMeasuredWidth(), 
+					top+iTop+lp.row*height/nRows+child.getMeasuredHeight());
+		}
+	}
+	
+	public List<AppItem> getAllItems(){
+		ArrayList<AppItem> items = new ArrayList<>();
+		for(int i=0; i<getChildCount(); ++i){
+			items.add((AppItem)getChildAt(i));
+		}
+		Collections.sort(items, comparator);
+		return items;
+	}
+	
+	@Override
+	public void addView(View child) {
+		if(child.getLayoutParams() instanceof LayoutParams){
+			LayoutParams lp = (LayoutParams)child.getLayoutParams(),
+					olp;
+			for(int i=0; i<getChildCount(); ++i){
+				olp =(LayoutParams)getChildAt(i).getLayoutParams();
+				if(olp.row == lp.row && olp.column == lp.column)
+					return; //TODO: folder
+			}
+			super.addView(child);
+		}
+	}
+	
+	@Override
+	protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+		return new LayoutParams(1,1);
+	}
+	
+	@Override
+	public void onChildDrag(View child) {
+		child.setVisibility(View.INVISIBLE);
+		dragging = child;
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent event) {
+		dragEvent = event;
+		final int action = event.getAction();
+		switch(action){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+				//setBackground(smn); invalidate();
+				return true;
+			}
+			return false;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			//setBackground(smn); invalidate();
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			//setBackground(smn); invalidate();
+			return true;
+		case DragEvent.ACTION_DROP:
+			ClipData.Item item = event.getClipData().getItemAt(0);
+			int x = (int)((event.getX()-getPaddingLeft())*nColumns/width), 
+					y = (int)((event.getY()-getPaddingTop())*nRows/height);
+			if(x < 0 || x >= nColumns || y < 0 || y >= nRows){
+				Toast.makeText(getContext(), "nope", Toast.LENGTH_SHORT).show();
+				return false;
+			}if(dragging != null){
+				removeView(dragging);
+				dragging = null;
+			}
+			AppItem itemView = new AppItem(getContext(), item.getText().toString());
+			addView(itemView, new LayoutParams(y,x));
+			return true;
+		case DragEvent.ACTION_DRAG_ENDED:
+			dragEvent = null;
+		}
+		return false;
+	}
+	
+	public static class LayoutParams extends ViewGroup.LayoutParams {
+
+		public int row, column;
+		
+		public LayoutParams(int row, int column) {
+			super(1, 1);
+			this.row = row;
+			this.column = column;
+		}
+		
+	}
+	
+	public static class Builder {
+		private ArrayList<Item> items;
+		
+		public Builder addItem(Item item){
+			items.add(item);
+			return this;
+		}
+		
+		public GridContainer build(Context c){
+			GridContainer grid = new GridContainer(c);
+			for(int i=0; i<items.size(); ++i)
+				grid.addView(items.get(i));
+			return grid;
+		}
+	}
+
+}

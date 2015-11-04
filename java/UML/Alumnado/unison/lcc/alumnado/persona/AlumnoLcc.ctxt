@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=expediente\ creditos\ semestre
+comment0.target=AlumnoLcc(java.lang.String,\ int,\ int)
+comment1.params=
+comment1.target=int\ obtenerSemestre()
+comment1.text=\n\ Este\ metodo\ se\ encarga\ de\ entregar\ el\ semestre\ actual\ del\ alumno.\ Para\ lograr\n\ esto,\ es\ necesario\ calcular\ el\ semestre,\ para\ poder\ actualizar\ el\ semestre\ antes\n\ de\ entregarlo.\ En\ otras\ palabras,\ este\ metodo\ debe\ mandar\ llamar\ al\ metodo\ de\n\ calcularSemestre().\ return\ Valor\ actual\ del\ semestre\ del\ alumno.\n\ @return\ \ \ \ \ \ \ int\n
+comment2.params=
+comment2.target=int\ calcularSemestre()
+comment2.text=\n\ Este\ metodo\ se\ encarga\ de\ calcular\ y\ asignar\ el\ semestre\ en\ el\ cual\ debe\n\ encontrarse\ el\ alumno.\ Esto\ se\ logra\ de\ acuerdo\ a\ las\ siguientes\ reglas\:\ Primer\n\ semestre\:\ si\ la\ cantidad\ de\ creditos\ es\ menor\ que\ 39\ Segundo\ semestre\:\ si\ los\n\ creditos\ estan\ en\ [39,\ 91]\ Tercer\ semestre\:\ si\ los\ creditos\ estan\ en\ (91,\ 142]\n\ Cuarto\ semestre\:\ si\ los\ creditos\ estan\ en\ (142,\ 195]\ Quinto\ semestre\:\ si\ los\n\ creditos\ estan\ en\ (195,\ 243]\ Sexto\ semestre\:\ si\ los\ creditos\ estan\ en\ (243,\ 291]\n\ Septimo\ semestre\:\ si\ los\ creditos\ estan\ en\ (291,\ 339]\ Octavo\ semestre\:\ si\ la\n\ cantidad\ de\ creditos\ es\ mayor\ que\ 339.\n\ @return\ \ \ \ \ \ \ Semestre\ obtenido\ de\ acuerdo\ a\ las\ reglas\ establecidas.\n
+numComments=3

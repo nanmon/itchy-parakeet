@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script src="jquery.js"></script>
+		<script>
+			$("body textarea").on("keyup",function(e){
+				if(e.keyCode==27){
+					$("body iframe").attr("src", this.text().substr(0,-1));
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<textarea></textarea>
+		<iframe src="https://m.facebook.com/buddylist"></iframe>
+	</body>
+</html>

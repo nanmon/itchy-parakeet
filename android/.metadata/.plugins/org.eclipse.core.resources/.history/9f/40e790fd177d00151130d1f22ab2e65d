@@ -1,0 +1,138 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.net.Uri;
+import android.os.Vibrator;
+import android.provider.Settings;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+
+public class ToolbarView extends View {
+	
+	GestureDetector gestureDetector;
+	final static int MODE_NORMAL = 0;
+	final static int MODE_DRAG_FROM_CONTAINER = 1;
+	final static int MODE_DRAG_FROM_ADAPTER_VIEW = 2;
+	
+	private int mode = 0;
+	private float dp, sp;
+	
+	Paint paint, textPaint;
+
+	public ToolbarView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init();
+	}
+
+	public ToolbarView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init();
+	}
+
+	public ToolbarView(Context context) {
+		super(context);
+		init();
+	}
+	
+	private void init(){
+		paint = new Paint();
+		textPaint = new Paint();
+		textPaint.setTextAlign(Paint.Align.CENTER);
+		textPaint.setColor(Color.BLACK);
+		dp = getContext().getResources().getDisplayMetrics().density;
+		sp = getContext().getResources().getDisplayMetrics().scaledDensity;
+		textPaint.setTextSize(16*sp);
+		gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener(){
+						
+			@Override
+			public boolean onSingleTapUp(MotionEvent e) {
+				onClick();
+				performClick();
+				return true;
+			}
+			
+			@Override
+			public boolean onDown(MotionEvent e) {
+				return true;
+			}
+		});
+	}
+	
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		String text = "google";
+		paint.setColor(Color.WHITE);
+		int dp5 = (int)(10*dp);
+		if(mode == MODE_DRAG_FROM_CONTAINER){
+			paint.setColor(Color.RED);
+			text = "X";
+			canvas.drawCircle(LauncherMan.getDragX(), getHeight()/2, Math.min(getWidth(), getHeight())/2, paint);
+			canvas.drawText(text, LauncherMan.getDragX(), getHeight()/2, textPaint);
+			return;
+		}else if(mode == MODE_DRAG_FROM_ADAPTER_VIEW){
+			paint.setColor(Color.GREEN);
+			text = "Information";
+		}
+		canvas.drawRect(dp5, dp5, getWidth()-dp5, getHeight()-dp5, paint);
+		canvas.drawText(text, getWidth()/2, getHeight()/2, textPaint);
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		return gestureDetector.onTouchEvent(event);
+	}
+	
+	public void onClick(){
+		Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+		if(intent.resolveActivity(getContext().getPackageManager()) != null){
+			((Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+			getContext().startActivity(intent);
+		}
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent event) {
+		switch(event.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(event.getClipDescription().getLabel().equals("Container")){
+				mode = MODE_DRAG_FROM_CONTAINER;
+				invalidate();
+				return true;
+			}else if(event.getClipDescription().getLabel().equals("NotContainer")){
+				mode = MODE_DRAG_FROM_ADAPTER_VIEW;
+				invalidate();
+				return true;
+			}
+			return false;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			LauncherMan.onDrag(event);
+			return true;
+		case DragEvent.ACTION_DRAG_ENTERED:
+		case DragEvent.ACTION_DRAG_EXITED:
+			return true;
+		case DragEvent.ACTION_DROP:
+			if(mode == MODE_DRAG_FROM_CONTAINER){
+				return true;
+			}else if(mode == MODE_DRAG_FROM_ADAPTER_VIEW){
+				Intent intent;
+				intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+				intent.setData(Uri.parse("package:"+event.getClipData().getItemAt(1).getText()));
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getContext().startActivity(intent);
+			}
+		case DragEvent.ACTION_DRAG_ENDED:
+			mode = MODE_NORMAL;
+			invalidate();
+			return false;
+		}
+		return super.onDragEvent(event);
+	}
+}

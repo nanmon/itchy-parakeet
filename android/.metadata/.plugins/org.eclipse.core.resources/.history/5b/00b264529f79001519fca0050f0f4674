@@ -1,0 +1,147 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.Vibrator;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class AppItem extends Item{
+	
+	private String packageName;
+	private Bitmap icon;
+	private String text;
+	
+	int iconSize, iconPadding;
+	int textWidth, textHeight, textX, textY;
+	Rect iconRect = new Rect(), textRect = new Rect();
+	Paint iconPaint = new Paint(), textPaint = new Paint();
+
+	
+	public AppItem(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context, (String)getTag());
+	}
+
+	public AppItem(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context, (String)getTag());
+	}
+
+	public AppItem(Context context, String packageName) {
+		super(context);
+		init(context, packageName);
+	}
+	
+	
+	private void init(Context context, String packageName){
+		this.packageName = packageName;
+		PackMan.Pack pack = PackMan.get(packageName);
+		if(pack.mIcon != null)
+			icon = Tools.drawableToBitmap(pack.mIcon);
+		else icon = pack.getCachedIcon(getContext());
+		text = pack.mName;
+		
+		iconSize = (int)(65 * dp);
+		iconPadding = (int)(3 * dp);
+		textWidth = (int)(65 * dp);
+		textHeight = (int)(40 * dp);
+		textX = 0;
+		textY = (int)(71 * dp); //65 + 3 + 3
+		
+		iconPaint.setAntiAlias(true);
+		iconPaint.setDither(true);
+		
+		textPaint.setTextSize(11 * sp);
+		textPaint.setColor(Color.WHITE);
+		textPaint.setAntiAlias(true);
+		textPaint.setTextAlign(Paint.Align.CENTER);
+		textPaint.setShadowLayer(2, 0, 0, Color.BLACK);
+		
+	}
+	
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		int xIni = getPaddingLeft();
+		int yIni = getPaddingTop();
+		int ancho = getWidth() - getPaddingRight() - xIni;
+		iconRect.set(xIni + iconPadding, yIni + iconPadding, 
+				xIni + ancho - iconPadding, yIni + ancho - iconPadding);
+		//int alto = getHeight() - getPaddingBottom() - yIni;
+		textX = (getWidth())/2;
+		textY = yIni + ancho + (int)(6 * sp) + iconPadding;
+	}
+	
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		canvas.drawBitmap(icon, null, iconRect, iconPaint);
+		int iBreak = textPaint.breakText(text, true, getWidth(), null);
+		if(iBreak < text.length()){
+			canvas.drawText(text.substring(0, iBreak), textX, textY, textPaint);
+			canvas.drawText(text.substring(iBreak), textX, textY + textPaint.getTextSize(), textPaint);
+		}else
+			canvas.drawText(text, textX, textY, textPaint);
+	}
+	
+	
+
+	@Override
+	public void onClick() {
+		((Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+		PackMan.startActivity(getContext(), packageName);
+	}
+	
+	@Override
+	public boolean onLongClick() {
+		((Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+		if(getParent() instanceof Container)
+			((Container)getParent()).onChildDrag(this);
+		ClipData.Item item = new ClipData.Item(packageName);
+		ClipData data = new ClipData(Item.APP_ITEM, 
+				new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN}, item);
+		View.DragShadowBuilder shadow = new View.DragShadowBuilder(this);
+		this.startDrag(data, shadow, null, 0);
+		return false;
+	}
+	
+	public void setApp(String activityName){
+		this.packageName = activityName;
+		PackMan.Pack pack = PackMan.get(activityName);
+		if(pack.mIcon != null)
+			icon = Tools.drawableToBitmap(pack.mIcon);
+		else icon = pack.getCachedIcon(getContext());
+		text = pack.mName;
+	}
+	
+	public String getApp(){
+		return packageName;
+	}
+	
+	public String getLabel(){
+		return text;
+	}
+	
+	public void setLabel(String text){
+		this.text = text;
+	}
+	
+	public PackMan.Pack getPack(){
+		return PackMan.get(packageName);
+	}
+	
+	public static interface Builder {
+				
+		public Builder setPackage(String p);
+		public Builder setText(String text);
+		public AppItem buildAppItem(Context c);
+	}
+	
+}

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="views.StatsView"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/general_padding"
+    android:background="#333">
+
+    <TextView android:id="@+id/all_time_cookies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/all_time_cookies"
+        android:visibility="gone"/>
+
+    <TextView android:id="@+id/all_time_cookies_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textSize="@dimen/stats_size"
+        android:textColor="#eee"
+        android:text="0 cookies"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/total_cookies_made"/>
+
+    <TextView android:id="@+id/total_cookies_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textSize="@dimen/stats_size"
+        android:textColor="#eee"
+        android:text="0 cookies"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/spent_cookies"/>
+
+    <TextView android:id="@+id/spent_cookies_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="0 cookies"/>
+
+    <TextView android:id="@+id/profited_cookies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/profited_cookies"
+        android:visibility="gone"/>
+
+    <TextView android:id="@+id/profited_cookies_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="0 cookies"
+        android:visibility="gone"/>
+
+    <TextView android:id="@+id/game_resets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/game_resets"
+        android:visibility="gone"/>
+
+    <TextView android:id="@+id/game_resets_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="0"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/bakin_since"/>
+
+    <TextView android:id="@+id/bakin_since_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="Now"/>
+
+    <TextView android:id="@+id/total_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/total_time"
+        android:visibility="gone"/>
+
+    <TextView android:id="@+id/total_time_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:visibility="gone"
+        android:text="Now"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/cps_multi"/>
+
+    <TextView android:id="@+id/cps_multi_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="100.0 percent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/milk"/>
+
+    <TextView android:id="@+id/milk_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="100.0 percent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/buildings"/>
+
+    <TextView android:id="@+id/buildings_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="0"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/cookie_clicks"/>
+
+    <TextView android:id="@+id/cookie_clicks_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textSize="@dimen/stats_size"
+        android:text="0 clicks"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/handmade"/>
+
+    <TextView android:id="@+id/handmade_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textSize="@dimen/stats_size"
+        android:text="0 cookies"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/cookies_per_click"/>
+
+    <TextView android:id="@+id/cpc_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="0 cookies"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/golden_cookies"/>
+
+    <TextView android:id="@+id/goldclicks_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textColor="#eee"
+        android:textSize="@dimen/stats_size"
+        android:text="0 clicked"/>
+
+    <TextView android:id="@+id/heavenly_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/heavenly_chips"
+        android:visibility="gone"/>
+
+    <TextView android:id="@+id/heavenly_chips_label" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:textSize="@dimen/stats_size"
+        android:text="0 chips (+0% multiplier)"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:text="@string/version_string"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#eee"
+        android:layout_marginLeft="@dimen/stats_margin"
+        android:text="@string/version"/>
+
+</LinearLayout>

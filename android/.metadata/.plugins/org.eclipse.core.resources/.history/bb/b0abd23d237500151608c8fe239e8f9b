@@ -1,0 +1,11 @@
+package com.hoohaa.hoohaalauncher;
+
+public class GridContainer extends Container {
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,361 @@
+10-20 21:18:25.034: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.035: W/PackageManager(4098): Failure retrieving resources for com.android.providers.downloads.ui: Resource ID #0x0
+10-20 21:18:25.084: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.084: W/PackageManager(4098): Failure retrieving resources for com.google.android.street: Resource ID #0x0
+10-20 21:18:25.130: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.130: W/PackageManager(4098): Failure retrieving resources for com.motorola.fmplayer: Resource ID #0x0
+10-20 21:18:25.173: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.173: W/PackageManager(4098): Failure retrieving resources for com.google.android.apps.books: Resource ID #0x0
+10-20 21:18:25.216: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.216: W/PackageManager(4098): Failure retrieving resources for com.motorola.migrate: Resource ID #0x0
+10-20 21:18:25.303: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.304: W/PackageManager(4098): Failure retrieving resources for com.google.android.apps.maps: Resource ID #0x0
+10-20 21:18:25.354: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.355: W/PackageManager(4098): Failure retrieving resources for com.google.android.apps.plus: Resource ID #0x0
+10-20 21:18:25.388: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.389: W/PackageManager(4098): Failure retrieving resources for com.google.android.apps.magazines: Resource ID #0x0
+10-20 21:18:25.445: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.447: W/PackageManager(4098): Failure retrieving resources for com.google.android.apps.translate: Resource ID #0x0
+10-20 21:18:25.528: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.528: W/PackageManager(4098): Failure retrieving resources for com.google.android.googlequicksearchbox: Resource ID #0x0
+10-20 21:18:25.577: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.578: W/PackageManager(4098): Failure retrieving resources for com.cinemex: Resource ID #0x0
+10-20 21:18:25.639: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.639: W/PackageManager(4098): Failure retrieving resources for nz.mega.android: Resource ID #0x0
+10-20 21:18:25.676: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.676: W/PackageManager(4098): Failure retrieving resources for me.scan.android.client: Resource ID #0x0
+10-20 21:18:25.747: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.747: W/PackageManager(4098): Failure retrieving resources for pct.droid: Resource ID #0x0
+10-20 21:18:25.790: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.791: W/PackageManager(4098): Failure retrieving resources for com.instagram.android: Resource ID #0x0
+10-20 21:18:25.819: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.819: W/PackageManager(4098): Failure retrieving resources for com.speedymovil.wire: Resource ID #0x0
+10-20 21:18:25.858: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.858: W/PackageManager(4098): Failure retrieving resources for com.dropbox.android: Resource ID #0x0
+10-20 21:18:25.881: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.881: W/PackageManager(4098): Failure retrieving resources for com.google.android.keep: Resource ID #0x0
+10-20 21:18:25.906: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.906: W/PackageManager(4098): Failure retrieving resources for com.zuiapps.suite.days: Resource ID #0x0
+10-20 21:18:25.935: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.935: W/PackageManager(4098): Failure retrieving resources for com.journey.app: Resource ID #0x0
+10-20 21:18:25.963: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.963: W/PackageManager(4098): Failure retrieving resources for com.skype.raider: Resource ID #0x0
+10-20 21:18:25.986: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:25.986: W/PackageManager(4098): Failure retrieving resources for com.ebay.mobile: Resource ID #0x0
+10-20 21:18:26.000: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.000: W/PackageManager(4098): Failure retrieving resources for com.mobisystems.fileman: Resource ID #0x0
+10-20 21:18:26.026: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.026: W/PackageManager(4098): Failure retrieving resources for com.nancio.cookie: Resource ID #0x0
+10-20 21:18:26.096: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.096: W/PackageManager(4098): Failure retrieving resources for com.drawexpress.lite: Resource ID #0x0
+10-20 21:18:26.176: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.176: W/PackageManager(4098): Failure retrieving resources for com.stackexchange.marvin: Resource ID #0x0
+10-20 21:18:26.236: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.236: W/PackageManager(4098): Failure retrieving resources for com.aspieapps.free.emulator: Resource ID #0x0
+10-20 21:18:26.324: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.324: W/PackageManager(4098): Failure retrieving resources for com.sonymobile.androidapp.audiorecorder: Resource ID #0x0
+10-20 21:18:26.339: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.339: W/PackageManager(4098): Failure retrieving resources for com.explusalpha.Snes9xPlus: Resource ID #0x0
+10-20 21:18:26.360: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.360: W/PackageManager(4098): Failure retrieving resources for com.gameloft.android.ANMP.GloftSIHM: Resource ID #0x0
+10-20 21:18:26.567: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.567: W/PackageManager(4098): Failure retrieving resources for mx.uson.cc.smed: Resource ID #0x0
+10-20 21:18:26.607: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.607: W/PackageManager(4098): Failure retrieving resources for com.snapchat.android: Resource ID #0x0
+10-20 21:18:26.636: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.636: W/PackageManager(4098): Failure retrieving resources for com.andrewshu.android.reddit: Resource ID #0x0
+10-20 21:18:26.896: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.896: W/PackageManager(4098): Failure retrieving resources for com.facebook.orca: Resource ID #0x0
+10-20 21:18:26.924: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.924: W/PackageManager(4098): Failure retrieving resources for com.bigbangdev.bussonora: Resource ID #0x0
+10-20 21:18:26.948: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:26.948: W/PackageManager(4098): Failure retrieving resources for com.whatsapp: Resource ID #0x0
+10-20 21:18:27.000: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:27.000: W/PackageManager(4098): Failure retrieving resources for com.imgur.mobile: Resource ID #0x0
+10-20 21:18:27.009: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:27.009: W/PackageManager(4098): Failure retrieving resources for com.netflix.mediaclient: Resource ID #0x0
+10-20 21:18:27.028: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:27.028: W/PackageManager(4098): Failure retrieving resources for ric.Jsho: Resource ID #0x0
+10-20 21:18:27.035: W/ResourceType(4098): No package identifier when getting value for resource number 0x00000000
+10-20 21:18:27.035: W/PackageManager(4098): Failure retrieving resources for com.hoohaa.hoohaalauncher: Resource ID #0x0
+10-20 21:19:33.639: I/System.out(4098): erga
+10-20 21:19:34.213: I/ViewRootImpl(4098): Reporting drop result: true
+10-20 21:19:39.004: I/System.out(4098): erga
+10-20 21:19:40.202: I/ViewRootImpl(4098): Reporting drop result: true
+10-20 21:21:02.030: D/OpenGLRenderer(5357): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+10-20 21:21:02.056: D/Atlas(5357): Validating map...
+10-20 21:21:02.083: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.084: W/PackageManager(5357): Failure retrieving resources for com.android.contacts: Resource ID #0x0
+10-20 21:21:02.134: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.135: W/PackageManager(5357): Failure retrieving resources for com.android.settings: Resource ID #0x0
+10-20 21:21:02.155: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.155: W/PackageManager(5357): Failure retrieving resources for com.android.mms: Resource ID #0x0
+10-20 21:21:02.186: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.189: W/PackageManager(5357): Failure retrieving resources for com.android.email: Resource ID #0x0
+10-20 21:21:02.189: I/Adreno-EGL(5357): <qeglDrvAPI_eglInitialize:410>: EGL 1.4 QUALCOMM build: AU_LINUX_ANDROID_LA.BF.1.1.1_RB1.05.00.02.042.016_msm8226_LA.BF.1.1.1_RB1__release_AU ()
+10-20 21:21:02.189: I/Adreno-EGL(5357): OpenGL ES Shader Compiler Version: E031.25.03.00
+10-20 21:21:02.189: I/Adreno-EGL(5357): Build Date: 02/11/15 Wed
+10-20 21:21:02.189: I/Adreno-EGL(5357): Local Branch: 
+10-20 21:21:02.189: I/Adreno-EGL(5357): Remote Branch: quic/LA.BF.1.1.1_rb1.10
+10-20 21:21:02.189: I/Adreno-EGL(5357): Local Patches: NONE
+10-20 21:21:02.189: I/Adreno-EGL(5357): Reconstruct Branch: AU_LINUX_ANDROID_LA.BF.1.1.1_RB1.05.00.02.042.016 + 62ca4eb + acd831d + 9f8b442 + e027a02 + cba30ba + 53c303a + a649d79 + 23e16f8 + 5e97da7 + cbd2a44 + 33d072a + 7aacf06 + 72b33e7 + 28f6f60 + b4c13d8 +  NOTHING
+10-20 21:21:02.205: I/OpenGLRenderer(5357): Initialized EGL, version 1.4
+10-20 21:21:02.234: D/OpenGLRenderer(5357): Enabling debug mode 0
+10-20 21:21:02.255: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.255: W/PackageManager(5357): Failure retrieving resources for com.google.android.music: Resource ID #0x0
+10-20 21:21:02.279: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.281: W/PackageManager(5357): Failure retrieving resources for com.google.android.gm: Resource ID #0x0
+10-20 21:21:02.522: W/ResourcesManager(5357): Asset path '/system/framework/com.google.android.media.effects.jar' does not exist or contains no resources.
+10-20 21:21:02.532: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.533: W/PackageManager(5357): Failure retrieving resources for com.google.android.talk: Resource ID #0x0
+10-20 21:21:02.602: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.602: W/PackageManager(5357): Failure retrieving resources for com.google.android.youtube: Resource ID #0x0
+10-20 21:21:02.672: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.673: W/PackageManager(5357): Failure retrieving resources for com.motorola.MotGallery2: Resource ID #0x0
+10-20 21:21:02.685: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.686: W/PackageManager(5357): Failure retrieving resources for com.google.android.videos: Resource ID #0x0
+10-20 21:21:02.705: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.705: W/PackageManager(5357): Failure retrieving resources for com.google.android.calendar: Resource ID #0x0
+10-20 21:21:02.767: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.767: W/PackageManager(5357): Failure retrieving resources for com.android.chrome: Resource ID #0x0
+10-20 21:21:02.782: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.782: W/PackageManager(5357): Failure retrieving resources for com.android2.calculator3: Resource ID #0x0
+10-20 21:21:02.815: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.815: W/PackageManager(5357): Failure retrieving resources for com.fastemulator.gbafree: Resource ID #0x0
+10-20 21:21:02.872: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.874: W/PackageManager(5357): Failure retrieving resources for com.teslacoilsw.launcher: Resource ID #0x0
+10-20 21:21:02.926: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.926: W/PackageManager(5357): Failure retrieving resources for tv.twitch.android.app: Resource ID #0x0
+10-20 21:21:02.935: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.935: W/PackageManager(5357): Failure retrieving resources for another.music.player: Resource ID #0x0
+10-20 21:21:02.960: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:02.961: W/PackageManager(5357): Failure retrieving resources for com.google.android.apps.messaging: Resource ID #0x0
+10-20 21:21:03.059: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.059: W/PackageManager(5357): Failure retrieving resources for com.motorola.contextual.smartrules2: Resource ID #0x0
+10-20 21:21:03.070: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.071: W/PackageManager(5357): Failure retrieving resources for com.motorola.genie: Resource ID #0x0
+10-20 21:21:03.105: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.105: W/PackageManager(5357): Failure retrieving resources for com.motorola.bodyguard: Resource ID #0x0
+10-20 21:21:03.133: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.133: W/PackageManager(5357): Failure retrieving resources for com.android.providers.downloads.ui: Resource ID #0x0
+10-20 21:21:03.194: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.195: W/PackageManager(5357): Failure retrieving resources for com.google.android.street: Resource ID #0x0
+10-20 21:21:03.221: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.221: W/PackageManager(5357): Failure retrieving resources for com.motorola.fmplayer: Resource ID #0x0
+10-20 21:21:03.236: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.236: W/PackageManager(5357): Failure retrieving resources for com.google.android.apps.books: Resource ID #0x0
+10-20 21:21:03.294: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.294: W/PackageManager(5357): Failure retrieving resources for com.motorola.migrate: Resource ID #0x0
+10-20 21:21:03.315: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.315: W/PackageManager(5357): Failure retrieving resources for com.google.android.apps.maps: Resource ID #0x0
+10-20 21:21:03.417: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.417: W/PackageManager(5357): Failure retrieving resources for com.google.android.apps.plus: Resource ID #0x0
+10-20 21:21:03.430: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.430: W/PackageManager(5357): Failure retrieving resources for com.google.android.apps.magazines: Resource ID #0x0
+10-20 21:21:03.464: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.465: W/PackageManager(5357): Failure retrieving resources for com.google.android.apps.translate: Resource ID #0x0
+10-20 21:21:03.511: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.511: W/PackageManager(5357): Failure retrieving resources for com.google.android.googlequicksearchbox: Resource ID #0x0
+10-20 21:21:03.551: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.552: W/PackageManager(5357): Failure retrieving resources for com.cinemex: Resource ID #0x0
+10-20 21:21:03.590: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.591: W/PackageManager(5357): Failure retrieving resources for nz.mega.android: Resource ID #0x0
+10-20 21:21:03.631: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.631: W/PackageManager(5357): Failure retrieving resources for me.scan.android.client: Resource ID #0x0
+10-20 21:21:03.691: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.691: W/PackageManager(5357): Failure retrieving resources for pct.droid: Resource ID #0x0
+10-20 21:21:03.742: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.742: W/PackageManager(5357): Failure retrieving resources for com.instagram.android: Resource ID #0x0
+10-20 21:21:03.804: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.804: W/PackageManager(5357): Failure retrieving resources for com.speedymovil.wire: Resource ID #0x0
+10-20 21:21:03.817: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.818: W/PackageManager(5357): Failure retrieving resources for com.dropbox.android: Resource ID #0x0
+10-20 21:21:03.838: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.838: W/PackageManager(5357): Failure retrieving resources for com.google.android.keep: Resource ID #0x0
+10-20 21:21:03.885: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.886: W/PackageManager(5357): Failure retrieving resources for com.zuiapps.suite.days: Resource ID #0x0
+10-20 21:21:03.895: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.895: W/PackageManager(5357): Failure retrieving resources for com.journey.app: Resource ID #0x0
+10-20 21:21:03.918: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.918: W/PackageManager(5357): Failure retrieving resources for com.skype.raider: Resource ID #0x0
+10-20 21:21:03.933: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.933: W/PackageManager(5357): Failure retrieving resources for com.ebay.mobile: Resource ID #0x0
+10-20 21:21:03.945: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.945: W/PackageManager(5357): Failure retrieving resources for com.mobisystems.fileman: Resource ID #0x0
+10-20 21:21:03.969: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:03.969: W/PackageManager(5357): Failure retrieving resources for com.nancio.cookie: Resource ID #0x0
+10-20 21:21:04.076: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.076: W/PackageManager(5357): Failure retrieving resources for com.drawexpress.lite: Resource ID #0x0
+10-20 21:21:04.123: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.124: W/PackageManager(5357): Failure retrieving resources for com.stackexchange.marvin: Resource ID #0x0
+10-20 21:21:04.135: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.135: W/PackageManager(5357): Failure retrieving resources for com.aspieapps.free.emulator: Resource ID #0x0
+10-20 21:21:04.201: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.201: W/PackageManager(5357): Failure retrieving resources for com.sonymobile.androidapp.audiorecorder: Resource ID #0x0
+10-20 21:21:04.233: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.233: W/PackageManager(5357): Failure retrieving resources for com.explusalpha.Snes9xPlus: Resource ID #0x0
+10-20 21:21:04.277: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.278: W/PackageManager(5357): Failure retrieving resources for com.gameloft.android.ANMP.GloftSIHM: Resource ID #0x0
+10-20 21:21:04.492: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.492: W/PackageManager(5357): Failure retrieving resources for mx.uson.cc.smed: Resource ID #0x0
+10-20 21:21:04.558: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.558: W/PackageManager(5357): Failure retrieving resources for com.snapchat.android: Resource ID #0x0
+10-20 21:21:04.575: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.575: W/PackageManager(5357): Failure retrieving resources for com.andrewshu.android.reddit: Resource ID #0x0
+10-20 21:21:04.905: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.905: W/PackageManager(5357): Failure retrieving resources for com.facebook.orca: Resource ID #0x0
+10-20 21:21:04.937: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.938: W/PackageManager(5357): Failure retrieving resources for com.bigbangdev.bussonora: Resource ID #0x0
+10-20 21:21:04.953: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:04.953: W/PackageManager(5357): Failure retrieving resources for com.whatsapp: Resource ID #0x0
+10-20 21:21:05.019: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:05.019: W/PackageManager(5357): Failure retrieving resources for com.imgur.mobile: Resource ID #0x0
+10-20 21:21:05.035: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:05.036: W/PackageManager(5357): Failure retrieving resources for com.netflix.mediaclient: Resource ID #0x0
+10-20 21:21:05.074: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:05.074: W/PackageManager(5357): Failure retrieving resources for ric.Jsho: Resource ID #0x0
+10-20 21:21:05.080: W/ResourceType(5357): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:05.081: W/PackageManager(5357): Failure retrieving resources for com.hoohaa.hoohaalauncher: Resource ID #0x0
+10-20 21:21:13.703: I/System.out(5357): erga
+10-20 21:21:15.083: I/ViewRootImpl(5357): Reporting drop result: true
+10-20 21:21:22.650: D/OpenGLRenderer(6173): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+10-20 21:21:22.664: D/Atlas(6173): Validating map...
+10-20 21:21:22.934: I/Adreno-EGL(6173): <qeglDrvAPI_eglInitialize:410>: EGL 1.4 QUALCOMM build: AU_LINUX_ANDROID_LA.BF.1.1.1_RB1.05.00.02.042.016_msm8226_LA.BF.1.1.1_RB1__release_AU ()
+10-20 21:21:22.934: I/Adreno-EGL(6173): OpenGL ES Shader Compiler Version: E031.25.03.00
+10-20 21:21:22.934: I/Adreno-EGL(6173): Build Date: 02/11/15 Wed
+10-20 21:21:22.934: I/Adreno-EGL(6173): Local Branch: 
+10-20 21:21:22.934: I/Adreno-EGL(6173): Remote Branch: quic/LA.BF.1.1.1_rb1.10
+10-20 21:21:22.934: I/Adreno-EGL(6173): Local Patches: NONE
+10-20 21:21:22.934: I/Adreno-EGL(6173): Reconstruct Branch: AU_LINUX_ANDROID_LA.BF.1.1.1_RB1.05.00.02.042.016 + 62ca4eb + acd831d + 9f8b442 + e027a02 + cba30ba + 53c303a + a649d79 + 23e16f8 + 5e97da7 + cbd2a44 + 33d072a + 7aacf06 + 72b33e7 + 28f6f60 + b4c13d8 +  NOTHING
+10-20 21:21:22.937: I/OpenGLRenderer(6173): Initialized EGL, version 1.4
+10-20 21:21:22.963: D/OpenGLRenderer(6173): Enabling debug mode 0
+10-20 21:21:23.130: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.130: W/PackageManager(6173): Failure retrieving resources for com.android.contacts: Resource ID #0x0
+10-20 21:21:23.410: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.410: W/PackageManager(6173): Failure retrieving resources for com.android.settings: Resource ID #0x0
+10-20 21:21:23.435: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.436: W/PackageManager(6173): Failure retrieving resources for com.android.mms: Resource ID #0x0
+10-20 21:21:23.447: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.447: W/PackageManager(6173): Failure retrieving resources for com.android.email: Resource ID #0x0
+10-20 21:21:23.548: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.548: W/PackageManager(6173): Failure retrieving resources for com.google.android.music: Resource ID #0x0
+10-20 21:21:23.569: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.575: W/PackageManager(6173): Failure retrieving resources for com.google.android.gm: Resource ID #0x0
+10-20 21:21:23.647: W/ResourcesManager(6173): Asset path '/system/framework/com.google.android.media.effects.jar' does not exist or contains no resources.
+10-20 21:21:23.647: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.648: W/PackageManager(6173): Failure retrieving resources for com.google.android.talk: Resource ID #0x0
+10-20 21:21:23.723: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.723: W/PackageManager(6173): Failure retrieving resources for com.google.android.youtube: Resource ID #0x0
+10-20 21:21:23.981: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:23.982: W/PackageManager(6173): Failure retrieving resources for com.motorola.MotGallery2: Resource ID #0x0
+10-20 21:21:24.044: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.044: W/PackageManager(6173): Failure retrieving resources for com.google.android.videos: Resource ID #0x0
+10-20 21:21:24.066: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.067: W/PackageManager(6173): Failure retrieving resources for com.google.android.calendar: Resource ID #0x0
+10-20 21:21:24.145: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.154: W/PackageManager(6173): Failure retrieving resources for com.android.chrome: Resource ID #0x0
+10-20 21:21:24.187: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.187: W/PackageManager(6173): Failure retrieving resources for com.android2.calculator3: Resource ID #0x0
+10-20 21:21:24.223: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.224: W/PackageManager(6173): Failure retrieving resources for com.fastemulator.gbafree: Resource ID #0x0
+10-20 21:21:24.300: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.300: W/PackageManager(6173): Failure retrieving resources for com.teslacoilsw.launcher: Resource ID #0x0
+10-20 21:21:24.406: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.406: W/PackageManager(6173): Failure retrieving resources for tv.twitch.android.app: Resource ID #0x0
+10-20 21:21:24.461: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.463: W/PackageManager(6173): Failure retrieving resources for another.music.player: Resource ID #0x0
+10-20 21:21:24.513: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:24.514: W/PackageManager(6173): Failure retrieving resources for com.google.android.apps.messaging: Resource ID #0x0
+10-20 21:21:25.103: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.103: W/PackageManager(6173): Failure retrieving resources for com.motorola.contextual.smartrules2: Resource ID #0x0
+10-20 21:21:25.143: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.143: W/PackageManager(6173): Failure retrieving resources for com.motorola.genie: Resource ID #0x0
+10-20 21:21:25.198: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.198: W/PackageManager(6173): Failure retrieving resources for com.motorola.bodyguard: Resource ID #0x0
+10-20 21:21:25.230: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.230: W/PackageManager(6173): Failure retrieving resources for com.android.providers.downloads.ui: Resource ID #0x0
+10-20 21:21:25.265: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.265: W/PackageManager(6173): Failure retrieving resources for com.google.android.street: Resource ID #0x0
+10-20 21:21:25.310: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.310: W/PackageManager(6173): Failure retrieving resources for com.motorola.fmplayer: Resource ID #0x0
+10-20 21:21:25.329: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.329: W/PackageManager(6173): Failure retrieving resources for com.google.android.apps.books: Resource ID #0x0
+10-20 21:21:25.375: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.376: W/PackageManager(6173): Failure retrieving resources for com.motorola.migrate: Resource ID #0x0
+10-20 21:21:25.501: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.501: W/PackageManager(6173): Failure retrieving resources for com.google.android.apps.maps: Resource ID #0x0
+10-20 21:21:25.542: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.542: W/PackageManager(6173): Failure retrieving resources for com.google.android.apps.plus: Resource ID #0x0
+10-20 21:21:25.563: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.563: W/PackageManager(6173): Failure retrieving resources for com.google.android.apps.magazines: Resource ID #0x0
+10-20 21:21:25.614: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.614: W/PackageManager(6173): Failure retrieving resources for com.google.android.apps.translate: Resource ID #0x0
+10-20 21:21:25.695: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.695: W/PackageManager(6173): Failure retrieving resources for com.google.android.googlequicksearchbox: Resource ID #0x0
+10-20 21:21:25.751: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.752: W/PackageManager(6173): Failure retrieving resources for com.cinemex: Resource ID #0x0
+10-20 21:21:25.807: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.807: W/PackageManager(6173): Failure retrieving resources for nz.mega.android: Resource ID #0x0
+10-20 21:21:25.839: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.839: W/PackageManager(6173): Failure retrieving resources for me.scan.android.client: Resource ID #0x0
+10-20 21:21:25.944: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:25.945: W/PackageManager(6173): Failure retrieving resources for pct.droid: Resource ID #0x0
+10-20 21:21:26.016: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.016: W/PackageManager(6173): Failure retrieving resources for com.instagram.android: Resource ID #0x0
+10-20 21:21:26.080: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.081: W/PackageManager(6173): Failure retrieving resources for com.speedymovil.wire: Resource ID #0x0
+10-20 21:21:26.106: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.107: W/PackageManager(6173): Failure retrieving resources for com.dropbox.android: Resource ID #0x0
+10-20 21:21:26.158: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.158: W/PackageManager(6173): Failure retrieving resources for com.google.android.keep: Resource ID #0x0
+10-20 21:21:26.198: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.198: W/PackageManager(6173): Failure retrieving resources for com.zuiapps.suite.days: Resource ID #0x0
+10-20 21:21:26.220: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.221: W/PackageManager(6173): Failure retrieving resources for com.journey.app: Resource ID #0x0
+10-20 21:21:26.252: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.252: W/PackageManager(6173): Failure retrieving resources for com.skype.raider: Resource ID #0x0
+10-20 21:21:26.275: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.276: W/PackageManager(6173): Failure retrieving resources for com.ebay.mobile: Resource ID #0x0
+10-20 21:21:26.287: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.287: W/PackageManager(6173): Failure retrieving resources for com.mobisystems.fileman: Resource ID #0x0
+10-20 21:21:26.312: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.312: W/PackageManager(6173): Failure retrieving resources for com.nancio.cookie: Resource ID #0x0
+10-20 21:21:26.469: I/art(6173): Background sticky concurrent mark sweep GC freed 9998(555KB) AllocSpace objects, 3(45KB) LOS objects, 0% free, 11MB/12MB, paused 52.941ms total 133.654ms
+10-20 21:21:26.484: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.484: W/PackageManager(6173): Failure retrieving resources for com.drawexpress.lite: Resource ID #0x0
+10-20 21:21:26.544: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.545: W/PackageManager(6173): Failure retrieving resources for com.stackexchange.marvin: Resource ID #0x0
+10-20 21:21:26.570: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.570: W/PackageManager(6173): Failure retrieving resources for com.aspieapps.free.emulator: Resource ID #0x0
+10-20 21:21:26.651: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.651: W/PackageManager(6173): Failure retrieving resources for com.sonymobile.androidapp.audiorecorder: Resource ID #0x0
+10-20 21:21:26.670: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.671: W/PackageManager(6173): Failure retrieving resources for com.explusalpha.Snes9xPlus: Resource ID #0x0
+10-20 21:21:26.697: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.697: W/PackageManager(6173): Failure retrieving resources for com.gameloft.android.ANMP.GloftSIHM: Resource ID #0x0
+10-20 21:21:26.869: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.870: W/PackageManager(6173): Failure retrieving resources for mx.uson.cc.smed: Resource ID #0x0
+10-20 21:21:26.933: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.933: W/PackageManager(6173): Failure retrieving resources for com.snapchat.android: Resource ID #0x0
+10-20 21:21:26.947: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:26.948: W/PackageManager(6173): Failure retrieving resources for com.andrewshu.android.reddit: Resource ID #0x0
+10-20 21:21:27.249: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.249: W/PackageManager(6173): Failure retrieving resources for com.facebook.orca: Resource ID #0x0
+10-20 21:21:27.266: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.267: W/PackageManager(6173): Failure retrieving resources for com.bigbangdev.bussonora: Resource ID #0x0
+10-20 21:21:27.278: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.278: W/PackageManager(6173): Failure retrieving resources for com.whatsapp: Resource ID #0x0
+10-20 21:21:27.309: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.310: W/PackageManager(6173): Failure retrieving resources for com.imgur.mobile: Resource ID #0x0
+10-20 21:21:27.318: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.318: W/PackageManager(6173): Failure retrieving resources for com.netflix.mediaclient: Resource ID #0x0
+10-20 21:21:27.336: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.336: W/PackageManager(6173): Failure retrieving resources for ric.Jsho: Resource ID #0x0
+10-20 21:21:27.347: W/ResourceType(6173): No package identifier when getting value for resource number 0x00000000
+10-20 21:21:27.347: W/PackageManager(6173): Failure retrieving resources for com.hoohaa.hoohaalauncher: Resource ID #0x0
+10-20 21:26:06.770: I/System.out(6173): erga
+10-20 21:26:08.289: I/ViewRootImpl(6173): Reporting drop result: false
+10-20 21:26:13.147: I/System.out(6173): erga
+10-20 21:26:13.915: I/ViewRootImpl(6173): Reporting drop result: false
+10-20 21:26:18.506: I/System.out(6173): erga
+10-20 21:26:18.705: I/ViewRootImpl(6173): Reporting drop result: true

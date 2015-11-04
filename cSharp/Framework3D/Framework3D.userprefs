@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Framework3D/Game1.cs" Line="1" Column="1" />
+      <File FileName="Framework3D/Polygon.cs" Line="9" Column="36" />
+      <File FileName="Framework3D/Camera.cs" Line="1" Column="1" />
+      <File FileName="Framework3D/Rect3.cs" Line="19" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

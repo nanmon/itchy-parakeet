@@ -1,0 +1,117 @@
+package com.hoohaainc.framework.implementation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+import com.hoohaainc.framework.Input.TouchEvent;
+import com.hoohaainc.framework.Pool;
+
+import android.view.MotionEvent;
+import android.view.View;
+
+public class MultiTouchHandler2 implements TouchHandler {
+	
+	private final int MAX_POINTERS = 10;
+	private int justTouched;
+	
+	private float scaleX, scaleY;
+	private Queue<TouchEvent[]> buffers = new PriorityQueue<>();
+	private List<TouchEvent> events = new ArrayList<>(MAX_POINTERS);
+	private Pool<TouchEvent> touchEventPool;
+	
+	public MultiTouchHandler2(View view, float scaleX, float scaleY){
+        Pool.PoolObjectFactory<TouchEvent> factory =
+                new Pool.PoolObjectFactory<TouchEvent>() {
+                    @Override
+                    public TouchEvent createObject() {
+                        return new TouchEvent();
+                    }
+                };
+        touchEventPool = new Pool<>(factory, 100);
+        view.setOnTouchListener(this);
+
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+    }
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		TouchEvent[] topBuffer = buffers.peek();
+		TouchEvent[] buffer = new TouchEvent[MAX_POINTERS];
+		TouchEvent touch;
+		for(int i=0; i<event.getPointerCount(); ++i){
+			touch = touchEventPool.newObject();
+			touch.x = (int)(event.getX(i)*scaleX);
+			touch.y = (int)(event.getY(i)*scaleY);
+			touch.pointer = i;
+			switch(event.getActionMasked()){
+			case MotionEvent.ACTION_DOWN:
+			case MotionEvent.ACTION_POINTER_DOWN:
+				touch.type = TouchEvent.TOUCH_DOWN;
+				justTouched = 1 << i;
+				break;
+			case MotionEvent.ACTION_UP:
+			case MotionEvent.ACTION_POINTER_UP:
+			case MotionEvent.ACTION_CANCEL:
+				touch.type = TouchEvent.TOUCH_UP;
+				justTouched =  1 << i;
+				break;
+			case MotionEvent.ACTION_MOVE:
+				touch.type = TouchEvent.TOUCH_DRAGGED;
+				break;
+			}
+			if(topBuffer == null || topBuffer[i] == null)
+				buffer[i] = touch;
+			else topBuffer[i] = touch;
+		}
+		buffers.add(buffer);
+		return true;
+	}
+
+	@Override
+	public boolean isTouchDown(int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getTouchX(int pointer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getTouchY(int pointer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<TouchEvent> getTouchEvents() {
+		for(int i=0; i<events.size(); ++i)
+			touchEventPool.free(events.get(i));
+		events.clear();
+		for(int i=0; i>=MAX_POINTERS; ++i){
+			if(buffer[i] != null){
+				if(buffer[i].type == TouchEvent.TOUCH_DOWN){
+					if(((1 << i) & justTouched) == 0)
+						buffer[i].type = TouchEvent.TOUCH_HOLD;
+					else justTouched = justTouched ^ (1 << i);
+				}else if(buffer[i].type == TouchEvent.TOUCH_UP){
+					if(((1 << i) & justTouched) == 0){
+						touchEventPool.free(buffer[i]);
+						buffer[i] = null;
+						int end = (justTouched & ((1<<i)-1));
+						int start = (justTouched ^ ((1<<i)-1));
+						justTouched = (start>>1)+end;
+					}else justTouched = justTouched ^ (1 << i);
+				}
+			}
+			
+		}
+		return events;
+	}
+
+}

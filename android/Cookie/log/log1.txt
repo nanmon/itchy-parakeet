@@ -1,0 +1,23 @@
+08-19 18:15:34.821: E/AndroidRuntime(23548): FATAL EXCEPTION: main
+08-19 18:15:34.821: E/AndroidRuntime(23548): Process: com.nancio.cookie, PID: 23548
+08-19 18:15:34.821: E/AndroidRuntime(23548): java.lang.IllegalStateException: Could not execute method of the activity
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.view.View$1.onClick(View.java:4012)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.view.View.performClick(View.java:4761)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.view.View$PerformClick.run(View.java:19767)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.os.Handler.handleCallback(Handler.java:739)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.os.Handler.dispatchMessage(Handler.java:95)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.os.Looper.loop(Looper.java:135)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.app.ActivityThread.main(ActivityThread.java:5312)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at java.lang.reflect.Method.invoke(Native Method)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at java.lang.reflect.Method.invoke(Method.java:372)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:696)
+08-19 18:15:34.821: E/AndroidRuntime(23548): Caused by: java.lang.reflect.InvocationTargetException
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at java.lang.reflect.Method.invoke(Native Method)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at java.lang.reflect.Method.invoke(Method.java:372)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at android.view.View$1.onClick(View.java:4007)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	... 10 more
+08-19 18:15:34.821: E/AndroidRuntime(23548): Caused by: java.lang.ArithmeticException: divide by zero
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at com.nancio.cookie.game.GoldenCookie.click(GoldenCookie.java:62)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	at com.nancio.cookie.MainActivity.goldenClick(MainActivity.java:377)
+08-19 18:15:34.821: E/AndroidRuntime(23548): 	... 13 more

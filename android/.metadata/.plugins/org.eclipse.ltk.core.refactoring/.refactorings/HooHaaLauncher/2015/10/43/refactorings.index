@@ -1,0 +1,13 @@
+1445297916105	Move type 'HomeGridDbHelper' to new file
+1445297997767	Rename type 'DBContract'
+1445298022935	Rename package 'com.hoohaa.hoohaalauncher.util'
+1445298999443	Rename type 'HomeGridEntry'
+1445304353234	Rename type 'AppItemEntry'
+1445361379300	Rename field 'NODE_GRID_CONTAINER'
+1445361390641	Rename field 'NODE_APP_ITEM'
+1445362116994	Rename field 'xmlFile'
+1445362129269	Rename field 'containersXml'
+1445371150068	Rename method 'createItems'
+1445396224207	Delete elements
+1445535689689	Copy file
+1445539437871	Move file

@@ -1,0 +1,66 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Vibrator;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class AppItem extends Item{
+	
+	private String activityName;
+	private Drawable icon;
+	private String text;
+
+	public AppItem(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context, attrs.getAttributeValue("namespace", "activityName"));
+	}
+
+	public AppItem(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context, attrs.getAttributeValue("namespace", "activityName"));
+	}
+
+	public AppItem(Context context, String activityName) {
+		super(context);
+		init(context, activityName);
+	}
+	
+	
+	private void init(Context context, String activityName){
+		this.activityName = activityName;
+		PackMan.Pack pack = PackMan.get(activityName);
+		icon = pack.icon;
+		text = pack.label;
+	}
+
+	@Override
+	public void onClick() {
+		((Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+		PackMan.startActivity(activityName);
+	}
+
+	@Override
+	public boolean onLongClick() {
+		ClipData.Item clipItem = new ClipData.Item(Item.APP_DRAG);
+		
+		ClipData dragData = new ClipData("app", 
+				new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN}, 
+				clipItem);
+		
+		clipItem = new ClipData.Item(activityName);
+		dragData.addItem(clipItem);
+		View.DragShadowBuilder myShadow = new View.DragShadowBuilder(this);
+		
+		startDrag(dragData, myShadow, null, 0);
+		
+		//packsForAdapter[position].addToHome(mContext, homeView);
+		//drawer.animateClose();
+		//drawer.bringToFront();
+		return false;
+	}
+	
+}

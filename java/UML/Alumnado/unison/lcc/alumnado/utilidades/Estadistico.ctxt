@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Estadistico()
+comment1.params=lista
+comment1.target=void\ generarDiagrama(ListaDeAlumnos)
+comment1.text=\n\ Esta\ clase\ se\ encarga\ de\ desplegar\ un\ listado\ de\ la\ cantidad\ de\ alumnos\n\ inscritos\ en\ cada\ semestre.\ La\ salida\ debe\ ser\ algo\ similar\ a\ lo\ siguiente\:\n\ Semestre\ I\:\ xxxxxxxxxxxxxxxxxxxx\ (20)\ Semestre\ II\:\ xxxxxxxxxx\ (10)\ Semestre\ III\:\n\ xxxxxxxxxxxxxxxx\ (16)\ Semestre\ IV\:\ xxxxxxxxxxxxxxxxxx\ (18)\ Semestre\ V\:\n\ xxxxxxxxxxxxxx\ (14)\ Semestre\ VI\:\ xxxxxxxxxx\ (10)\ Semestre\ VII\:\ xxxxxxxxxxxx\ (12)\n\ Semestre\ VIII\:\ (0)\ Semestre\ IX\:\ (0)\ Semestre\ X\:\ (0)\u0000\n\ @param\ \ \ \ \ \ \ \ lista\ Lista\ de\ alumnos.\n
+comment2.params=lista
+comment2.target=void\ generarFrecuencia(ListaDeAlumnos)
+comment2.text=\n\ Este\ metodo\ se\ encarga\ de\ obtener\ la\ cantidad\ de\ alumnos\ que\ existen\ en\ cada\n\ semestre.\n\ @param\ \ \ \ \ \ \ \ lista\ Lista\ de\ alumnos.\n
+numComments=3

@@ -1,0 +1,42 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.LinearLayout;
+
+public class AppView extends LinearLayout implements Item{
+
+	public AppView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	public AppView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+
+	public AppView(Context context) {
+		super(context);
+		init(context);
+	}
+	
+	private void init(Context context){
+		setOnClickListener(this);
+		setOnLongClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

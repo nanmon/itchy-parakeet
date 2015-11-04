@@ -1,0 +1,88 @@
+package com.hoohaainc.samplecodes.game;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import com.hoohaainc.framework.Game;
+import com.hoohaainc.framework.Graphics;
+import com.hoohaainc.framework.Input.TouchEvent;
+import com.hoohaainc.framework.Screen;
+import com.hoohaainc.framework.implementation.AndroidGame;
+
+import android.graphics.Color;
+import android.graphics.Paint;
+
+public class Game1 extends AndroidGame {
+
+	@Override
+	public Screen getInitScreen() {
+		return new Screen1(this);
+	}
+	
+	public static class Screen1 extends Screen {
+
+		List<TouchEvent> touchEvents;
+		List<TouchEvent> allTouchEvents = new ArrayList<>();
+		List<Integer> points = new ArrayList<>();
+		
+		public Screen1(Game game) {
+			super(game);
+		}
+
+		@Override
+		public void update(float deltaTime) {
+			touchEvents = game.getInput().getTouchEvents();
+			List<TouchEvent> aux = new ArrayList<>(touchEvents);
+			Collections.copy(aux, touchEvents);
+			allTouchEvents.addAll(aux);
+		}
+
+		@Override
+		public void paint(float deltaTime) {
+			Graphics spriteBatch = game.getGraphics();
+			spriteBatch.clearScreen(Color.WHITE);
+			int[] touchColors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
+			TouchEvent event;
+			Paint textPaint = new Paint();
+			textPaint.setColor(Color.BLACK);
+			for(int i=0; i<allTouchEvents.size(); ++i){
+				event = allTouchEvents.get(i);
+				spriteBatch.drawRect(event.x, event.y, 5, 5, 
+						touchColors[event.type]);
+			}
+			for(int i=0; i<touchEvents.size(); ++i){
+				event = touchEvents.get(i);
+				spriteBatch.drawString("Touch"+event.pointer, 0, i*60, textPaint);
+				spriteBatch.drawString("Position: (" +event.x+","+event.y+")", 0, 20+i*60, textPaint);
+				spriteBatch.drawString("Type:"+event.type, 0, 40+i*60, textPaint);
+			}
+		}
+
+		@Override
+		public void pause() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void resume() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void dispose() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public boolean backButton() {
+			allTouchEvents.clear();
+			return false;
+		}
+		
+	}
+
+}

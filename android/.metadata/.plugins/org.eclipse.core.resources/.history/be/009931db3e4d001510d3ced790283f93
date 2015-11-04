@@ -1,0 +1,7 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.Serializable;
+
+public class AppSerializableData implements Serializable {
+	
+}

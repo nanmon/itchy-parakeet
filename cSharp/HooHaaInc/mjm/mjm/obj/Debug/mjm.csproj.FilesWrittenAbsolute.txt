@@ -1,0 +1,7 @@
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/bin/Debug/mjm.dll.mdb
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/bin/Debug/mjm.dll
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/obj/Debug/mjm.dll
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/obj/Debug/mjm.dll.mdb
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/bin/Debug/MonoGame.Framework.dll
+/home/nancio/Programacion/cSharp/HooHaaInc/mjm/mjm/bin/Debug/MonoGame.Framework.Content.Pipeline.dll

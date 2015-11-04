@@ -1,0 +1,41 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+
+public class AppView extends Item{
+	
+	private String activityName;
+
+	public AppView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context, attrs.getAttributeValue("namespace", "activityName"));
+	}
+
+	public AppView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context, attrs.getAttributeValue("namespace", "activityName"));
+	}
+
+	public AppView(Context context, String activityName) {
+		super(context);
+		init(context, activityName);
+	}
+	
+	
+	private void init(Context context, String activityName){
+		this.activityName = activityName;
+	}
+
+	@Override
+	public void onClick() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean onLongClick() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

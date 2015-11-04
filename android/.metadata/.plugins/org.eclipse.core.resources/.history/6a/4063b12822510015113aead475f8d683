@@ -1,0 +1,117 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class HomeGridLayout extends Container {
+	
+	int nRows = 4;
+	int nColumns = 4;
+	ArrayList<AppView> atoms;
+			
+	public HomeGridLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public HomeGridLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
+	public HomeGridLayout(Context context) {
+		super(context);
+	}
+
+	@Override
+	protected void init(Context context){
+		
+	}
+	
+	private void layoutView(View view, int width, int height){
+		LayoutParams lp = (LayoutParams)view.getLayoutParams();
+		lp.row = ((lp.row + lp.column/nColumns)%nRows);
+		lp.column%=nColumns;
+		if(lp.width > nColumns - lp.column) lp.width = nColumns - lp.column;
+		if(lp.height > nRows - lp.row) lp.height = nRows - lp.row;
+		
+		view.layout(lp.column*width/nColumns, lp.row*height/nRows, 
+				lp.width*width/nColumns, lp.height*height/nColumns);
+	}
+	
+	@Override
+	public boolean shouldDelayChildPressedState() {
+		return false;
+	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		int width = MeasureSpec.getSize(widthMeasureSpec);
+		int height = MeasureSpec.getSize(heightMeasureSpec);
+		int columnWidth = width/nColumns;
+		int rowHeight = height/nRows;
+		int rowHeightUsed;
+		int columnWidthUsed;
+		for(int i=0; i<atoms.size(); ++i){
+			rowHeightUsed = 0;
+			columnWidthUsed = 0;
+			measureChildWithMargins(atoms.get(i), widthMeasureSpec, width - columnWidth, 
+					heightMeasureSpec, height - rowHeight);
+			rowHeightUsed = atoms.get(i).getMeasuredHeight();
+			columnWidthUsed = atoms.get(i).getMeasuredWidth();
+			//pensaba que seguia reducirlo si necesario pero ahora creo que no
+		}
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
+	
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		final int paddingLeft = getPaddingLeft();
+		final int paddingTop = getPaddingTop();
+		
+		int currentTop = paddingTop;
+		
+		for(int i=0; i<atoms.size(); ++i){
+			layoutView(atoms.get(i), paddingLeft, currentTop,
+					atoms.get(i).getMeasuredWidth(),
+					atoms.get(i).getMeasuredHeight());
+		}
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+
+	public class LayoutParams extends ViewGroup.LayoutParams{
+		
+		int row, column;
+
+		public LayoutParams(Context c, AttributeSet attrs) {
+			super(c, attrs);
+			// TODO Auto-generated constructor stub
+		}
+
+		public LayoutParams(int row, int column) {
+			super(1, 1);
+			this.row = row;
+			this.column = column;
+		}
+
+		public LayoutParams(LayoutParams source) {
+			super(source.width, source.height);
+			row = source.row;
+			column = source.column;
+			
+		}
+		
+		
+	}
+	
+}

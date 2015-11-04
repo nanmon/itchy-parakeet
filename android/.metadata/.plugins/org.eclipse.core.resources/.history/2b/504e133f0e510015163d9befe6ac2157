@@ -1,0 +1,8 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+
+public interface Item extends OnClickListener, OnLongClickListener {
+	
+}

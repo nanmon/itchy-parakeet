@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".views.BuildingView"
+    android:background="#eee">
+
+    <RelativeLayout android:id="@+id/building_mainlayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_farm"
+            android:id="@+id/building_image"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/favicon"
+            android:layout_toRightOf="@id/building_image"
+            android:layout_alignBottom="@id/building_image"
+            android:paddingBottom="@dimen/general_padding"
+            android:id="@+id/favicon"/>
+
+        <TextView android:id="@+id/building_name"
+            android:text="@string/farm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf= "@id/building_image"
+            android:maxLines="1"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:paddingTop="@dimen/general_padding"/>
+
+        <TextView android:id="@+id/building_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500"
+            android:paddingRight="@dimen/general_padding"
+            android:paddingEnd="@dimen/general_padding"
+            android:paddingBottom="@dimen/general_padding"
+            android:layout_toRightOf="@id/favicon"
+            android:layout_alignBottom="@id/building_image"/>
+
+        <TextView android:id="@+id/building_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:text="0"
+            android:paddingRight="@dimen/general_padding"
+            android:paddingEnd="@dimen/general_padding"
+            android:paddingBottom="@dimen/general_padding"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/building_image"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/building_expansion"
+        android:layout_width="fill_parent"
+        android:paddingTop="@dimen/general_padding"
+        android:layout_height="wrap_content"
+        android:background="#ddd">
+
+        <TextView android:id="@+id/building_cps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+0 cps"
+            android:paddingLeft="@dimen/general_padding"
+            android:paddingRight="@dimen/general_padding"
+            android:paddingBottom="@dimen/general_padding"
+            android:layout_alignParentTop="true"/>
+
+
+        <TextView android:id="@+id/building_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/building_cps"
+            android:paddingLeft="@dimen/general_padding"
+            android:paddingRight="@dimen/general_padding"
+            android:paddingBottom="@dimen/general_padding"
+            android:text="@string/farm_desc"/>
+
+        <LinearLayout android:id="@+id/building_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/building_description">
+            <TextView android:id="@+id/building_buy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/buy_text"
+                android:background="@drawable/buy_background"
+                android:text="@string/buy"
+                android:gravity="center"
+                android:clickable="true"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/check_sell"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout><!-- From: file:/home/nancio/Programacion/android/Cookie/app/src/main/res/layout/building_layout.xml -->

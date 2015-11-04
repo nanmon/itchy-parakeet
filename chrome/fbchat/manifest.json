@@ -1,0 +1,20 @@
+{
+	"manifest_version": 2,
+	"name": "Fbchat",
+	"version": "0.0.1",
+	"description": "Fbchat.",
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"content_scripts": [{
+		"matches":["https://m.facebook.com/*"],
+		"js": ["script.js"],
+		"css": ["style.css"]
+	}],
+	"permissions": ["*://*.facebook.com/", "tabs", "webRequest", "webRequestBlocking"],
+	"browser_action":  {
+	},
+	"web_accessible_resources": [
+		"*.png"
+	]
+}

@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment0.text=\n\ Este\ metodo\ inicia\ la\ ejecucion\ principal\ del\ programa.\ Desde\ este\ metodo\ se\n\ construyen\ los\ objetos\ necesarios\ para\ el\ proposito\ del\ proyecto\ asi\ como\ las\n\ llamadas\ a\ cada\ una\ de\ las\ operaciones\ requeridas.\n\ @param\ \ \ \ \ \ \ \ args\ Arreglo\ de\ cadenas\ proporcionadas\ durante\ la\ ejecucion\ del\n\ programa.\n
+numComments=1

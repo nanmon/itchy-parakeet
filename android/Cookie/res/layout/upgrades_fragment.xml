@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:orientation="vertical"
+    >
+
+    <com.nancio.cookie.views.UpgradesViewer
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        custom:usage="unlocked"
+        />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        
+        <LinearLayout android:id="@+id/buildings_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="cursor"/>
+
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="grandma"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="farm"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="factory"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="mine"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="shipment"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:index="alchemy_lab"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="portal"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="time_machine"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:index="antimatter_condenser"/>
+
+            <com.nancio.cookie.views.BuildingView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                custom:index="prism"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

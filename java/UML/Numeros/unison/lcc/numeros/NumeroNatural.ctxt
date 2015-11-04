@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=
+comment0.target=NumeroNatural()
+comment1.params=val
+comment1.target=NumeroNatural(int)
+comment2.params=val
+comment2.target=NumeroNatural(java.lang.String)
+comment3.params=a
+comment3.target=NumeroNatural(NumeroNatural)
+comment4.params=
+comment4.target=int\ obtenerValor()
+comment4.text=\n\ Get\ the\ value\ of\ valor\n\ @return\ the\ value\ of\ valor\n
+comment5.params=a\ b
+comment5.target=NumeroNatural\ sumar(NumeroNatural,\ NumeroNatural)
+comment5.text=\n\ Suma\ el\ valor\ de\ los\ objetos\ recibidos\ y\ regresa\ un\ objeto\ de\ tipo\ NumeroNatural\ con\ el\n\ resultado\ obtenido,\ o\ null\ si\ no\ es\ una\ operaci\u00F3n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroNatural\n\ @param\ \ \ \ \ \ \ \ a\ Sumando.\n\ @param\ \ \ \ \ \ \ \ b\ Sumando.\n
+comment6.params=a\ b
+comment6.target=NumeroNatural\ restar(NumeroNatural,\ NumeroNatural)
+comment6.text=\n\ Resta\ el\ valor\ del\ segundo\ objeto\ (Sustrayendo)\ al\ valor\ del\ primero\ (Minuendo),\n\ y\ regresa\ un\ objeto\ de\ tipo\ NumeroNatural\ con\ el\ resultado\ obtenido,\ o\ null\ si\ no\ es\n\ una\ operaci\u00F3n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroNatural\n\ @param\ \ \ \ \ \ \ \ a\ Minuendo\n\ @param\ \ \ \ \ \ \ \ b\ Sustrayendo\n
+comment7.params=a\ b
+comment7.target=NumeroNatural\ multiplicar(NumeroNatural,\ NumeroNatural)
+comment7.text=\n\ Realiza\ un\ multiplicacion\ con\ los\ valores\ de\ los\ objetos\ recibidos\ y\ regresa\ un\n\ objeto\ de\ tipo\ NumeroNatural\ con\ el\ resultado\ obtenido,\ o\ null\ si\ no\ es\ una\ operaci\u00F3n\n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroNatural\n\ @param\ \ \ \ \ \ \ \ a\ Multiplicando.\n\ @param\ \ \ \ \ \ \ \ b\ Multiplicando.\n
+comment8.params=a\ b
+comment8.target=NumeroNatural\ dividir(NumeroNatural,\ NumeroNatural)
+comment8.text=\n\ Divide\ el\ primer\ objeto\ (Dividendo)\ entre\ el\ segundo\ (Divisor),\ y\ regresa\ un\n\ objeto\ de\ tipo\ NumeroNatural\ con\ el\ resultado\ obtenido,\ o\ null\ si\ no\ es\ una\ operaci\u00F3n\n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroNatural\n\ @param\ \ \ \ \ \ \ \ a\ Dividendo.\n\ @param\ \ \ \ \ \ \ \ b\ Divisor.\n
+numComments=9

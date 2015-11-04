@@ -1,0 +1,15 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.graphics.drawable.Drawable;
+
+public class Pack{
+	Drawable icon;
+	String name, label, packageName;
+	
+	public Pack(Drawable i, String n, String l, String pn){
+		icon = i;
+		name = n;
+		label = l;
+		packageName = pn;
+	}
+}

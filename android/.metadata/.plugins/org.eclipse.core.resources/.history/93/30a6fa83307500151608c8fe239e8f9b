@@ -1,0 +1,17 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+
+public class GridContainer extends Container {
+	
+	public GridContainer(Context c){
+		super(c);
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

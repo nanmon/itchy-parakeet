@@ -1,0 +1,60 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ClipDescription;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+
+public class AppDragEventListener implements View.OnDragListener {
+
+	@Override
+	public boolean onDrag(View v, DragEvent event) {
+		
+		switch(event.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(event.getClipDescription().
+					hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+				v.setBackgroundColor(Color.BLUE);
+				v.invalidate();
+				return true;
+			}
+			return false;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			v.setBackgroundColor(Color.GREEN);
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			v.setBackgroundColor(Color.BLUE);
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DROP:
+		
+			v.setBackgroundColor(Color.TRANSPARENT);
+			v.invalidate();
+			
+			Pack pack = (Pack)v.getRootView().findViewById(
+					v.getResources().getIdentifier(
+							event.getClipData().getItemAt(0).getText().toString(), 
+							"id", 
+							"com.hoohaa.hoohaalauncher")).getTag();
+			pack.x = (int)event.getX();
+			pack.y = (int)event.getY();
+			pack.addToHomeGrid(v.getContext(), (GridLayout)v);
+			return true;
+		case DragEvent.ACTION_DRAG_ENDED:
+			v.setBackgroundColor(Color.TRANSPARENT);
+			v.invalidate();
+			return true;
+		default:
+			Log.e("Drag", "Unknown action type");
+			break;
+		}
+		return false;
+	}
+
+}

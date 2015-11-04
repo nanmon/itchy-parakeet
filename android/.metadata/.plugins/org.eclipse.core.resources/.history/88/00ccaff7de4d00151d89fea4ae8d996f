@@ -1,0 +1,34 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+
+public class AppClickListener implements OnClickListener{
+
+	Pack[] packsForListener;
+	Context mContext;
+	
+	public AppClickListener(Context c, Pack[] packs) {
+		// TODO Auto-generated constructor stub
+		packsForListener = packs;
+		mContext = c;
+	}
+	
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		String[] data = (String[]) v.getTag();
+		
+		Intent launchIntent = new Intent(Intent.ACTION_MAIN);
+		launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+		ComponentName cp = new ComponentName(
+				data[0], 
+				data[1]);
+		launchIntent.setComponent(cp);
+		mContext.startActivity(launchIntent);
+	}
+
+}

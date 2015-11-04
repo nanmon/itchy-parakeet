@@ -1,0 +1,17 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.Serializable;
+
+import android.graphics.drawable.Drawable;
+
+public class Pack implements Serializable{
+	Drawable icon;
+	String name, label, packageName;
+	
+	public Pack(Drawable i, String n, String l, String pn){
+		icon = i;
+		name = n;
+		label = l;
+		packageName = pn;
+	}
+}

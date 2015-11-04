@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=AlumnoUnison()
+comment1.params=expediente\ creditos\ semestre
+comment1.target=AlumnoUnison(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=double\ obtenerPromedio()
+comment2.text=\n\ Este\ metodo\ retorna\ el\ promedio\ general\ que\ tiene\ actualmente\ el\ alumno.\n\ \n\ @return\ \ \ \ \ \ \ Promedio\ general\ del\ alumno.\n
+comment3.params=incremento
+comment3.target=int\ incrementarCreditos(int)
+comment3.text=\n\ Este\ metodo\ incrementa\ el\ numero\ de\ creditos\ de\ acuerdo\ al\ valor\ proporcionado.\n\ Retorna\ la\ cantidad\ de\ creditos\ actuales\ despues\ de\ hacer\ el\ incremento\n\ correspondiente.\n\ @return\ \ \ \ \ \ \ int\n\ @param\ \ \ \ \ \ \ \ incremento\ Cantidad\ que\ debe\ aumentar\ el\ numero\ de\ creditos\ del\n\ alumno.\ return\ Cantidad\ de\ creditos\ del\ alumno\n
+numComments=4

@@ -1,0 +1,245 @@
+# depslib dependency file v1.0
+1418676457 source:/home/nancio/Programacion/c++/biseccion.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<cmath>
+
+1418676529 source:/home/nancio/Programacion/c++/reglaFalsa.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<cmath>
+
+1409192988 source:/home/nancio/Programacion/c++/aproximacion.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+
+1418681888 source:/home/nancio/Programacion/c++/claseMatriz.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<fstream>
+
+1418688200 source:/home/nancio/Programacion/c++/factDirecta.cpp
+	<iostream>
+	<cstdlib>
+	<iomanip>
+	<fstream>
+	<cmath>
+
+1418681792 source:/home/nancio/Programacion/c++/gauss.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	"claseMatriz.cpp"
+
+1418681888 /home/nancio/Programacion/c++/claseMatriz.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<fstream>
+
+1418682134 source:/home/nancio/Programacion/c++/gaussjordan.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	"claseMatriz.cpp"
+
+1418681979 source:/home/nancio/Programacion/c++/gausspivoteo.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<fstream>
+	<cmath>
+	"claseMatriz.cpp"
+
+1418679667 source:/home/nancio/Programacion/c++/NewtonRaphson.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+
+1418680627 source:/home/nancio/Programacion/c++/secante.cpp
+	<iostream>
+	<cstdlib>
+	<cmath>
+	<iomanip>
+
+1418687931 source:/home/nancio/Programacion/c++/interpolacion.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+	<fstream>
+
+1418686914 source:/home/nancio/Programacion/c++/gaussSeidel.cpp
+	<iostream>
+	<cstdlib>
+	<iomanip>
+	<fstream>
+	<cmath>
+	"claseMatriz.cpp"
+
+1417883531 source:/home/nancio/Programacion/c++/integral.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+
+1418688072 source:/home/nancio/Programacion/c++/interpolacion2.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+	<fstream>
+
+1418686197 source:/home/nancio/Programacion/c++/jacobi.cpp
+	<iostream>
+	<cstdlib>
+	<iomanip>
+	<fstream>
+	<cmath>
+	"claseMatriz.cpp"
+
+1418676657 source:/home/nancio/Programacion/c++/puntoFijo.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+
+1418856199 source:/home/nancio/Programacion/c++/Numerico/biseccion.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<cmath>
+
+1418836751 source:/home/nancio/Programacion/c++/Numerico/claseMatriz.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<fstream>
+	"numerico.h"
+
+1418857270 source:/home/nancio/Programacion/c++/Numerico/factDirecta.cpp
+	<iostream>
+	<cstdlib>
+	<cmath>
+	"numerico.h"
+
+1418836286 source:/home/nancio/Programacion/c++/Numerico/gauss.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	"numerico.h"
+
+1418681888 /home/nancio/Programacion/c++/Numerico/claseMatriz.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<fstream>
+
+1418836339 source:/home/nancio/Programacion/c++/Numerico/gaussjordan.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	"numerico.h"
+
+1418836451 source:/home/nancio/Programacion/c++/Numerico/gausspivoteo.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<fstream>
+	<cmath>
+	"numerico.h"
+
+1418851720 source:/home/nancio/Programacion/c++/Numerico/gaussSeidel.cpp
+	<iostream>
+	<cstdlib>
+	<iomanip>
+	<fstream>
+	<cmath>
+	"numerico.h"
+
+1418846411 source:/home/nancio/Programacion/c++/Numerico/interpolacion.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+	<fstream>
+	"numerico.h"
+
+1418848053 source:/home/nancio/Programacion/c++/Numerico/interpolacion2.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+	<fstream>
+	"numerico.h"
+
+1418836791 source:/home/nancio/Programacion/c++/Numerico/jacobi.cpp
+	<iostream>
+	<cstdlib>
+	<iomanip>
+	<fstream>
+	<cmath>
+	"numerico.h"
+
+1418856199 source:/home/nancio/Programacion/c++/Numerico/NewtonRaphson.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+
+1418856199 source:/home/nancio/Programacion/c++/Numerico/puntoFijo.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<iomanip>
+
+1418856199 source:/home/nancio/Programacion/c++/Numerico/reglaFalsa.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<cmath>
+
+1418856199 source:/home/nancio/Programacion/c++/Numerico/secante.cpp
+	<iostream>
+	<cstdlib>
+	<cmath>
+	<iomanip>
+
+1418856200 /home/nancio/Programacion/c++/Numerico/numerico.h
+	<iostream>
+	<stdlib.h>
+	<fstream>
+
+1418856616 source:/home/nancio/Programacion/c++/Numerico/main.cpp
+	<iostream>
+	<cstdlib>
+	"numerico.h"
+
+1418848648 source:/home/nancio/Programacion/c++/Numerico/integral.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	"numerico.h"
+
+1418853304 source:/home/nancio/Programacion/c++/Numerico/regresion.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<fstream>
+	<iomanip>
+	"numerico.h"
+
+1418789579 source:/home/nancio/Programacion/c++/Numerico/simpson.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	"numerico.h"
+

@@ -1,0 +1,36 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+
+public class AppView extends Item{
+
+	public AppView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public AppView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
+	public AppView(Context context, String activityName) {
+		super(context);
+	}
+	
+	
+	private void init(Context context){
+		
+	}
+
+	@Override
+	public void onClick() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean onLongClick() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

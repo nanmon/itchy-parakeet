@@ -1,0 +1,8 @@
+MIDlet-1: Cookies, , cookie.Cookies
+MIDlet-Jar-Size: 376012
+MIDlet-Jar-URL: CookieClicker.jar
+MIDlet-Name: CookieClicker
+MIDlet-Vendor: Nan
+MIDlet-Version: 0.5.1
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.1

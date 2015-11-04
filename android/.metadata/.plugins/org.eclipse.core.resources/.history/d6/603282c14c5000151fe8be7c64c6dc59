@@ -1,0 +1,57 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
+
+public class HalfDock extends LinearLayout {
+
+	public HalfDock(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	public HalfDock(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+
+	public HalfDock(Context context) {
+		super(context);
+		init(context);
+	}
+	
+	private void init(Context context){
+		int orientation = context.getResources().getConfiguration().orientation;
+		LayoutParams lp;
+		if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+			
+			this.setOrientation(LinearLayout.VERTICAL);
+			
+			lp = new LayoutParams(LayoutParams.MATCH_PARENT, 0);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+			
+			lp = new LayoutParams(LayoutParams.MATCH_PARENT, 0);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+		}else{
+			this.setOrientation(LinearLayout.HORIZONTAL);
+			
+			lp = new LayoutParams(0, LayoutParams.MATCH_PARENT);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+			
+			lp = new LayoutParams(0, LayoutParams.MATCH_PARENT);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+		}
+	}
+	
+
+}

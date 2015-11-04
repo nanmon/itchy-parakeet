@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#cccccccc"
+    android:padding="@dimen/general_padding">
+
+    <ImageView android:id="@+id/notification_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/up00_1"/>
+
+    <TextView android:id="@+id/notification_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/notification_img"
+        android:padding="@dimen/general_padding"
+        android:text="@string/achie0"/>
+
+    <TextView android:id="@+id/notification_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification_img"
+        android:text="jaby verbo"
+        android:padding="@dimen/general_padding"/>
+
+</RelativeLayout><!-- From: file:/home/nancio/Programacion/android/Cookie/app/src/main/res/layout/notification_layout.xml -->

@@ -1,0 +1,104 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.TreeMap;
+
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+
+public class PackMan {
+
+	private static TreeMap<String, Pack> packs = new TreeMap<>();
+		
+	public static void setPacks(List<ResolveInfo> packsList, PackageManager pm){
+		for(int i=0; i<packsList.size(); ++i){
+			packs.put(packsList.get(i).activityInfo.name, new Pack(
+					packsList.get(i).activityInfo.name,
+					packsList.get(i).activityInfo.packageName,
+					packsList.get(i).loadLabel(pm).toString(),
+					packsList.get(i).loadIcon(pm)));
+		}
+	}
+	
+	public static void setPacks(Pack[] p){
+		for(int i=0; i<p.length; ++i){
+			packs.put(p[i].activityName, p[i]);
+		}
+	}
+	
+	public static Pack get(String activityName){
+		return packs.get(activityName);
+	}
+	
+	public static class Pack {
+		final String activityName, packageName, label;
+		final Drawable icon;
+		String iconLocation;
+		
+		public Pack(String aN, String pN, String l, Drawable i){
+			activityName = aN;
+			packageName = pN;
+			label = l;
+			icon = i;
+		}
+		
+		public void cacheIcon(){
+			if(iconLocation == null){
+				new File(MainActivity.activity.getApplicationInfo().dataDir
+						+ "/cachedApps/").mkdir();
+				
+				if(icon != null){
+					iconLocation = MainActivity.activity.getApplicationInfo().dataDir
+							+ "/cachedApps/" + packageName + activityName;
+					FileOutputStream fos = null;
+					try{
+						fos = new FileOutputStream(iconLocation);
+					}catch(FileNotFoundException e){
+						e.printStackTrace();
+					}
+					
+					if(fos != null){
+						Tools.drawableToBitmap(icon).compress(
+								Bitmap.CompressFormat.PNG, 
+								100, fos);
+						try{
+							fos.flush();
+							fos.close();
+						}catch(IOException e){
+							e.printStackTrace();
+						}
+					}else
+						iconLocation = null;
+				}
+			}
+		}
+		
+		public Bitmap getCachedIcon(){
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inJustDecodeBounds = false;
+			options.inPreferredConfig = Config.ARGB_8888;
+			options.inDither = true;
+			
+			if(iconLocation != null){
+				File cachedIcon = new File(iconLocation);
+				if(cachedIcon.exists()){
+					return BitmapFactory.decodeFile(cachedIcon.getAbsolutePath(), options);
+				}
+			}
+			return null;
+		}
+		
+		public void deleteIcon(){
+			if(iconLocation != null)
+				new File(iconLocation).delete();
+		}
+	}
+}

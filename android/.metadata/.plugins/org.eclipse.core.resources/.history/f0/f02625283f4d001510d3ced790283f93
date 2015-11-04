@@ -1,0 +1,10 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.Serializable;
+
+public class AppSerializableData implements Serializable {
+
+	private static final long serialVersionUID = -7796628525585197180L;
+	
+	
+}

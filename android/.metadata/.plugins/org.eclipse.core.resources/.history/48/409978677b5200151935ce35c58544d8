@@ -1,0 +1,147 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.Vibrator;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class AppItem extends Item{
+	
+	private String activityName;
+	private Bitmap icon;
+	private String text;
+	
+	final float dp, sp;
+	int iconSize, iconPadding;
+	int textWidth, textHeight, textX, textY;
+	Rect iconRect = new Rect(), textRect = new Rect();
+	Paint iconPaint = new Paint(), textPaint = new Paint();
+
+	public AppItem(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		dp = context.getResources().getDisplayMetrics().density;
+		sp = context.getResources().getDisplayMetrics().scaledDensity;
+		init(context, attrs.getAttributeValue("namespace", "activityName"));
+	}
+
+	public AppItem(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		dp = context.getResources().getDisplayMetrics().density;
+		sp = context.getResources().getDisplayMetrics().scaledDensity;
+		init(context, attrs.getAttributeValue("namespace", "activityName"));
+	}
+
+	public AppItem(Context context, String activityName) {
+		super(context);
+		dp = context.getResources().getDisplayMetrics().density;
+		sp = context.getResources().getDisplayMetrics().scaledDensity;
+		init(context, activityName);
+	}
+	
+	
+	private void init(Context context, String activityName){
+		this.activityName = activityName;
+		PackMan.Pack pack = PackMan.get(activityName);
+		icon = Tools.drawableToBitmap(pack.icon);
+		text = pack.label;
+		
+		iconSize = (int)(65 * dp);
+		iconPadding = (int)(3 * dp);
+		textWidth = (int)(65 * dp);
+		textHeight = (int)(40 * dp);
+		textX = 0;
+		textY = (int)(71 * dp); //65 + 3 + 3
+		
+		iconPaint.setAntiAlias(true);
+		
+		textPaint.setTextSize(12 * sp);
+		textPaint.setColor(Color.WHITE);
+		textPaint.setAntiAlias(true);
+		textPaint.setTextAlign(Paint.Align.CENTER);
+	}
+	
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
+		int xIni = getPaddingLeft();
+		int yIni = getPaddingTop();
+		int ancho = getWidth() - getPaddingRight() - xIni;
+		iconRect.set(xIni + iconPadding, yIni + iconPadding, 
+				xIni + iconPadding + ancho, yIni + iconPadding + ancho);
+		int alto = getHeight() - getPaddingBottom() - yIni;
+		textX = (xIni + ancho)/2;
+		textY = yIni + 2*iconPadding + ancho;
+	}
+	
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		canvas.drawBitmap(icon, null, iconRect, iconPaint);
+		canvas.drawText(text, textX, textY, textPaint);
+	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		//aspect_ratio = 13:21
+		int width = -1, height = -1;
+		if(MeasureSpec.getMode(widthMeasureSpec) != MeasureSpec.UNSPECIFIED){
+			width = (int)(MeasureSpec.getSize(widthMeasureSpec)*0.8);
+		}if(MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED){
+			height = (int)(MeasureSpec.getSize(heightMeasureSpec)*0.8);
+		}
+		if(width == -1 && height == -1){
+			width = (int)(65 * dp);
+			height = (int)(105 * dp);
+		}else if(width == -1){
+			width = height*13/21;
+		}else if(height == -1){
+			height = width*21/13;
+		}
+		
+		setMeasuredDimension(width, height);
+	}
+
+	@Override
+	public void onClick() {
+		((Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+		PackMan.startActivity(getContext(), activityName);
+	}
+
+	@Override
+	public boolean onLongClick() {
+		ClipData.Item clipItem = new ClipData.Item(Item.APP_DRAG);
+		
+		ClipData dragData = new ClipData("app", 
+				new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN}, 
+				clipItem);
+		
+		clipItem = new ClipData.Item(activityName);
+		dragData.addItem(clipItem);
+		View.DragShadowBuilder myShadow = new View.DragShadowBuilder(this);
+		
+		if(getParent() instanceof Container)
+			((Container)getParent()).removeItem(this);
+		
+		startDrag(dragData, myShadow, null, 0);
+		((Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+		//packsForAdapter[position].addToHome(mContext, homeView);
+		//drawer.animateClose();
+		//drawer.bringToFront();
+		return false;
+	}
+	
+	public void setApp(String activityName){
+		this.activityName = activityName;
+		PackMan.Pack pack = PackMan.get(activityName);
+		icon = Tools.drawableToBitmap(pack.icon);
+		text = pack.label;
+	}
+	
+}

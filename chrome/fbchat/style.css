@@ -1,0 +1,54 @@
+#u_0_8, #u_0_9, #header, #header ._4g34._52z7{
+	display: none;
+}#header{
+	position: fixed;
+	top: 0;
+	background: #fff;
+	border-bottom: #ccc 1px solid;
+}strong{
+	font-weight: lighter;
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+}#messages_jewel a._59tf, #requests_jewel a._59tf, #notifications_jewel a._59tf{
+	background-image: none;
+	background-color: cornflowerblue;
+	-webkit-mask-image: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yw/r/TEakoxJG5dc.png);
+}#messages_jewel a{
+	-webkit-mask-position: -267px -112px;
+}#requests_jewel a{
+	-webkit-mask-position: -12px -152px;
+}#notifications_jewel a{
+	-webkit-mask-position: -329px -112px;
+}button.btn.btnI.bgb.mfss.touchable{
+	background-color: cornflowerblue;
+	background-image: none;
+	border: none;
+}div.item.buddylistItem.itemWithAction.acw.abt:hover,
+div._55wp._4g33._5b6o._3z12.acw.del_area.async_del.abb._592p.touchable:hover{
+	background-color: cornflowerblue;
+	color: black;
+}div.item.buddylistItem.itemWithAction.acw.abt:hover, 
+div.item.buddylistItem.itemWithAction.acw.abt:hover+div{
+	border-color: cornflowerblue;
+}div._55wp._4g33._5b6o._3z12.acw.del_area.async_del.abb._592p.touchable:hover span.snippet{
+	color: white;
+}#header ._5s61._52z6{
+	min-width: 0;
+}#messages_jewel.hasCount > a._59tf, 
+#requests_jewel.hasCount > a._59tf, 
+#notifications_jewel.hasCount > a._59tf{
+	background-color: crimson;
+	background-image: none;
+}#message-reply-composer{
+	height: 69px;
+}#message-reply-composer > div.async_composer{
+	position: fixed;
+	bottom: 0px;
+	border-top: 1px #ccc solid;
+}body{
+	overflow: hidden;
+}#composerInput, #messageGroup .voice.acw.abt .msg span {
+	font-size: 12px;
+}#u_0_5{
+	width: 270px;
+}

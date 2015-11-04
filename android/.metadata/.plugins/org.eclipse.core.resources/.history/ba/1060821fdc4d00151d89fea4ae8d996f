@@ -1,0 +1,75 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnLongClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.SlidingDrawer;
+import android.widget.TextView;
+
+public class DrawerItemLongClickListener implements OnItemLongClickListener {
+
+	Context mContext;
+	SlidingDrawer drawer;
+	RelativeLayout homeView;
+	Pack[] packsForAdapter;
+	
+	public DrawerItemLongClickListener(
+			Context c, 
+			SlidingDrawer sd, 
+			RelativeLayout home,
+			Pack[] packs) {
+		// TODO Auto-generated constructor stub
+		mContext = c;
+		drawer = sd;
+		homeView = home;
+		packsForAdapter = packs;
+	}
+	
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+		// TODO Auto-generated method stub
+		MainActivity.appLaunchable = false;
+		LayoutParams lp = new LayoutParams(view.getWidth(), view.getHeight());
+		lp.leftMargin = (int) view.getX();
+		lp.topMargin = (int) view.getY();
+		
+		LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LinearLayout ll = (LinearLayout) li.inflate(R.layout.drawer_item, null);
+		((ImageView)ll.findViewById(R.id.item_icon)).setImageDrawable(
+				((ImageView)view.findViewById(R.id.item_icon)).getDrawable());
+		((TextView)ll.findViewById(R.id.item_label)).setText(
+				((TextView)view.findViewById(R.id.item_label)).getText());
+		
+		ll.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				v.setOnTouchListener(new AppTouchListener());
+				return false;
+			}
+		});
+		
+		//delete this line v
+		ll.setOnClickListener(new AppClickListener(mContext, packsForAdapter));
+		String[] data = new String[] {
+				packsForAdapter[position].packageName,
+				packsForAdapter[position].name
+		};
+		
+		ll.setTag(data);
+		
+		homeView.addView(ll, lp);
+		drawer.animateClose();
+		drawer.bringToFront();
+		return false;
+	}
+	
+}

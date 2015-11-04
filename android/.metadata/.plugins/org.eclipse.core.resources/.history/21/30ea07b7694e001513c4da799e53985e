@@ -1,0 +1,46 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.graphics.Color;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.ImageView;
+
+public class AppDragEventListener implements View.OnDragListener {
+
+	@Override
+	public boolean onDrag(View v, DragEvent event) {
+		switch(event.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(event.getClipDescription().
+					hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+				((GridLayout)v).setColorFilter(Color.BLUE);
+				v.invalidate();
+				return true;
+			}
+			return false;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			((ImageView)v.findViewById(R.id.item_icon)).setColorFilter(Color.GREEN);
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			((ImageView)v.findViewById(R.id.item_icon)).setColorFilter(Color.BLUE);
+			v.invalidate();
+			return true;
+		case DragEvent.ACTION_DROP:
+		case DragEvent.ACTION_DRAG_ENDED:
+			((ImageView)v.findViewById(R.id.item_icon)).clearColorFilter();
+			v.invalidate();
+			return true;
+		default:
+			Log.e("Drag", "Unknown action type");
+			break;
+		}
+		return false;
+	}
+
+}

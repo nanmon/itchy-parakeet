@@ -1,0 +1,27 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.ViewGroup;
+
+public abstract class Container extends ViewGroup{
+	
+	public Container(Context context) {
+		super(context);
+		init(context);
+	}
+
+	public Container(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	public Container(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+
+	public abstract boolean onDragEvent(DragEvent e);
+	protected abstract void init(Context context);
+}

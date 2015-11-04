@@ -1,0 +1,40 @@
+10-24 14:42:48.942: D/OpenGLRenderer(30294): Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+10-24 14:42:48.986: D/Atlas(30294): Validating map...
+10-24 14:42:49.011: E/AndroidRuntime(30294): FATAL EXCEPTION: AsyncTask #1
+10-24 14:42:49.011: E/AndroidRuntime(30294): Process: com.hoohaa.hoohaalauncher, PID: 30294
+10-24 14:42:49.011: E/AndroidRuntime(30294): java.lang.RuntimeException: An error occured while executing doInBackground()
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.os.AsyncTask$3.done(AsyncTask.java:304)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.util.concurrent.FutureTask.finishCompletion(FutureTask.java:355)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.util.concurrent.FutureTask.setException(FutureTask.java:222)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.util.concurrent.FutureTask.run(FutureTask.java:242)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.os.AsyncTask$SerialExecutor$1.run(AsyncTask.java:231)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1112)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:587)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.lang.Thread.run(Thread.java:818)
+10-24 14:42:49.011: E/AndroidRuntime(30294): Caused by: java.lang.RuntimeException: Can't create handler inside thread that has not called Looper.prepare()
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.os.Handler.<init>(Handler.java:200)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.os.Handler.<init>(Handler.java:114)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.view.GestureDetector$GestureHandler.<init>(GestureDetector.java:251)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.view.GestureDetector.<init>(GestureDetector.java:355)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.view.GestureDetector.<init>(GestureDetector.java:336)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at com.hoohaa.hoohaalauncher.Item.init(Item.java:39)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at com.hoohaa.hoohaalauncher.Item.<init>(Item.java:19)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at com.hoohaa.hoohaalauncher.AppItem.<init>(AppItem.java:43)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at com.hoohaa.hoohaalauncher.Item$Builder.buildAppItem(Item.java:122)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at util.xmlparser.XmlManager.newReadItems(XmlManager.java:115)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at util.xmlparser.XmlManager.readItems(XmlManager.java:180)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at com.hoohaa.hoohaalauncher.MainActivity$LoadApps.doInBackground(MainActivity.java:165)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at com.hoohaa.hoohaalauncher.MainActivity$LoadApps.doInBackground(MainActivity.java:1)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at android.os.AsyncTask$2.call(AsyncTask.java:292)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+10-24 14:42:49.011: E/AndroidRuntime(30294): 	... 4 more
+10-24 14:42:49.222: I/Adreno-EGL(30294): <qeglDrvAPI_eglInitialize:410>: EGL 1.4 QUALCOMM build: AU_LINUX_ANDROID_LA.BF.1.1.1_RB1.05.00.02.042.016_msm8226_LA.BF.1.1.1_RB1__release_AU ()
+10-24 14:42:49.222: I/Adreno-EGL(30294): OpenGL ES Shader Compiler Version: E031.25.03.00
+10-24 14:42:49.222: I/Adreno-EGL(30294): Build Date: 02/11/15 Wed
+10-24 14:42:49.222: I/Adreno-EGL(30294): Local Branch: 
+10-24 14:42:49.222: I/Adreno-EGL(30294): Remote Branch: quic/LA.BF.1.1.1_rb1.10
+10-24 14:42:49.222: I/Adreno-EGL(30294): Local Patches: NONE
+10-24 14:42:49.222: I/Adreno-EGL(30294): Reconstruct Branch: AU_LINUX_ANDROID_LA.BF.1.1.1_RB1.05.00.02.042.016 + 62ca4eb + acd831d + 9f8b442 + e027a02 + cba30ba + 53c303a + a649d79 + 23e16f8 + 5e97da7 + cbd2a44 + 33d072a + 7aacf06 + 72b33e7 + 28f6f60 + b4c13d8 +  NOTHING
+10-24 14:42:49.235: I/OpenGLRenderer(30294): Initialized EGL, version 1.4
+10-24 14:42:49.456: D/OpenGLRenderer(30294): Enabling debug mode 0
+10-24 14:42:49.820: I/Choreographer(30294): Skipped 46 frames!  The application may be doing too much work on its main thread.

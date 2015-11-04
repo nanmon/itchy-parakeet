@@ -1,0 +1,32 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.ViewGroup;
+
+public abstract class Container extends ViewGroup{
+	
+	public static final String DRAWER_DRAG = "drawer";
+	public static final String HOME_DRAG = "home";
+	public static final String DOCK_DRAG = "dock";
+	
+	public Container(Context context) {
+		super(context);
+		init(context);
+	}
+
+	public Container(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	public Container(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+	
+	//TODO: DragDroppedFromHome(), ..FromDrawer(), ..FromDock();
+	public abstract boolean onDragEvent(DragEvent e);
+	protected abstract void init(Context context);
+}

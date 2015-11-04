@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/home_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hoohaa.hoohaalauncher.MainActivity" 
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    >
+    
+    <com.hoohaa.hoohaalauncher.HomeGridLayout
+        android:id="@id/home_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/drawer_item_size"
+        android:layout_marginRight="@dimen/drawer_item_size"
+         />
+        
+    <SlidingDrawer android:id="@id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:handle="@id/handle"
+        android:content="@id/content">
+        
+        <ImageView android:id="@id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            
+            />
+        
+        
+        <GridView android:id="@id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawer_grid_background"
+            android:columnWidth="@dimen/drawer_item_size"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:horizontalSpacing="30dp"
+            android:verticalSpacing="30dp"
+            android:gravity="center"
+             />
+    </SlidingDrawer>
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.io.Serializable;
+
+import android.graphics.drawable.Drawable;
+
+public class Pack implements Serializable{
+	private static final long serialVersionUID = -8943614059049888535L;
+	
+	transient Drawable icon;
+	String name, label, packageName;
+	int x, y;
+	
+	public Pack(Drawable i, String n, String l, String pn){
+		icon = i;
+		name = n;
+		label = l;
+		packageName = pn;
+	}
+	
+	public void cacheIcon(){
+		
+	}
+	
+	public void deleteIcon(){
+		
+	}
+}

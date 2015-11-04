@@ -1,0 +1,151 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+
+public class HomeGridLayout extends Container {
+	
+	int nRows = 4;
+	int nColumns = 4;
+	ArrayList<AppView> atoms;
+			
+	public HomeGridLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public HomeGridLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
+	public HomeGridLayout(Context context) {
+		super(context);
+	}
+
+	@Override
+	protected void init(Context context){
+		GridLayout child;
+		for(int y=0; y<nRows; ++y){
+			for(int x=0; x<nColumns; ++x){
+				child = new GridLayout(context);
+				addView(child);
+				atoms[y][x] = new LinearLayout(context);
+				child.addView(atoms[y][x]);
+			}
+		}
+	}
+	
+	private void layoutView(View view, int left, int top, int width, int height){
+		MarginLayoutParams margins = (MarginLayoutParams)view.getLayoutParams();
+		final int leftWithMargins = left + margins.leftMargin;
+		final int topWithMargins = top + margins.topMargin;
+		view.layout(leftWithMargins, topWithMargins, 
+				leftWithMargins + width, topWithMargins + height);
+	}
+	
+	private int getMeasuredWidthWithMargins(View child){
+		final MarginLayoutParams lp = (MarginLayoutParams)child.getLayoutParams();
+		return child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+	}
+	
+	private int getMeasuredHeightWithMargins(View child){
+		final MarginLayoutParams lp = (MarginLayoutParams)child.getLayoutParams();
+		return child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
+	}
+	
+	private int getWidthWithMargins(View child){
+		final MarginLayoutParams lp = (MarginLayoutParams)child.getLayoutParams();
+		return child.getWidth() + lp.leftMargin + lp.rightMargin;
+	}
+	
+	private int getHeightWithMargins(View child){
+		final MarginLayoutParams lp = (MarginLayoutParams)child.getLayoutParams();
+		return child.getHeight() + lp.topMargin + lp.bottomMargin;
+	}
+	
+	@Override
+	public boolean shouldDelayChildPressedState() {
+		return false;
+	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		// c:
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
+	
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		final int paddingLeft = getPaddingLeft();
+		final int paddingTop = getPaddingTop();
+		
+		int currentTop = paddingTop;
+		
+		layoutView()
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	
+	public boolean addCell(View child, LayoutParams params) {
+		int columnWidth = getWidth()/nColumns;
+		int rowHeight = getHeight()/nRows;
+		
+		int r = params.topMargin/rowHeight;
+		int c = params.leftMargin/columnWidth;
+		
+		return addCell(child, r, c);
+		
+	}
+	
+	public boolean addCell(View child, int r, int c){
+		if(atoms[r][c].getChildCount() > 0){
+			if(atoms[r][c].getChildAt(0).getVisibility() == View.INVISIBLE){
+				atoms[r][c].removeAllViews();
+			}else return false;
+		}
+		atoms[r][c].addView(child);
+		return true;
+	}
+	
+	public void removeCellAt(int r, int c){
+		if(atoms[r][c].getChildCount()>0)
+			atoms[r][c].removeViewAt(0);
+	}
+	
+	public void removeCell(View v){
+		for(int y=0; y<nRows; ++y){
+			for(int x=0; x<nColumns; ++x){
+				if(atoms[y][x].indexOfChild(v) > -1){
+					atoms[y][x].removeView(v);
+					return;
+				}
+			}
+		}
+	}
+	
+	public boolean hasCellAt(int r, int c){
+		return atoms[r][c].getChildCount() != 0 
+				&& atoms[r][c].getChildAt(0).getVisibility() == View.VISIBLE;
+	}
+	
+	public int getColumnAtX(int x){
+		return (x*nColumns)/getWidth();
+	}
+	
+	public int getRowAtY(int y){
+		return (y*nRows)/getHeight();
+	}
+
+	
+}

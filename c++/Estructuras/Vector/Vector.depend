@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1421694776 source:/home/nancio/Programacion/c++/Estructuras/Vector/main.c
+
+1421697134 source:/home/nancio/Programacion/c++/Estructuras/Vector/vector.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<new>
+	"vector.h"
+
+1421783009 /home/nancio/Programacion/c++/Estructuras/Vector/vector.h
+	<iostream>
+
+1421696480 /home/nancio/Programacion/c++/Estructuras/Vector/vector.cpp
+	<cstdlib>
+	<iostream>
+	<cmath>
+	<new>
+	"vector.h"
+

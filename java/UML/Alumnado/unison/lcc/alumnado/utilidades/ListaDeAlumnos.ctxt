@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ListaDeAlumnos()
+comment0.text=\n\ El\ metodo\ inicializar\ se\ encarga\ de\ generar\ la\ lista\ de\ alumnos;\ \n\ cada\ atributo\ de\ cada\ alumno\ debe\ generarse\ en\ forma\ aleatoria.\ \n\ Los\ datos\ deben\ apegarse\ a\ a\ realidad,\ por\ ejemplo,\ \n\ -\ La\ longitud\ de\ los\ expedientesdebe\ ser\ entre\ 8\ y\ 10\ ambos\ inclusive.\ \n\ -\ El\ rango\ de\ semestres\ debe\ estar\ entre\ [1,10]\ \n\ -\ No\ existe\ cantidad\ maxima\ de\ creditos.\ \n\ -\ El\ promedio\ debe\ estar\ entre\ [0.0,\ 100.0].\ \n\ -\ El\ nombre\ debe\ ser\ generado\ al\ azar,\ generando\ una\ letra\ mayuscula\ al\ inicio\ \n\ y\ minusculas\ despues\ (se\ deben\ generar\ al\ azar,\ nombres\ de\ longitud\ entre\ 5\ y\ 10\ caracteres,\ \n\ puras\ letras)\n
+comment1.params=
+comment1.target=unison.lcc.alumnado.persona.AlumnoLcc[]\ obtenerLista()
+comment1.text=\n\ El\ m\u00E9todo\ obtenerLista\ debe\ retornar\ el\ arreglo\ de\ alumnos\ de\ la\ clase.\ \n\ @return\ Arreglo\ de\ los\ alumnos\ generados.\n
+numComments=2

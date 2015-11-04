@@ -1,0 +1,37 @@
+package com.hoohaainc.framework.util;
+
+import java.util.ArrayList;
+
+public class Queue<T> extends ArrayList<T> implements java.util.Queue<T> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public boolean offer(T e) {
+		this.add(size(), e);
+		return true;
+	}
+
+	@Override
+	public T remove() {
+		return this.remove(size()-1);
+	}
+
+	@Override
+	public T poll() {
+		if(size()==0) return null;
+		return remove();
+	}
+
+	@Override
+	public T element() {
+		return get(0);
+	}
+
+	@Override
+	public T peek() {
+		if(size()==0) return null;
+		return element();
+	}
+
+}

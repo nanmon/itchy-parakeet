@@ -1,0 +1,160 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.LinearLayout;
+
+public class HalfDock extends LinearLayout {
+	
+
+	public HalfDock(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init(context);
+	}
+
+	public HalfDock(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+
+	public HalfDock(Context context) {
+		super(context);
+		init(context);
+	}
+	
+	private void init(Context context){
+		int orientation = context.getResources().getConfiguration().orientation;
+		LayoutParams lp;
+		if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+			
+			this.setOrientation(LinearLayout.VERTICAL);
+			
+			lp = new LayoutParams(LayoutParams.MATCH_PARENT, 0);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+			
+			lp = new LayoutParams(LayoutParams.MATCH_PARENT, 0);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+		}else{
+			this.setOrientation(LinearLayout.HORIZONTAL);
+			
+			lp = new LayoutParams(0, LayoutParams.MATCH_PARENT);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+			
+			lp = new LayoutParams(0, LayoutParams.MATCH_PARENT);
+			lp.weight = 1;
+			
+			addView(new LinearLayout(context), lp);
+		}
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent event) {
+		String dragFrom = event.getClipData().getItemAt(0).getText().toString();
+		
+		switch(event.getAction()){
+		case DragEvent.ACTION_DRAG_STARTED:
+			if(dragFrom == Pack.DOCK_DRAG || dragFrom == Pack.DRAWER_DRAG || dragFrom == Pack.HOME_DRAG){
+				setBackgroundColor(Color.argb(0x80, 0, 0, 0xff)); //blue
+				invalidate();
+				return true;
+			}else{
+				setBackgroundColor(Color.argb(0x80, 0xff, 0, 0)); //red
+				invalidate();
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENTERED:
+			
+			return true;
+		case DragEvent.ACTION_DRAG_LOCATION:
+			if(this.hasCellAt((int)event.getY(),(int)event.getX())){
+				// TODO: replace with yellow for folder
+				setBackgroundColor(Color.argb(0x80, 0xff, 0, 0)); 
+			}else
+				setBackgroundColor(Color.argb(0x80, 0, 0xff, 0)); //green
+			invalidate();
+			return true;
+		case DragEvent.ACTION_DRAG_EXITED:
+			setBackgroundColor(Color.argb(0x80, 0, 0, 0xff));
+			invalidate();
+			return true;
+		case DragEvent.ACTION_DROP:
+			if(dragFrom == Pack.DRAWER_DRAG){
+				Pack pack = packs[Integer.parseInt(
+						event.getClipData().getItemAt(1).getText().toString())];
+				pack.x = ((HomeGridLayout)v).getColumnAtX((int)event.getX());
+				pack.y = ((HomeGridLayout)v).getRowAtY((int)event.getY());
+				
+				AppSerializableData serialData = SerializationTools.loadSerializedData();
+				if(serialData == null)
+					serialData = new AppSerializableData();
+				if(serialData.apps == null)
+					serialData.apps = new ArrayList<>();
+				
+				pack.cacheIcon();
+				serialData.apps.add(pack);
+				
+				SerializationTools.serializeData(serialData);
+				
+				pack.addToHomeGrid(v.getContext(), (HomeGridLayout)v);
+			}else if(event.getClipDescription().hasMimeType(HOME_ITEM) ){
+				View homeItem = v.findViewById(R.id.DRAGGED_VIEW);
+				Pack pack = (Pack)homeItem.getTag();
+				
+				if(homeGrid.hasCellAt(
+						homeGrid.getRowAtY((int)event.getY()), 
+						homeGrid.getColumnAtX((int)event.getX()))){
+					homeItem.setVisibility(View.VISIBLE);
+					return true;
+				}
+				
+				((HomeGridLayout)v).removeCellAt(pack.y,pack.x);
+				
+				pack.x = ((HomeGridLayout)v).getColumnAtX((int)event.getX());
+				pack.y = ((HomeGridLayout)v).getRowAtY((int)event.getY());
+				
+				AppSerializableData serialData = SerializationTools.loadSerializedData();
+				if(serialData == null)
+					serialData = new AppSerializableData();
+				if(serialData.apps == null)
+					serialData.apps = new ArrayList<>();
+				
+				pack.cacheIcon();
+				serialData.apps.add(pack);
+				
+				SerializationTools.serializeData(serialData);
+				
+				pack.addToHomeGrid(v.getContext(), (HomeGridLayout)v);
+				/*LayoutParams lp = (LayoutParams)homeItem.getLayoutParams();
+				lp.leftMargin = (int)event.getX();
+				lp.topMargin = (int)event.getY(); //...?
+				homeItem.setVisibility(View.VISIBLE);
+				homeItem.setId(View.NO_ID);
+				homeItem.invalidate();*/
+				//serialize pack
+			}
+			return true;
+		case DragEvent.ACTION_DRAG_ENDED:
+			v.setBackgroundColor(Color.TRANSPARENT);
+			v.invalidate();
+			return true;
+		default:
+			Log.e("Drag", "Unknown action type");
+			break;
+		}
+		return super.onDragEvent(event);
+	}
+
+}

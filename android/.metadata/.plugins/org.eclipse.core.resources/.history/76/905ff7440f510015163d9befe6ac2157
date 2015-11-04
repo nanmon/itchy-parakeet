@@ -1,0 +1,107 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+
+public class HomeGridLayout extends Container {
+	
+	int nRows = 4;
+	int nColumns = 4;
+	
+	LinearLayout[][] atoms;
+	
+	
+		
+	public HomeGridLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public HomeGridLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
+	public HomeGridLayout(Context context) {
+		super(context);
+	}
+
+	protected void init(Context context){
+		GridLayout child;
+		for(int y=0; y<nRows; ++y){
+			for(int x=0; x<nColumns; ++x){
+				child = new GridLayout(context);
+				addView(child);
+				atoms[y][x] = new LinearLayout(context);
+				child.addView(atoms[y][x]);
+			}
+		}
+	}
+	
+	@Override
+	public boolean onDragEvent(DragEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	public boolean addCell(View child, LayoutParams params) {
+		int columnWidth = getWidth()/nColumns;
+		int rowHeight = getHeight()/nRows;
+		
+		int r = params.topMargin/rowHeight;
+		int c = params.leftMargin/columnWidth;
+		
+		return addCell(child, r, c);
+		
+	}
+	
+	public boolean addCell(View child, int r, int c){
+		if(atoms[r][c].getChildCount() > 0){
+			if(atoms[r][c].getChildAt(0).getVisibility() == View.INVISIBLE){
+				atoms[r][c].removeAllViews();
+			}else return false;
+		}
+		atoms[r][c].addView(child);
+		return true;
+	}
+	
+	public void removeCellAt(int r, int c){
+		if(atoms[r][c].getChildCount()>0)
+			atoms[r][c].removeViewAt(0);
+	}
+	
+	public void removeCell(View v){
+		for(int y=0; y<nRows; ++y){
+			for(int x=0; x<nColumns; ++x){
+				if(atoms[y][x].indexOfChild(v) > -1){
+					atoms[y][x].removeView(v);
+					return;
+				}
+			}
+		}
+	}
+	
+	public boolean hasCellAt(int r, int c){
+		return atoms[r][c].getChildCount() != 0 
+				&& atoms[r][c].getChildAt(0).getVisibility() == View.VISIBLE;
+	}
+	
+	public int getColumnAtX(int x){
+		return (x*nColumns)/getWidth();
+	}
+	
+	public int getRowAtY(int y){
+		return (y*nRows)/getHeight();
+	}
+
+	
+}

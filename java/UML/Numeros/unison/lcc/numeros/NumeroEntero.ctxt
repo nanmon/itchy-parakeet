@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=NumeroEntero()
+comment1.params=a
+comment1.target=NumeroEntero(int)
+comment2.params=a
+comment2.target=NumeroEntero(java.lang.String)
+comment3.params=a
+comment3.target=NumeroEntero(NumeroEntero)
+comment4.params=a\ b
+comment4.target=NumeroEntero\ sumar(NumeroEntero,\ NumeroEntero)
+comment4.text=\n\ Suma\ el\ valor\ de\ los\ objetos\ recibidos\ y\ regresa\ un\ objeto\ de\ tipo\ NumeroEntero\ con\ el\n\ resultado\ obtenido,\ o\ null\ si\ no\ es\ una\ operaci\u00F3n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroEntero\n\ @param\ \ \ \ \ \ \ \ a\ Sumando.\n\ @param\ \ \ \ \ \ \ \ b\ Sumando.\n
+comment5.params=a\ b
+comment5.target=NumeroEntero\ restar(NumeroEntero,\ NumeroEntero)
+comment5.text=\n\ Resta\ el\ valor\ del\ segundo\ objeto\ (Sustrayendo)\ al\ valor\ del\ primero\ (Minuendo),\n\ y\ regresa\ un\ objeto\ de\ tipo\ NumeroEntero\ con\ el\ resultado\ obtenido,\ o\ null\ si\ no\ es\n\ una\ operaci\u00F3n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroEntero\n\ @param\ \ \ \ \ \ \ \ a\ Minuendo\n\ @param\ \ \ \ \ \ \ \ b\ Sustrayendo\n
+comment6.params=a\ b
+comment6.target=NumeroEntero\ multiplicar(NumeroEntero,\ NumeroEntero)
+comment6.text=\n\ Realiza\ un\ multiplicacion\ con\ los\ valores\ de\ los\ objetos\ recibidos\ y\ regresa\ un\n\ objeto\ de\ tipo\ NumeroEntero\ con\ el\ resultado\ obtenido,\ o\ null\ si\ no\ es\ una\ operaci\u00F3n\n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroEntero\n\ @param\ \ \ \ \ \ \ \ a\ Multiplicando.\n\ @param\ \ \ \ \ \ \ \ b\ Multiplicando.\n
+comment7.params=a\ b
+comment7.target=NumeroEntero\ dividir(NumeroEntero,\ NumeroEntero)
+comment7.text=\n\ Divide\ el\ primer\ objeto\ (Dividendo)\ entre\ el\ segundo\ (Divisor),\ y\ regresa\ un\n\ objeto\ de\ tipo\ NumeroEntero\ con\ el\ resultado\ obtenido,\ o\ null\ si\ no\ es\ una\ operaci\u00F3n\n\ cerrada.\n\ @return\ \ \ \ \ \ \ NumeroEntero\n\ @param\ \ \ \ \ \ \ \ a\ Dividendo.\n\ @param\ \ \ \ \ \ \ \ b\ Divisor.\n
+numComments=8

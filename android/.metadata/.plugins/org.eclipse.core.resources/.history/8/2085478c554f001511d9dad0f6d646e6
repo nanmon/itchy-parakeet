@@ -1,0 +1,40 @@
+08-30 13:23:26.775: I/art(25914): Late-enabling -Xcheck:jni
+08-30 13:23:26.965: D/AndroidRuntime(25914): Shutting down VM
+08-30 13:23:26.973: E/AndroidRuntime(25914): FATAL EXCEPTION: main
+08-30 13:23:26.973: E/AndroidRuntime(25914): Process: com.hoohaa.hoohaalauncher, PID: 25914
+08-30 13:23:26.973: E/AndroidRuntime(25914): java.lang.RuntimeException: Unable to start activity ComponentInfo{com.hoohaa.hoohaalauncher/com.hoohaa.hoohaalauncher.MainActivity}: android.view.InflateException: Binary XML file line #15: Error inflating class com.hoohaa.hoohaalauncher.HomeGridLayout
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2314)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2388)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.ActivityThread.access$800(ActivityThread.java:148)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1292)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.os.Looper.loop(Looper.java:135)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.ActivityThread.main(ActivityThread.java:5312)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at java.lang.reflect.Method.invoke(Native Method)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at java.lang.reflect.Method.invoke(Method.java:372)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:696)
+08-30 13:23:26.973: E/AndroidRuntime(25914): Caused by: android.view.InflateException: Binary XML file line #15: Error inflating class com.hoohaa.hoohaalauncher.HomeGridLayout
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.createView(LayoutInflater.java:633)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:743)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.rInflate(LayoutInflater.java:806)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.inflate(LayoutInflater.java:504)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.inflate(LayoutInflater.java:414)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.inflate(LayoutInflater.java:365)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.support.v7.app.AppCompatDelegateImplV7.setContentView(AppCompatDelegateImplV7.java:249)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.support.v7.app.AppCompatActivity.setContentView(AppCompatActivity.java:106)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at com.hoohaa.hoohaalauncher.MainActivity.onCreate(MainActivity.java:82)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.Activity.performCreate(Activity.java:5953)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1128)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2267)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	... 10 more
+08-30 13:23:26.973: E/AndroidRuntime(25914): Caused by: java.lang.reflect.InvocationTargetException
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at java.lang.reflect.Constructor.newInstance(Native Method)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at java.lang.reflect.Constructor.newInstance(Constructor.java:288)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at android.view.LayoutInflater.createView(LayoutInflater.java:607)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	... 21 more
+08-30 13:23:26.973: E/AndroidRuntime(25914): Caused by: java.lang.ArithmeticException: divide by zero
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at com.hoohaa.hoohaalauncher.HomeGridLayout.addView(HomeGridLayout.java:72)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at com.hoohaa.hoohaalauncher.HomeGridLayout.init(HomeGridLayout.java:41)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	at com.hoohaa.hoohaalauncher.HomeGridLayout.<init>(HomeGridLayout.java:25)
+08-30 13:23:26.973: E/AndroidRuntime(25914): 	... 24 more

@@ -1,0 +1,74 @@
+package com.hoohaa.hoohaalauncher;
+
+import java.util.ArrayList;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
+
+public class DrawerItemLongClickListener implements OnItemLongClickListener {
+
+	Context mContext;
+	SlidingDrawer drawer;
+	RelativeLayout homeView;
+	Pack[] packsForAdapter;
+	
+	public DrawerItemLongClickListener(
+			Context c, 
+			SlidingDrawer sd, 
+			RelativeLayout home,
+			Pack[] packs) {
+		// TODO Auto-generated constructor stub
+		mContext = c;
+		drawer = sd;
+		homeView = home;
+		packsForAdapter = packs;
+	}
+	
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+		// TODO Auto-generated method stub
+		MainActivity.appLaunchable = false;
+				
+		/*AppSerializableData serialData = SerializationTools.loadSerializedData();
+		if(serialData == null)
+			serialData = new AppSerializableData();
+		if(serialData.apps == null)
+			serialData.apps = new ArrayList<>();
+		
+		packsForAdapter[position].x = (int)view.getX();
+		packsForAdapter[position].y = (int)view.getY();
+		/*packsForAdapter[position].landscape =
+		MainActivity.activity.getResources().getConfiguration().orientation
+				== Configuration.ORIENTATION_LANDSCAPE;
+		
+		packsForAdapter[position].cacheIcon();
+		serialData.apps.add(packsForAdapter[position]);
+		
+		SerializationTools.serializeData(serialData);*/
+		
+		ClipData.Item clipItem = new ClipData.Item(Pack.DRAWER_DRAG);
+		
+		ClipData dragData = new ClipData("app", 
+				new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN}, 
+				clipItem);
+		
+		clipItem = new ClipData.Item(position + "");
+		dragData.addItem(clipItem);
+		View.DragShadowBuilder myShadow = new View.DragShadowBuilder(view);
+		
+		view.startDrag(dragData, myShadow, null, 0);
+		
+		//packsForAdapter[position].addToHome(mContext, homeView);
+		drawer.animateClose();
+		drawer.bringToFront();
+		return false;
+	}
+	
+}

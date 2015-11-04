@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ inicializar()
+comment0.text=\n\ Da\ la\ bienvenida\ al\ usuario\ y\ pide\ su\ nombre.\n
+comment1.params=
+comment1.target=int\ pedirValor()
+comment1.text=\n\ Valida\ la\ captura\ del\ numero\ dado\ por\ el\ usuario.\n\n\ @return\ \ \ \ \ Numero\ dado\ por\ el\ usuario.\n
+comment2.params=s
+comment2.target=boolean\ soloDigitos(java.lang.String)
+comment2.text=\n\ Revisa\ una\ cadena\ si\ solo\ contiene\ digitos.\n\n\ @param\ \ s\ \ \ Cadena\ a\ verificar\ si\ son\ solo\ digitos.\n\ @return\ \ \ \ \ si\ es\ o\ no\ lo\ es.\n
+comment3.params=
+comment3.target=void\ despedir()
+comment3.text=\n\ Se\ despide\ del\ usuario\n\n
+numComments=4

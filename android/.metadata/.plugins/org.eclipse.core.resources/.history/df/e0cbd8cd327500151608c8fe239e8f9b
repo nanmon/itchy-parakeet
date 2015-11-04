@@ -1,0 +1,20 @@
+package com.hoohaa.hoohaalauncher;
+
+import android.content.Context;
+import android.view.View;
+
+public abstract class Item extends View implements View.OnClickListener {
+
+	public Item(Context context) {
+		super(context);
+		setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		onClick();
+	}
+	
+	public abstract void onClick();
+
+}

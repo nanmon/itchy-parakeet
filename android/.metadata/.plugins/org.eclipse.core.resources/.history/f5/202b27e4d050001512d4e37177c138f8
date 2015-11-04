@@ -1,0 +1,16 @@
+package com.hoohaa.hoohaalauncher;
+
+public class AppsSorter {
+	public static void byLabel(Pack[] packs){
+		int i, j;
+		Pack temp;
+		
+		for(i=0; i<packs.length-1; ++i)
+			for(j=i+1; j<packs.length; ++j)
+				if(packs[i].label.compareToIgnoreCase(packs[j].label) > 0){
+					temp = packs[i];
+					packs[i] = packs[j];
+					packs[j] = temp;
+				}
+	}
+}

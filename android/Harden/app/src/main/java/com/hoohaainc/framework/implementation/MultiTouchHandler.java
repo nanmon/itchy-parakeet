@@ -1,0 +1,160 @@
+package com.hoohaainc.framework.implementation;
+
+import android.view.MotionEvent;
+import android.view.View;
+
+import com.hoohaainc.framework.Input;
+import com.hoohaainc.framework.Pool;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * Created by nancio on 11/07/15.
+ */
+public class MultiTouchHandler implements TouchHandler {
+    private static final int MAX_TOUCHPOINTS = 10;
+
+    boolean[] isTouched = new boolean[MAX_TOUCHPOINTS];
+    int[] touchY = new int[MAX_TOUCHPOINTS];
+    int[] touchX = new int[MAX_TOUCHPOINTS];
+    int[] id = new int[MAX_TOUCHPOINTS];
+    Input.TouchEvent[] buffer = new Input.TouchEvent[MAX_TOUCHPOINTS];
+    Pool<Input.TouchEvent> touchEventPool;
+    List<Input.TouchEvent> touchEvents = new ArrayList<>();
+    //List<Input.TouchEvent> touchEventsBuffer = new ArrayList<>(MAX_TOUCHPOINTS);
+    float scaleX;
+    float scaleY;
+
+    public MultiTouchHandler(View view, float scaleX, float scaleY){
+        Pool.PoolObjectFactory<Input.TouchEvent> factory =
+                new Pool.PoolObjectFactory<Input.TouchEvent>() {
+                    @Override
+                    public Input.TouchEvent createObject() {
+                        return new Input.TouchEvent();
+                    }
+                };
+        touchEventPool = new Pool<>(factory, 100);
+        view.setOnTouchListener(this);
+
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        synchronized (this){
+            int action = event.getAction() & MotionEvent.ACTION_MASK;
+            int pointerIndex = event.getActionIndex();
+            int pointerCount = event.getPointerCount();
+            Input.TouchEvent touchEvent;
+            for(int i=0; i<MAX_TOUCHPOINTS; ++i){
+                if(i >= pointerCount){
+                    isTouched[i] = false;
+                    id[i] = -1;
+                    continue;
+                }
+                int pointerId = event.getPointerId(i);
+                if(event.getAction() != MotionEvent.ACTION_MOVE && i != pointerIndex){
+                    continue;
+                }
+                touchEvent = touchEventPool.newObject();
+                touchEvent.pointer = pointerId;
+                touchEvent.x = touchX[i] = (int)(event.getX(i) * scaleX);
+                touchEvent.y = touchY[i] = (int)(event.getY(i) * scaleY);
+                switch (action){
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                        touchEvent.type = Input.TouchEvent.TOUCH_DOWN;
+                        isTouched[i] = true;
+                        id[i] = pointerId;
+                        //if(touchEventsBuffer.size() > pointerId)
+                        //    touchEventsBuffer.set(pointerId,touchEvent);
+                        //else touchEventsBuffer.add(pointerId, touchEvent);
+                        if(pointerId < MAX_TOUCHPOINTS)
+                            buffer[pointerId] = touchEvent;
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
+                    //case MotionEvent.ACTION_CANCEL:
+                        touchEvent.type = Input.TouchEvent.TOUCH_UP;
+                        isTouched[i] = false;
+                        id[i] = -1;
+                        //touchEventsBuffer.remove(pointerIndex);
+                        if(pointerId < MAX_TOUCHPOINTS){
+                            buffer[pointerId] = touchEvent;
+                        }
+                        break;
+                    case MotionEvent.ACTION_HOVER_ENTER:
+                        touchEvent.type = Input.TouchEvent.TOUCH_DRAGGED;
+                        isTouched[i] = false;
+                        id[i] = pointerId;
+                        //if(touchEventsBuffer.size() > pointerId)
+                        //    touchEventsBuffer.set(pointerId,touchEvent);
+                        //else touchEventsBuffer.add(pointerId, touchEvent);
+                        if(pointerId < MAX_TOUCHPOINTS)
+                            buffer[pointerId] = touchEvent;
+                }
+                //touchEventsBuffer.add(touchEvent);
+            }
+            return true;
+        }
+    }
+
+    @Override
+    public boolean isTouchDown(int pointer) {
+        synchronized (this){
+            int index = getIndex(pointer);
+            return !(index < 0 || index >= MAX_TOUCHPOINTS) && isTouched[index];
+        }
+    }
+
+    @Override
+    public int getTouchX(int pointer) {
+        synchronized (this){
+            int index = getIndex(pointer);
+            if(index < 0 || index >= MAX_TOUCHPOINTS)
+                return 0;
+            else return touchX[index];
+        }
+    }
+
+    @Override
+    public int getTouchY(int pointer) {
+        synchronized (this){
+            int index = getIndex(pointer);
+            if(index < 0 || index >= MAX_TOUCHPOINTS)
+                return 0;
+            else return touchY[index];
+        }
+    }
+
+    @Override
+    public List<Input.TouchEvent> getTouchEvents() {
+        int len = touchEvents.size();
+        for (int i = 0; i < len; i++)
+            //if(!touchEventsBuffer.contains(touchEvents.get(i)))
+            if(touchEvents.get(i).type == Input.TouchEvent.TOUCH_UP)
+                touchEventPool.free(touchEvents.get(i));
+        touchEvents.clear();
+        for(int i=0; i<MAX_TOUCHPOINTS; ++i)
+            if(buffer[i] != null) {
+                touchEvents.add(buffer[i]);
+                if(buffer[i].type == Input.TouchEvent.TOUCH_UP)
+                    buffer[i] = null;
+            }
+        //touchEvents.addAll(touchEventsBuffer);
+        //touchEventsBuffer.clear();
+        return touchEvents;
+    }
+
+    private int getIndex(int pointerId){
+        for(int i=0; i<MAX_TOUCHPOINTS; ++i){
+            if(id[i] == pointerId){
+                return i;
+            }
+        }
+        return -1;
+    }
+}

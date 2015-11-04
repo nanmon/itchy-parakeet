@@ -1,0 +1,6 @@
+com.android.ide.eclipse.ddms.switchPerspective=false
+ddms.logcat.auotmonitor.level=error
+ddms.logcat.automonitor.userprompt=true
+eclipse.preferences.version=1
+logcat.view.colsize.Level=945
+logcat.view.display.filters=false
